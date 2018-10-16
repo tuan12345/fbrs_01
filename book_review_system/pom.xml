@@ -7,7 +7,6 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>bookReview Maven Webapp</name>
 	<url>http://maven.apache.org</url>
-
 	<properties>
 		<jdk>1.8</jdk>
 		<spring.version>4.3.18.RELEASE</spring.version>
