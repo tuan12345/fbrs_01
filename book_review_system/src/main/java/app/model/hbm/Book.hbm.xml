@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="app.model">
+	<class name="User" table="user">
+		<id name="id" column="id">
+			<generator class="increment" />
+		</id>
+
+		<property name="tittle" type="string">
+			<column name="tittle" />
+		</property>
+		<property name="publishDate" type="date">
+			<column name="publish_date" />
+		</property>
+		<property name="author_name" type="string">
+			<column name="authorName" />
+		</property>
+		<property name="numberOfPage" type="int">
+			<column name="number_of_page" />
+		</property>
+		<property name="image" type="string">
+			<column name="image" />
+		</property>
+		
+		
+      	<!-- List Mark -->
+		<list name = "marks">
+         	<key column = "id"/>
+         	<list-index column = "id"/>
+        	<one-to-many class="app.model.Mark"/>
+      	</list>
+      	
+      	<!-- List Review -->
+		<list name = "reviews">
+         	<key column = "id"/>
+         	<list-index column = "id"/>
+        	<one-to-many class="app.model.Review"/>
+      	</list>
+      	
+      	<!-- List Comment -->
+		<list name = "comments">
+         	<key column = "id"/>
+         	<list-index column = "id"/>
+        	<one-to-many class="app.model.Comment"/>
+      	</list>
+      	
+	</class>
+</hibernate-mapping>
