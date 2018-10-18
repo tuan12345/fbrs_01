@@ -11,10 +11,15 @@
 		<put-attribute name="footer" value="/views/layout/footer.jsp" />
 	</definition>
 
-	<!-- List Students -->
+	<!-- home -->
 	<definition name="home" extends="baseLayout">
-		<put-attribute name="title" value="HOME" />
-		<put-attribute name="body" value="/views/home/home.jsp" />
+		<put-attribute name="title" value="Home" />
+		<put-attribute name="body" value="/views/books/home.jsp" />
+	</definition>
+	<!-- list All Book -->
+	<definition name="book" extends="baseLayout">
+		<put-attribute name="title" value="Books" />
+		<put-attribute name="body" value="/views/books/books.jsp" />
 	</definition>
 	
 	<!-- Admin Base -->
@@ -29,5 +34,4 @@
 		<put-attribute name="title" value="ADMIN HOME" />
 		<put-attribute name="adminBody" value="/views/adminHome/home.jsp" />
 	</definition>
-	
 </tiles-definitions>
