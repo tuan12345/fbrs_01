@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="app.model">
+	<class name="User" table="user">
+		<id name="id" column="id">
+			<generator class="increment" />
+		</id>
+
+		<property name="fullName" type="string">
+			<column name="full_name" />
+		</property>
+		<property name="userName" type="string">
+			<column name="user_name" />
+		</property>
+		<property name="password" type="string">
+			<column name="password" />
+		</property>
+		<property name="phoneNumber" type="string">
+			<column name="phone_number" />
+		</property>
+		<property name="email" type="string">
+			<column name="email" />
+		</property>
+		
+		<!-- List Follow -->
+		<list name = "follows">
+         	<key column = "id"/>
+         	<list-index column = "id"/>
+        	<one-to-many class="app.model.Follow"/>
+      	</list>
+      	
+      	<!-- List Like -->
+		<list name = "likes">
+         	<key column = "id"/>
+         	<list-index column = "id"/>
+        	<one-to-many class="app.model.Like"/>
+      	</list>
+      	
+      	<!-- List Activity -->
+		<list name = "activities">
+         	<key column = "id"/>
+         	<list-index column = "id"/>
+        	<one-to-many class="app.model.Activity"/>
+      	</list>
+      	
+      	<!-- List Request -->
+		<list name = "requests">
+         	<key column = "id"/>
+         	<list-index column = "id"/>
+        	<one-to-many class="app.model.Request"/>
+      	</list>
+      	
+      	<!-- List Mark -->
+		<list name = "marks">
+         	<key column = "id"/>
+         	<list-index column = "id"/>
+        	<one-to-many class="app.model.Mark"/>
+      	</list>
+      	
+      	<!-- List Review -->
+		<list name = "reviews">
+         	<key column = "id"/>
+         	<list-index column = "id"/>
+        	<one-to-many class="app.model.Review"/>
+      	</list>
+      	
+      	<!-- List Comment -->
+		<list name = "comments">
+         	<key column = "id"/>
+         	<list-index column = "id"/>
+        	<one-to-many class="app.model.Comment"/>
+      	</list>
+      	
+      	
+	</class>
+</hibernate-mapping>
