@@ -8,9 +8,9 @@
 		</id>
 		<!-- User mapping -->
 		<many-to-one name = "follower" column = "follower_id" 
-         class="app.model.User" not-null="true"/>
+         class="User" not-null="true"/>
          <!-- User mapping -->
 		<many-to-one name = "followed" column = "followed_id" 
-         class="app.model.User" not-null="true"/>
+         class="User" not-null="true"/>
 	</class>
 </hibernate-mapping>

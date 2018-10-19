@@ -23,55 +23,60 @@
 			<column name="email" />
 		</property>
 		
-		<!-- List Follow -->
-		<list name = "follows">
+		<!-- List Follower -->
+		<list name = "followeds">
          	<key column = "id"/>
          	<list-index column = "id"/>
-        	<one-to-many class="app.model.Follow"/>
+        	<one-to-many class="Follow"/>
+      	</list>
+      	
+      	<!-- List Followed -->
+		<list name = "followers">
+         	<key column = "id"/>
+         	<list-index column = "id"/>
+        	<one-to-many class="Follow"/>
       	</list>
       	
       	<!-- List Like -->
 		<list name = "likes">
          	<key column = "id"/>
          	<list-index column = "id"/>
-        	<one-to-many class="app.model.Like"/>
+        	<one-to-many class="Like"/>
       	</list>
       	
       	<!-- List Activity -->
 		<list name = "activities">
          	<key column = "id"/>
          	<list-index column = "id"/>
-        	<one-to-many class="app.model.Activity"/>
+        	<one-to-many class="Activity"/>
       	</list>
       	
       	<!-- List Request -->
 		<list name = "requests">
          	<key column = "id"/>
          	<list-index column = "id"/>
-        	<one-to-many class="app.model.Request"/>
+        	<one-to-many class="Request"/>
       	</list>
       	
       	<!-- List Mark -->
 		<list name = "marks">
          	<key column = "id"/>
          	<list-index column = "id"/>
-        	<one-to-many class="app.model.Mark"/>
+        	<one-to-many class="Mark"/>
       	</list>
       	
       	<!-- List Review -->
 		<list name = "reviews">
          	<key column = "id"/>
          	<list-index column = "id"/>
-        	<one-to-many class="app.model.Review"/>
+        	<one-to-many class="Review"/>
       	</list>
       	
       	<!-- List Comment -->
 		<list name = "comments">
          	<key column = "id"/>
          	<list-index column = "id"/>
-        	<one-to-many class="app.model.Comment"/>
+        	<one-to-many class="Comment"/>
       	</list>
-      	
-      	
 	</class>
 </hibernate-mapping>

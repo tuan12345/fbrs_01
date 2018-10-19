@@ -18,9 +18,9 @@
 		</property>
 		<!-- User mapping -->
 		<many-to-one name = "user" column = "user_id" 
-         class="app.model.User" not-null="true"/>
+         class="User" not-null="true"/>
          <!-- Category mapping -->
          <many-to-one name = "book" column = "book_id" 
-         class="app.model.Book" not-null="true"/>
+         class="Book" not-null="true"/>
 	</class>
 </hibernate-mapping>

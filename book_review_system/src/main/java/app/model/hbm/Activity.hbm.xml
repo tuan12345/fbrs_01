@@ -21,6 +21,6 @@
 		
 		<!-- User mapping -->
 		<many-to-one name = "user" column = "id" 
-         class="app.model.User" not-null="true"/>
+         class="User" not-null="true"/>
 	</class>
 </hibernate-mapping>

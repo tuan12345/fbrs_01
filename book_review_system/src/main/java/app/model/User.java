@@ -10,7 +10,8 @@ public class User {
 	private String phoneNumber;
 	private String email;
 	private Role role;
-	private List<Follow> follows;
+	private List<Follow> followers;
+	private List<Follow> followeds;
 	private List<Like> likes;
 	private List<Activity> activities;
 	private List<Request> requests;
@@ -78,14 +79,6 @@ public class User {
 		this.role = role;
 	}
 
-	public List<Follow> getFollows() {
-		return follows;
-	}
-
-	public void setFollows(List<Follow> follows) {
-		this.follows = follows;
-	}
-
 	public List<Like> getLikes() {
 		return likes;
 	}
@@ -133,4 +126,21 @@ public class User {
 	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
+
+	public List<Follow> getFollowers() {
+		return followers;
+	}
+
+	public void setFollowers(List<Follow> followers) {
+		this.followers = followers;
+	}
+
+	public List<Follow> getFolloweds() {
+		return followeds;
+	}
+
+	public void setFolloweds(List<Follow> followeds) {
+		this.followeds = followeds;
+	}
+	
 }
