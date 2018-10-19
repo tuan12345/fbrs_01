@@ -12,7 +12,7 @@ public class StudentController {
 	@RequestMapping(value = "/")
 	public ModelAndView index() {
 		logger.info("home page");
-		ModelAndView model = new ModelAndView("home");
+		ModelAndView model = new ModelAndView("adminHome");
 
 		return model;
 	}

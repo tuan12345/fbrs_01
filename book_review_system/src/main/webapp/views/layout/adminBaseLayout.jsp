@@ -13,11 +13,27 @@
 		<meta name="description" content="">
 		<meta name="author" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<spring:url value="/assets/css/bootstrap.min.css" var="bootstrapCss" />
+		<spring:url value="/assets/css/bootstrap.min.css" var="bootstrapCss" />		
 		<spring:url value="/assets/js/bootstrap.min.js" var="bootstrapJs" />
 		<spring:url value="/assets/js/jquery.min.js" var="jquery" />
+		<spring:url value="/assets/js/jquery.scrollTo.min.js" var="jqueryScroll" />
+		<spring:url value="/assets/js/jquery.nicescroll.js" var="niceScroll" />
+		<spring:url value="/assets/js/scripts.js" var="script" />
+		
+		<spring:url value="/assets/css/bootstrap-theme.css" var="bootstrapTheme" />
+		<spring:url value="/assets/css/elegant-icons-style.css" var="elegant" />
+		<spring:url value="/assets/css/font-awesome.min.css" var="fontAwesome" />
+		<spring:url value="/assets/css/style.css" var="style" />
+		<spring:url value="/assets/css/style-responsive.css" var="styleReponsive" />
+		<spring:url value="/assets/css/jquery-ui-1.10.4.min.css" var="jqueyrUI" />
 		
 		<link rel="stylesheet" href="${bootstrapCss}" />
+		<link rel="stylesheet" href="${bootstrapTheme}" />
+		<link rel="stylesheet" href="${elegant}" />
+		<link rel="stylesheet" href="${fontAwesome}" />
+		<link rel="stylesheet" href="${style}" />
+		<link rel="stylesheet" href="${styleReponsive}" />
+		<link rel="stylesheet" href="${jqueyrUI}" />
 		<script src="${jquery}" type="text/javascript"></script>
 		<script src="${bootstrapJs}" type="text/javascript"></script>
 		
@@ -32,8 +48,12 @@
 					<tiles:insertAttribute name="adminBody" />
 				</section>
 			</section>
-			<tiles:insertAttribute name="footer" />
 		</section>
-	
+		<script src="${jqueryScroll}" type="text/javascript"></script>
+		<script src="${niceScroll}" type="text/javascript"></script>
+		<script src="${script}" type="text/javascript"></script>
+
+  		<!--custome script for all page-->
+  		<script src="js/scripts.js"></script>
 	</body>
 </html>
