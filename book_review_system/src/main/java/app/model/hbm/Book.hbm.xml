@@ -22,28 +22,23 @@
 		<property name="image" type="string">
 			<column name="image" />
 		</property>
-		
-		
       	<!-- List Mark -->
 		<list name = "marks">
          	<key column = "id"/>
          	<list-index column = "id"/>
-        	<one-to-many class="app.model.Mark"/>
+        	<one-to-many class="Mark"/>
       	</list>
-      	
       	<!-- List Review -->
 		<list name = "reviews">
          	<key column = "id"/>
          	<list-index column = "id"/>
-        	<one-to-many class="app.model.Review"/>
+        	<one-to-many class="Review"/>
       	</list>
-      	
       	<!-- List Comment -->
 		<list name = "comments">
          	<key column = "id"/>
          	<list-index column = "id"/>
-        	<one-to-many class="app.model.Comment"/>
+        	<one-to-many class="Comment"/>
       	</list>
-      	
 	</class>
 </hibernate-mapping>
