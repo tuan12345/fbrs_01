@@ -17,5 +17,17 @@
 		<put-attribute name="body" value="/views/home/home.jsp" />
 	</definition>
 	
+	<!-- Admin Base -->
+	<definition name="adminLayout" template="/views/layout/adminBaseLayout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="adminHeader" value="/views/layout/adminHeader.jsp" />
+		<put-attribute name="adminBody" value="" />
+	</definition>
+	
+	<!-- Admin Home -->
+	<definition name="adminHome" extends="adminLayout">
+		<put-attribute name="title" value="ADMIN HOME" />
+		<put-attribute name="adminBody" value="/views/adminHome/home.jsp" />
+	</definition>
 	
 </tiles-definitions>
