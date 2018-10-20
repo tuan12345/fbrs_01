@@ -8,7 +8,6 @@ public class Activity {
 	private int objectId;
 	private String type;
 	private String note;
-	private Date createAt;
 	private User user;
 	private List<Like> likes;
 	
@@ -46,14 +45,6 @@ public class Activity {
 
 	public void setNote(String note) {
 		this.note = note;
-	}
-
-	public Date getCreateAt() {
-		return createAt;
-	}
-
-	public void setCreateAt(Date createAt) {
-		this.createAt = createAt;
 	}
 
 	public User getUser() {

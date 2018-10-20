@@ -5,7 +5,7 @@ import java.util.Date;
 public class Request {
 	private Integer id;
 	private int status;
-	private Date createAt;
+	private Date createdAt;
 	private String bookTittle;
 	private String bookAuthor;
 	private User user;
@@ -31,12 +31,12 @@ public class Request {
 		this.status = status;
 	}
 
-	public Date getCreateAt() {
-		return createAt;
+	public Date getCreatedAt() {
+		return createdAt;
 	}
 
-	public void setCreateAt(Date createAt) {
-		this.createAt = createAt;
+	public void setCreatedAt(Date createAt) {
+		this.createdAt = createAt;
 	}
 
 	public String getBookTittle() {

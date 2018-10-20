@@ -6,7 +6,7 @@ public class Comment {
 	private Integer id;
 	private int prarentId;
 	private String content;
-	private Date createAt;
+	private Date createdAt;
 	private User user;
 	private Review review;
 
@@ -38,12 +38,12 @@ public class Comment {
 		this.content = content;
 	}
 
-	public Date getCreateAt() {
-		return createAt;
+	public Date getCreatedAt() {
+		return createdAt;
 	}
 
-	public void setCreateAt(Date createAt) {
-		this.createAt = createAt;
+	public void setCreatedAt(Date createAt) {
+		this.createdAt = createAt;
 	}
 
 	public User getUser() {

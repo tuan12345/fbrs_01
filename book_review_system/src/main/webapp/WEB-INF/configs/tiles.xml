@@ -17,7 +17,7 @@
 		<put-attribute name="body" value="/views/books/home.jsp" />
 	</definition>
 	<!-- list All Book -->
-	<definition name="book" extends="baseLayout">
+	<definition name="books" extends="baseLayout">
 		<put-attribute name="title" value="Books" />
 		<put-attribute name="body" value="/views/books/books.jsp" />
 	</definition>
