@@ -13,7 +13,7 @@
 		<property name="pageMark" type="int">
 			<column name="page_mark" />
 		</property>
-		<property name="favorie" type="boolean">
+		<property name="favorite" type="boolean">
 			<column name="favorie" />
 		</property>
 		<!-- User mapping -->

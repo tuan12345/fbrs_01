@@ -11,10 +11,10 @@
 			<column name="like" />
 		</property>
 		<!-- User mapping -->
-		<many-to-one name = "user" column = "id" 
+		<many-to-one name = "user" column = "user_id" 
          class="User" not-null="true"/>
          <!-- Activity mapping -->
-         <many-to-one name = "activity" column = "id"
+         <many-to-one name = "activity" column = "activity_id"
          class="Activity" not-null="true"/>
 	</class>
 </hibernate-mapping>

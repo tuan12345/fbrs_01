@@ -15,7 +15,7 @@
 		</property>
 		
 		<list name = "users">
-         	<key column = "id"/>
+         	<key column = "role_id"/>
          	<list-index column = "id"/>
         	<one-to-many class="User"/>
       	</list>

@@ -23,58 +23,61 @@
 			<column name="email" />
 		</property>
 		
+		 <many-to-one name = "role" column = "role_id" 
+         class="Role" not-null="true"/>
+		
 		<!-- List Follower -->
 		<list name = "followeds">
-         	<key column = "id"/>
+         	<key column = "followed_id"/>
          	<list-index column = "id"/>
         	<one-to-many class="Follow"/>
       	</list>
       	
       	<!-- List Followed -->
 		<list name = "followers">
-         	<key column = "id"/>
+         	<key column = "follower_id"/>
          	<list-index column = "id"/>
         	<one-to-many class="Follow"/>
       	</list>
       	
       	<!-- List Like -->
 		<list name = "likes">
-         	<key column = "id"/>
+         	<key column = "user_id"/>
          	<list-index column = "id"/>
         	<one-to-many class="Like"/>
       	</list>
       	
       	<!-- List Activity -->
 		<list name = "activities">
-         	<key column = "id"/>
+         	<key column = "user_id"/>
          	<list-index column = "id"/>
         	<one-to-many class="Activity"/>
       	</list>
       	
       	<!-- List Request -->
 		<list name = "requests">
-         	<key column = "id"/>
+         	<key column = "user_id"/>
          	<list-index column = "id"/>
         	<one-to-many class="Request"/>
       	</list>
       	
       	<!-- List Mark -->
 		<list name = "marks">
-         	<key column = "id"/>
+         	<key column = "user_id"/>
          	<list-index column = "id"/>
         	<one-to-many class="Mark"/>
       	</list>
       	
       	<!-- List Review -->
 		<list name = "reviews">
-         	<key column = "id"/>
+         	<key column = "user_id"/>
          	<list-index column = "id"/>
         	<one-to-many class="Review"/>
       	</list>
       	
       	<!-- List Comment -->
 		<list name = "comments">
-         	<key column = "id"/>
+         	<key column = "user_id"/>
          	<list-index column = "id"/>
         	<one-to-many class="Comment"/>
       	</list>
