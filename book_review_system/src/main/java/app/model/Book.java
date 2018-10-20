@@ -13,6 +13,7 @@ public class Book {
 	private Category category;
 	private List<Review> reviews;
 	private List<Mark> marks;
+
 	private Book() {
 
 	}

@@ -1,3 +1,4 @@
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <header class="header dark-bg">
 	<div class="toggle-nav">
 		<div class="icon-reorder tooltips"
@@ -7,7 +8,8 @@
 	</div>
 
 	<!--logo start-->
-	<a href="index.html" class="logo">Nice <span class="lite">Admin</span></a>
+	<spring:url value="/" var="home" />
+	<a href="${home}" class="logo">Nice <span class="lite">Admin</span></a>
 	<!--logo end-->
 
 	<div class="nav search-row" id="top_menu"></div>
@@ -40,11 +42,12 @@
 	<div id="sidebar" class="nav-collapse ">
 		<!-- sidebar menu start-->
 		<ul class="sidebar-menu">
-			<li class="active"><a class="" href="index.html"> <i
+			<li class="active"><a class="" href="${home}"> <i
 					class="icon_house_alt"></i> <span>Dashboard</span>
 			</a></li>
-			<li><a class="" href="widgets.html"> <i class="icon_genius"></i>
-					<span>Widgets</span>
+			<spring:url value="/user" var="user" />
+			<li><a class="" href="${user}"> <i class="icon_genius"></i>
+					<span>User</span>
 			</a></li>
 			<li><a class="" href="chart-chartjs.html"> <i
 					class="icon_piechart"></i> <span>Charts</span>

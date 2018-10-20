@@ -41,7 +41,21 @@
 		</property>
 
 		<!-- Load mapping of model and table -->
-	
+		<property name="mappingResources">
+			<list>
+				<value>app/model/hbm/Role.hbm.xml</value>
+				<value>app/model/hbm/User.hbm.xml</value>
+				<value>app/model/hbm/Activity.hbm.xml</value>
+				<value>app/model/hbm/Category.hbm.xml</value>
+				<value>app/model/hbm/Book.hbm.xml</value>
+				<value>app/model/hbm/Follow.hbm.xml</value>
+				<value>app/model/hbm/Like.hbm.xml</value>
+				<value>app/model/hbm/Mark.hbm.xml</value>
+				<value>app/model/hbm/Request.hbm.xml</value>
+				<value>app/model/hbm/Review.hbm.xml</value>
+				<value>app/model/hbm/Comment.hbm.xml</value>
+			</list>
+		</property>
 	</bean>
 
 

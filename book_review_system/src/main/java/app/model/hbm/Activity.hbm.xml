@@ -20,7 +20,7 @@
 		</property>
 		
 		<!-- User mapping -->
-		<many-to-one name = "user" column = "id" 
+		<many-to-one name = "user" column = "user_id" 
          class="User" not-null="true"/>
 	</class>
 </hibernate-mapping>
