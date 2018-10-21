@@ -7,9 +7,17 @@ public class Role {
 	private String name;
 	private String description;
 	private List<User> users;
-	
-	private Role() {
 
+	
+	public Role() {
+	}
+
+	public Role(Integer id, String name, String description, List<User> users) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.users = users;
 	}
 
 	public Integer getId() {

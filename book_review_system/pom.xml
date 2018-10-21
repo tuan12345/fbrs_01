@@ -27,6 +27,7 @@
 		<inject.version>1</inject.version>
 		<servletapi.version>2.5</servletapi.version>
 		<slf4j.version>1.7.6</slf4j.version>
+		<jackson.version>2.8.7</jackson.version>
 	</properties>
 
 	<dependencies>
@@ -204,6 +205,24 @@
 			<groupId>org.apache.tiles</groupId>
 			<artifactId>tiles-jsp</artifactId>
 			<version>${apachetiles.version}</version>
+		</dependency>
+		<!-- jackson -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>${jackson.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
 		</dependency>
 	</dependencies>
 	<build>
