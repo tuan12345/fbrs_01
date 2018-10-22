@@ -9,11 +9,17 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-	
+
 	<bean id="UserDAO" class="app.dao.impl.UserDAOImpl">
 		<property name="sessionFactory">
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
-		
+
+	<bean id="BookDAO" class="app.dao.impl.BookDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
 </beans>
