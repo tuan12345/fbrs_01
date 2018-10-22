@@ -9,6 +9,6 @@ public interface UserService extends BaseService<Integer, User>{
 	List<UserInfo> loadUsers(int page);
 	boolean deleteUser(int id);
 	int loadRowCount();
-	User updateUser(int id, String name, String email, int roleID);
+	User updateUser(UserInfo userInfo);
 	UserInfo findUserInfoById(int id);
 }
