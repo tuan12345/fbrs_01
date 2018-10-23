@@ -23,7 +23,7 @@
 			<column name="image" />
 		</property>
 		 <many-to-one name = "category" column = "category_id" 
-         class="Role" not-null="true"/>
+         class="Category" not-null="true"/>
       	<!-- List Mark -->
 		<list name = "marks">
          	<key column = "book_id"/>
