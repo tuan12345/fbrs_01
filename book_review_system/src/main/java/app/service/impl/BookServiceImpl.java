@@ -2,9 +2,12 @@ package app.service.impl;
 
 import java.io.Serializable;
 import java.util.List;
+
 import org.apache.log4j.Logger;
+
 import app.dto.BookInfo;
 import app.model.Book;
+import app.model.Review;
 import app.service.BookService;
 
 public class BookServiceImpl extends BaseServiceImpl implements BookService {
@@ -87,6 +90,23 @@ public class BookServiceImpl extends BaseServiceImpl implements BookService {
 		try {
 			return bookDAO.findAllBookTitle();
 		} catch (Exception e) {
+			return null;
+		}
+		
+	}
+
+	public BookInfo findBookById(int id) {
+		try {
+			Book book = bookDAO.findById(id);
+			List<Review> reviews = reviewDAO.loadReviewsForBook(id);
+			BookInfo bookInfo = new BookInfo(book.getId(), book.getTittle(), book.getPublishDate(),
+					book.getAuthorName(), book.getNumberOfPage(), book.getImage(), book.getCategory());
+			bookInfo.setAvgStar(reviews);
+			bookInfo.setQuantityVote(reviews);
+			bookInfo.setReviews(reviews);
+			return bookInfo;
+		} catch (Exception e) {
+			logger.error(e);
 			return null;
 		}
 		

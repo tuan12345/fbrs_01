@@ -28,6 +28,12 @@
 		<put-attribute name="body" value="/views/books/bookSearch.jsp" />
 	</definition>
 	
+	<!-- Book detail -->
+	<definition name="bookDetail" extends="baseLayout">
+		<put-attribute name="title" value="Books" />
+		<put-attribute name="body" value="/views/books/bookDetail.jsp" />
+	</definition>
+	
 	<!-- Admin Base -->
 	<definition name="adminLayout" template="/views/layout/adminBaseLayout.jsp">
 		<put-attribute name="title" value="" />

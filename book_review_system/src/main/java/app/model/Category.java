@@ -1,13 +1,21 @@
 package app.model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Category {
+public class Category implements Serializable {
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String name;
 	private String description;
 	private List<Book> books;
 	
+	public Category(Integer id, String name, String description) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
+	}
+
 	public Category() {
 
 	}

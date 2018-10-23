@@ -1,20 +1,21 @@
 package app.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class Activity {
+public class Activity implements Serializable {
 	private Integer id;
 	private int objectId;
 	private String type;
 	private String note;
 	private User user;
 	private List<Like> likes;
-	
-	public Activity(){
-		
+
+	public Activity() {
+
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
