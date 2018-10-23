@@ -1,4 +1,5 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <spring:url value="/assets/img/avatar1_small.jpg" var="avatar" />
 <header class="header dark-bg">
 	<div class="toggle-nav">
@@ -28,8 +29,13 @@
 					<div class="log-arrow-up"></div>
 					<li class="eborder-top"><a href="#"><i
 							class="icon_profile"></i> My Profile</a></li>
-					<li><a href="login.html"><i class="icon_key_alt"></i> Log
-							Out</a></li>
+							
+					<li>
+						<form action="<c:url value='/j_spring_security_logout' />" method="post">
+							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+							<button class="btn btn-primary btn-lg btn-block" type="submit">Log out</button>
+						 </form>		
+					</li>
 				</ul></li>
 			<!-- user login dropdown end -->
 		</ul>
