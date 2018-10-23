@@ -91,12 +91,15 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 	}
 
 	@Override
-	public User updateUser(int id, String name, String email, int roleID) {
+	public User updateUser(UserInfo userInfo) {
 		try {
-			Role role = roleDAO.findById(roleID);
-			User user = userDAO.findByIdLock(id, true);
-			user.setFullName(name);
-			user.setEmail(email);
+			Role role = roleDAO.findById(userInfo.getRole().getId());
+			if(role == null){
+				return null;
+			}
+			User user = userDAO.findByIdLock(userInfo.getId(), true);
+			user.setFullName(userInfo.getName());
+			user.setEmail(userInfo.getEmail());
 			user.setRole(role);
 			return saveOrUpdate(user);
 		} catch (Exception e) {
@@ -110,7 +113,7 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 		try {
 			User user = findById(id, false);
 			RoleInfo roleInfo = new RoleInfo(user.getRole().getId(), user.getRole().getName());
-			UserInfo userInfo = new UserInfo(user.getId(), user.getFullName(), user.getUserName(), user.getPassword(), roleInfo);
+			UserInfo userInfo = new UserInfo(user.getId(), user.getFullName(), user.getUserName(), user.getEmail(), roleInfo);
 			return userInfo;
 		} catch (Exception e) {
 			return null;

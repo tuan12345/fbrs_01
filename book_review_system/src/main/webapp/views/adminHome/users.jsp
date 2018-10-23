@@ -44,14 +44,14 @@
 			</div>
 			<div class="modal-body">
 				<p>User Info</p>
-				<form class="form-validate form-horizontal" method="POST">
-					<input id="cuser_id" type="text" / hidden="1">
+				<form name ="updateUser" class="form-validate form-horizontal" method="POST">
+					<input id="cuser_id" type="text"  hidden="1" name="id">
 					<div class="form-group ">
 						<label for="cname" class="control-label col-lg-2">Full
 							Name <span class="required">*</span>
 						</label>
 						<div class="col-lg-10">
-							<input class="form-control" id="cname" name="fullname"
+							<input class="form-control" id="cname" name="name"
 								minlength="5" type="text" required />
 						</div>
 					</div>
@@ -67,9 +67,10 @@
 					<div class="form-group ">
 						<label for="curl" class="control-label col-lg-2">Role</label>
 						<div class="col-lg-10">
-							<select class="form-control input-sm m-bot15" id='crole'>
-								<option value="1">ADMIN</option>
-								<option value="2">USER</option>
+							<select class="form-control input-sm m-bot15" id='crole' name="role[id]">
+								<c:forEach var="role" items="${roles}">
+									<option value="${role.id}">${role.name}</option>
+								</c:forEach>
 							</select>
 						</div>
 					</div>

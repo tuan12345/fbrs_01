@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import app.dto.UserInfo;
+import app.service.RoleService;
 import app.service.UserService;
 
 @Controller
@@ -25,6 +26,9 @@ public class UsersController {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private RoleService roleService;
+	
 	@Autowired
 	private ReloadableResourceBundleMessageSource messageSource;
 
@@ -46,14 +50,13 @@ public class UsersController {
 		if (userService.loadRowCount() == 0) {
 			model.addObject("message", messageSource.getMessage("users.notfound", null, locale));
 		}
+		model.addObject("roles", roleService.loadRoles());
 		return model;
 	}
 
 	@RequestMapping("users/{id}")
 	public @ResponseBody UserInfo getUser(@PathVariable String id){
-		logger.info("get User id:" + id);
 		UserInfo userInfo = userService.findUserInfoById(Integer.parseInt(id));
-		logger.info("name of person get user: " + userInfo.getName());
 		return userInfo;
 	}
 	
@@ -72,7 +75,7 @@ public class UsersController {
 		if (userService.findById(userInfo.getId(), false) == null) {
 			return messageSource.getMessage("users.notfound", null, locale);
 		}
-		userService.updateUser(userInfo.getId(), userInfo.getName(), userInfo.getEmail(), userInfo.getRole().getId());
+		userService.updateUser(userInfo);
 		return messageSource.getMessage("users.updated", null, locale);
 	}
 

@@ -1,10 +1,12 @@
 package app.service.impl;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import app.dto.RoleInfo;
 import app.model.Role;
 import app.service.RoleService;
 
@@ -43,9 +45,14 @@ public class RoleServiceImpl extends BaseServiceImpl implements RoleService {
 	}
 
 	@Override
-	public List<Role> loadRoles() {
+	public List<RoleInfo> loadRoles() {
 		try {
-			return roleDAO.loadRoles();
+			List<RoleInfo> infos = new ArrayList<>();
+			List<Role> roles = roleDAO.loadRoles();
+			for (Role role : roles) {
+				infos.add(new RoleInfo(role.getId(), role.getName()));
+			}
+			return infos;
 		} catch (Exception e) {
 			return null;
 		}
