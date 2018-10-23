@@ -1,1 +1,1 @@
-<div style="height: 800px; background: green;"></div>
+<h2>Home page</h2>

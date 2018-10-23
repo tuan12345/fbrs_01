@@ -1,4 +1,5 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<spring:url value="/assets/img/avatar1_small.jpg" var="avatar" />
 <header class="header dark-bg">
 	<div class="toggle-nav">
 		<div class="icon-reorder tooltips"
@@ -11,7 +12,7 @@
 	<spring:url value="/" var="home" />
 	<a href="${home}" class="logo">Nice <span class="lite">Admin</span></a>
 	<!--logo end-->
-
+	<div> <a href="?lang=en">English</a> <a href="?lang=vi">Vietnamsese</a></div>
 	<div class="nav search-row" id="top_menu"></div>
 
 	<div class="top-nav notification-row">
@@ -20,7 +21,7 @@
 			<!-- user login dropdown start-->
 			<li class="dropdown"><a data-toggle="dropdown"
 				class="dropdown-toggle" href="#"> <span class="profile-ava">
-						<img alt="" src="img/avatar1_small.jpg">
+						<img alt="" src="${avatar}">
 				</span> <span class="username">ADMIN</span> <b class="caret"></b>
 			</a>
 				<ul class="dropdown-menu extended logout">
@@ -45,7 +46,7 @@
 			<li class="active"><a class="" href="${home}"> <i
 					class="icon_house_alt"></i> <span>Dashboard</span>
 			</a></li>
-			<spring:url value="/user" var="user" />
+			<spring:url value="/users" var="user" />
 			<li><a class="" href="${user}"> <i class="icon_genius"></i>
 					<span>User</span>
 			</a></li>

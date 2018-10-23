@@ -13,7 +13,7 @@ public class RoleServiceImpl extends BaseServiceImpl implements RoleService {
 	private static final Logger logger = Logger.getLogger(RoleServiceImpl.class);
 
 	@Override
-	public Role findById(Serializable key) {
+	public Role findById(Serializable key, boolean lock) {
 		try {
 			return roleDAO.findById(key);
 		} catch (Exception e) {

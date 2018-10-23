@@ -20,7 +20,6 @@ public class User {
 	private List<Comment> comments;
 	
 	public User(){
-		
 	}
 	
 	public Integer getId() {

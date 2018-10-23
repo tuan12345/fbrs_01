@@ -15,7 +15,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<spring:url value="/assets/css/bootstrap.min.css" var="bootstrapCss" />		
 		<spring:url value="/assets/js/bootstrap.min.js" var="bootstrapJs" />
-		<spring:url value="/assets/js/jquery.min.js" var="jquery" />
+		<spring:url value="assets/js/vendor/jquery-1.12.0.min.js" var="jquery" />
 		<spring:url value="/assets/js/jquery.scrollTo.min.js" var="jqueryScroll" />
 		<spring:url value="/assets/js/jquery.nicescroll.js" var="niceScroll" />
 		<spring:url value="/assets/js/scripts.js" var="script" />
@@ -26,6 +26,7 @@
 		<spring:url value="/assets/css/style.css" var="style" />
 		<spring:url value="/assets/css/style-responsive.css" var="styleReponsive" />
 		<spring:url value="/assets/css/jquery-ui-1.10.4.min.css" var="jqueyrUI" />
+		<spring:url value="/assets/js/scripts.js" var="script" />
 		
 		<link rel="stylesheet" href="${bootstrapCss}" />
 		<link rel="stylesheet" href="${bootstrapTheme}" />
@@ -54,6 +55,6 @@
 		<script src="${script}" type="text/javascript"></script>
 
   		<!--custome script for all page-->
-  		<script src="js/scripts.js"></script>
+  		<script src="${script}"></script>
 	</body>
 </html>
