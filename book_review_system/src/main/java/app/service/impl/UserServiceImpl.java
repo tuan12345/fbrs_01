@@ -94,6 +94,9 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 	public User updateUser(UserInfo userInfo) {
 		try {
 			Role role = roleDAO.findById(userInfo.getRole().getId());
+			if(role == null){
+				return null;
+			}
 			User user = userDAO.findByIdLock(userInfo.getId(), true);
 			user.setFullName(userInfo.getName());
 			user.setEmail(userInfo.getEmail());
