@@ -1,6 +1,8 @@
 package app.service.impl;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -78,11 +80,11 @@ public class BookServiceImpl extends BaseServiceImpl implements BookService {
 	@Override
 	public List<BookInfo> findBookByTitle(String title) {
 		try {
-			return ConvertModelToBean.mapBookToBookInf(bookDAO.findBookByTitle(title));
+			return ConvertModelToBean.mapBookToBookInf(bookDAO.findBooksByTitle(title));
 		} catch (Exception e) {
 			return null;
 		}
-		
+
 	}
 
 	@Override
@@ -92,7 +94,7 @@ public class BookServiceImpl extends BaseServiceImpl implements BookService {
 		} catch (Exception e) {
 			return null;
 		}
-		
+
 	}
 
 	@Override
@@ -110,7 +112,23 @@ public class BookServiceImpl extends BaseServiceImpl implements BookService {
 			logger.error(e);
 			return null;
 		}
-		
+	}
+
+	@Override
+	public List<BookInfo> listBooksByCategoryId(Integer Category_id) {
+		try {
+			List<Book> books = bookDAO.loadBooks();
+			List<Book> booksTemp = new ArrayList<>();
+			for (Book book : books) {
+				if (book.getCategory().getId().equals(Category_id)) {
+					booksTemp.add(book);
+				}
+			}
+			return ConvertModelToBean.mapBookToBookInf(booksTemp);
+		} catch (Exception e) {
+			return Collections.emptyList();
+		}
+
 	}
 
 }

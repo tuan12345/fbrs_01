@@ -32,8 +32,9 @@
 					<div class="col-md-3 hidden-xs hidden-sm"
 						data-list-title="${titles }" id="list-title">
 						<spring:url value="Search" var="searchActionUrl" />
-						<form class="navbar-form navbar-left" action="${searchActionUrl }"
-							method="get">
+						<div data-list-category="${categories }" id="list-category"></div>
+						<form class="navbar-form navbar-left"
+							action="${searchActionUrl }" method="get">
 							<div class="input-search">
 								<ul>
 									<li><input id="search" type="text" name="search"
@@ -45,11 +46,10 @@
 									</li>
 
 								</ul>
-
-								<label class="checkbox-inline"><input name="input"
-									type="checkbox" value="">Category</label> <label
-									class="checkbox-inline"><input id="checkTitle"
-									type="checkbox" value="">Title</label>
+								<label class="checkbox-inline"><input name="type-search" id="checkCategory"
+									type="checkbox" value="category">Category</label> 
+									<label class="checkbox-inline"><input name="type-search" id="checkTitle"
+									type="checkbox" value="title">Title</label>
 							</div>
 						</form>
 					</div>

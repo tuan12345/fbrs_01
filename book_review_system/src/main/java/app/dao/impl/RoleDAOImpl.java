@@ -14,7 +14,7 @@ import app.model.Role;
 public class RoleDAOImpl extends GenericDAO<Integer, Role> implements RoleDAO {
 
 	private static final Logger logger = Logger.getLogger(RoleDAOImpl.class);
-	
+
 	public RoleDAOImpl() {
 		super(Role.class);
 	}
@@ -27,8 +27,7 @@ public class RoleDAOImpl extends GenericDAO<Integer, Role> implements RoleDAO {
 	@Override
 	public List<Role> loadRoles() {
 		logger.info("load Roles");
-		return getSession().createQuery("from Role")
-				.getResultList();
+		return getSession().createQuery("from Role").getResultList();
 	}
 
 }

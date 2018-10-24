@@ -47,16 +47,16 @@
 	</div>
 	<div class="container">
 		<div class="row">
-			<div class="col-sm-5">
-				<img alt="bookImage" src="${img}/${bookInfo.image}" width="400px" height="800px">
+			<div class="col-sm-3">
+				<img alt="bookImage" src="${img}/${bookInfo.image}" width="200px" height="400px">
 			</div>
-			<div class="col-sm-7">
+			<div class="col-sm-9">
 				<p><h3><strong>Category: </strong> ${bookInfo.category.name}</h3></p>
 				<p><h3><strong>Title: </strong> ${bookInfo.tittle}</h3></p>
 				<p><h3><strong>Author: </strong> ${bookInfo.authorName}</h3></p>
 				<p><h3><strong>Publish Day: </strong> ${bookInfo.publishDate}</h3></p>
 				<p><h3><strong>Number of Page: </strong> ${bookInfo.numberOfPage}</h3></p>
-				<p><h3><strong>Star: </strong> ${bookInfo.avgStar} <i class="fas fa-star"></i></h3></p>
+				<p><h3><strong>Star: </strong> ${bookInfo.avgStar} <i class="fa fa-star-o"></i></h3></p>
 				<p><h3><strong>Vote: </strong> ${bookInfo.quantityVote}</h3></p>
 			</div>
 		</div>
