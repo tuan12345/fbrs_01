@@ -72,4 +72,24 @@ public class BookServiceImpl extends BaseServiceImpl implements BookService {
 
 	}
 
+	@Override
+	public List<BookInfo> findBookByTitle(String title) {
+		try {
+			return ConvertModelToBean.mapBookToBookInf(bookDAO.findBookByTitle(title));
+		} catch (Exception e) {
+			return null;
+		}
+		
+	}
+
+	@Override
+	public List<String> getListTitle() {
+		try {
+			return bookDAO.findAllBookTitle();
+		} catch (Exception e) {
+			return null;
+		}
+		
+	}
+
 }

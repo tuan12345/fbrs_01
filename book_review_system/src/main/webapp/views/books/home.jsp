@@ -23,8 +23,7 @@
 <spring:url value="/assets/mycss/style.css" var="style" />
 <spring:url value="/assets/css/font-awesome.min.css" var="fontAwesome" />
 <spring:url value="/assets/css/responsive.css" var="responsive" />
-<spring:url value="/assets/js/vendor/jquery-1.12.0.min.js"
-	var="jquerymin" />
+
 <spring:url value="/assets/lib/js/jquery.nivo.slider.pack.js"
 	var="jqueryNivo" />
 <spring:url value="/assets/lib/js/nivo-active.js" var="NivoActive" />

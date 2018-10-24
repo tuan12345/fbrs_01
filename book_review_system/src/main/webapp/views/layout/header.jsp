@@ -1,18 +1,8 @@
+
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!--parameter url  -->
-<spring:url value="/" var="urlHome" />
-<spring:url value="/home.jsp" var="homeUrl" />
-<spring:url value="/books" var="bookUrl" />
+<spring:url value="/books" var="bookUrl"></spring:url>
 <spring:url value="/assets/img/bookstor_compact.png" var="icon" />
-<!--Bootstrap  -->
-<spring:url value="/assets/css/font-awesome.min.css" var="frontAwesome" />
-<spring:url value="/assets/mycss/style.css" var="style" />
-<spring:url value="/assets/mycss/style1.css" var="style1" />
-<spring:url value="/assets/css/bootstrap.min.css" var="bootstrapCss" />
-<link rel="stylesheet" href="${bootstrapCss}" />
-<link rel="stylesheet" href="${frontAwesome}" />
-<link rel="stylesheet" href="${style}" />
-<link rel="stylesheet" href="${style1}" />
 <header class="header-pos sticky-top">
 	<!-- header-bottom-area start -->
 	<div class="header-bottom-area">
@@ -36,18 +26,27 @@
 							</nav>
 						</div>
 					</div>
-					<div class="col-md-3 hidden-xs hidden-sm">
-						<form class="navbar-form navbar-left" action="/..">
+					<div class="col-md-3 hidden-xs hidden-sm" data-list-title="${titles }" id="list-title">
+					<spring:url value="Search" var="searchActionUrl" />
+						<form class="navbar-form navbar-left" action="${searchActionUrl }" method="get">
 							<div class="input-search">
 								<ul>
-									<li><input type="text" name="search" class="form-control"
-										placeholder="Search"></li>
+									<li>
+									<input id="search" type="text" name="search"
+										class="form-control" placeholder="Search">
+										
+										</li>
 									<li>
 										<button class="btn btn-search" type="submit">
 											<i class="fa fa-search"></i>
 										</button>
 									</li>
+
 								</ul>
+								 
+								 <label class="checkbox-inline"><input name="input"
+									type="checkbox" value="">Category</label> <label
+									class="checkbox-inline"><input id="checkTitle" type="checkbox" value="" >Title</label>
 							</div>
 						</form>
 					</div>

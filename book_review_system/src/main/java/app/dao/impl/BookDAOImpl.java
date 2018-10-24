@@ -2,9 +2,11 @@ package app.dao.impl;
 
 import java.util.List;
 import org.apache.log4j.Logger;
+import org.hibernate.Criteria;
 import org.hibernate.LockMode;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 
 import app.dao.BookDAO;
 import app.dao.GenericDAO;
@@ -41,6 +43,22 @@ public class BookDAOImpl extends GenericDAO<Integer, Book> implements BookDAO {
 			return getSession().get(Book.class, id, LockMode.PESSIMISTIC_WRITE);
 		}
 		return getSession().get(Book.class, id);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Book> findBookByTitle(String title) {
+		Criteria criteria = getSession().createCriteria(Book.class);
+		criteria.add(Restrictions.eq("tittle", title));
+		List<Book> books = criteria.list();
+		return books;
+
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<String> findAllBookTitle() {
+		return getSession().createQuery("select tittle from Book").getResultList();
 	}
 
 }
