@@ -28,7 +28,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="section-title">
-				<h2>List All Book</h2>
+				<h2>Ket qua tim kiem voi Ten sach :${title} </h2>
 				<div class="title-icon">
 					<span><i class="fa fa-angle-left"></i> <i
 						class="fa fa-angle-right"></i></span>
@@ -67,12 +67,7 @@
 							<h3>
 								<a href="single-product.html">${bookInfo.tittle }</a>
 							</h3>
-							<!-- <div class="price">
-								<span class="fa fa-star-o"></span> <span class="fa fa-star-o"></span>
-								<span class="fa fa-star-o"></span> <span class="fa fa-star-o"></span>
-								<span class="fa fa-star-o"></span>
-								<span class="old">$80.11</span>
-							</div> -->
+							
 						</div>
 					</div>
 				</div>
@@ -81,59 +76,4 @@
 		</div>
 		<!-- row 2 -->
 	</div>
-	<!--start paging  -->
-	<div class="paging">
-		<nav aria-label="Page navigation example">
-			<ul class="pagination">
-				<!--Previous  -->
-				<c:choose>
-					<c:when test="${curentPage==1 }">
-						<li class="disabled"><a class="page-link" href="#">Previous</a></li>
-					</c:when>
-					<c:otherwise>
-						<li class="page-item"><a class="page-link"
-							href="${urlBook }?page=${curentPage - 1 }">Previous</a></li>
-					</c:otherwise>
-				</c:choose>
-				<!--End Previous  -->
-				<!--Pages  -->
-				<c:forEach begin="1" end="${page }" var="val">
-					<li class="page-item"><a class="page-link"
-						href="${urlBook }?page=${val }">${val}</a></li>
-				</c:forEach>
-				<!--End Pages  -->
-				<!-- Next -->
-				<c:choose>
-					<c:when test="${curentPage==page }">
-						<li class="disabled"><a class="page-link" href="#">Next</a></li>
-					</c:when>
-					<c:otherwise>
-						<li class="page-item"><a class="page-link"
-							href="${urlBook}?page=${curentPage+1 }">Next</a></li>
-					</c:otherwise>
-				</c:choose>
-				<!--End Next  -->
-				<!-- start First -->
-				<c:choose>
-					<c:when test="${curentPage==1 }">
-						<li class="disabled"><a class="page-link" href="#">First</a></li>
-					</c:when>
-					<c:otherwise>
-						<li class="page-item"><a class="page-link"
-							href="${urlBook }?page=${1 }">First</a></li>
-					</c:otherwise>
-				</c:choose>
-				<!--End First  -->
-
-			</ul>
-		</nav>
-	</div>
-	<!--<!--end paging  -->
 </div>
-<!--start Bootstrap  -->
-<script src="${jquerymin }" type="text/javascript"></script>
-<script src="${jqueryOwlCarousel }" type="text/javascript"></script>
-<script src="${jqueryMeanmenu }" type="text/javascript"></script>
-<script src="${jqueryWow }" type="text/javascript"></script>
-<script src="${jqueryMain }" type="text/javascript"></script>
-<!--end Bootstrap  -->

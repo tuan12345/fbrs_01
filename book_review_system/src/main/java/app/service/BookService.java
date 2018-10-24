@@ -10,5 +10,7 @@ public interface BookService extends BaseService<Integer, Book> {
 	List<BookInfo> listBookByPage(Integer page);
 	Long count();
 	Integer page(Long count ,int maxResult);
+	List<BookInfo> findBookByTitle(String title);
+	List<String> getListTitle();
 
 }
