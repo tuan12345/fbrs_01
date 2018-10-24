@@ -28,6 +28,7 @@
 		<servletapi.version>2.5</servletapi.version>
 		<slf4j.version>1.7.6</slf4j.version>
 		<jackson.version>2.8.7</jackson.version>
+		<spring.security.version>5.0.2.RELEASE</spring.security.version>
 	</properties>
 
 	<dependencies>
@@ -224,7 +225,20 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+
 	</dependencies>
+
 	<build>
 		<finalName>bookReview</finalName>
 		<plugins>

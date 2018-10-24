@@ -18,10 +18,10 @@ public class User {
 	private List<Mark> marks;
 	private List<Review> reviews;
 	private List<Comment> comments;
-	
-	public User(){
+
+	public User() {
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -141,5 +141,4 @@ public class User {
 	public void setFolloweds(List<Follow> followeds) {
 		this.followeds = followeds;
 	}
-	
 }

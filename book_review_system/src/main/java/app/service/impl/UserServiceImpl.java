@@ -94,7 +94,7 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 	public User updateUser(UserInfo userInfo) {
 		try {
 			Role role = roleDAO.findById(userInfo.getRole().getId());
-			if(role == null){
+			if (role == null) {
 				return null;
 			}
 			User user = userDAO.findByIdLock(userInfo.getId(), true);
@@ -113,11 +113,11 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 		try {
 			User user = findById(id, false);
 			RoleInfo roleInfo = new RoleInfo(user.getRole().getId(), user.getRole().getName());
-			UserInfo userInfo = new UserInfo(user.getId(), user.getFullName(), user.getUserName(), user.getEmail(), roleInfo);
+			UserInfo userInfo = new UserInfo(user.getId(), user.getFullName(), user.getUserName(), user.getEmail(),
+					roleInfo);
 			return userInfo;
 		} catch (Exception e) {
 			return null;
 		}
 	}
-
 }
