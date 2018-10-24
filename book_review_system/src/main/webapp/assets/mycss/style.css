@@ -4348,3 +4348,58 @@ h3.widget-title-modal {
 .ui-widget.ui-widget-content {
 	z-index: 999;
 }
+
+.review-footer {
+	text-align: center;
+	border-top: 1px solid #ccc;
+}
+
+.review-footer .wrapper-write {
+	position: static;
+	width: auto;
+	text-align: inherit;
+	bottom: -105px;
+	left: 0;
+}
+
+a.csm-button {
+	color: #fff;
+	border-radius: 3px;
+	background: #249a10;
+	border: 1px solid #239510;
+	display: inline-block;
+	font-family: "Lato", Arial, Helvetica, sans-serif;
+	padding: 8px 15px;
+	text-align: center;
+	margin-right: 10px;
+}
+
+.review-footer .wrapper-write .csm-button {
+	max-width: 204px;
+	width: 100%;
+	height: 42px;
+	font-size: 16px;
+	font-weight: bold;
+	line-height: 24px;
+}
+
+.riew-container {
+	background-color: white;
+}
+
+.review-lef {
+	margin-left: 10px;
+	margin-top: 10px;
+}
+
+.line {
+	border-top: 1px solid green;
+}
+
+.review-right {
+	margin-top: 10px;
+	margin-right: 100px;
+}
+.review-footer p{
+	margin-top: 15px;
+}

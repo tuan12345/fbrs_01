@@ -14,7 +14,6 @@ public class BaseServiceImpl {
 	protected ReviewDAO reviewDAO;
 	protected ActivityDAO activityDAO;
 	protected CategoryDAO categoryDAO;
-
 	public CategoryDAO getCategoryDAO() {
 		return categoryDAO;
 	}
@@ -22,7 +21,6 @@ public class BaseServiceImpl {
 	public void setCategoryDAO(CategoryDAO categoryDAO) {
 		this.categoryDAO = categoryDAO;
 	}
-
 	public RoleDAO getRoleDAO() {
 		return roleDAO;
 	}

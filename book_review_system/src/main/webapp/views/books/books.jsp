@@ -56,9 +56,9 @@
 									</a>
 								</div>
 								<div class="button-cart">
-									<button>
-										<!-- <i class="fa fa-detail"></i> -->
-										View Detail
+									<button type="submit">
+										
+										<a href="books/${bookInfo.id }">View Detail</a>
 									</button>
 								</div>
 							</div>
