@@ -4,7 +4,9 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles-extras"
- 	prefix="tilesx"%> 
+	prefix="tilesx"%>
+<%@ taglib prefix="security"
+	uri="http://www.springframework.org/security/tags"%>
 <html>
 <head>
 <!--start resource  -->
@@ -103,6 +105,43 @@
 			</div>
 		</div>
 	</div>
+	<security:authorize access="isAuthenticated()">
+		<div class="container">
+			<div class="row">
+				<h2 class="text-center">Your Activities</h2>
+				<c:if test="${activityMsg != null}">
+					<div class="alert alert-danger" role="alert">
+						<span class="text-center">${activityMsg}</span>
+					</div>
+				</c:if>
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Activity ID</th>
+							<th>Object ID</th>
+							<th>Description</th>
+							<th>Time</th>
+							<th width="10%"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${activities}" var="activity">
+							<tr class="rename">
+								<td class="user_id">${activity.id}</td>
+								<td class="user_full_name">${activity.objectId}</td>
+								<td>${activity.note}</td>
+								<td class="user_email">${activity.createdAt}</td>
+								<th>
+									<button type="button" class="btn btn-success">View Detail</button>
+								</th>
+							</tr>
+						</c:forEach>
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</security:authorize>
 </body>
 <script src="${jquerymin }" type="text/javascript"></script>
 <script src="${jqueryNivo }" type="text/javascript"></script>

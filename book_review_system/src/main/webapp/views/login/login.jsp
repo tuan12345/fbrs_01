@@ -1,6 +1,9 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<spring:url value="/" var="homeUrl"></spring:url>
 <div class="container">
 	<div> <a href="?lang=en">English</a> <a href="?lang=vi">Vietnamsese</a></div>
+	<h3><a href="${homeUrl}">Home</a></h3>
 	<form class="login-form" action="<c:url value='j_spring_security_login' />" method="POST">
 		<div class="login-wrap">
 			<p class="login-img">
