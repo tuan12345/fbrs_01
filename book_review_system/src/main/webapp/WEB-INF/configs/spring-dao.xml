@@ -22,4 +22,10 @@
 		</property>
 	</bean>
 
+	<bean id="ReviewDAO" class="app.dao.impl.ReviewDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+
 </beans>

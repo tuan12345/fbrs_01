@@ -1,8 +1,10 @@
 package app.dto;
 
 import java.util.Date;
+import java.util.List;
 
 import app.model.Category;
+import app.model.Review;
 
 public class BookInfo {
 	private Integer id;
@@ -12,6 +14,9 @@ public class BookInfo {
 	private int numberOfPage;
 	private String image;
 	private Category category;
+	private float avgStar;
+	private int quantityVote;
+	private List<Review> reviews;
 
 	public BookInfo(Integer id, String tittle, Date publishDate, String authorName, int numberOfPage, String image,
 			Category category) {
@@ -81,4 +86,36 @@ public class BookInfo {
 		this.category = category;
 	}
 
+	public float getAvgStar() {
+		return avgStar;
+	}
+
+	public void setAvgStar(List<Review> reviews) {
+		if(!reviews.isEmpty()){
+			float star = 0;
+			for (Review review : reviews) {
+				star = star + review.getNumberOfStar();
+			}
+			this.avgStar = (star/reviews.size());
+		}
+		else{
+			this.avgStar = 0;
+		}
+	}
+
+	public int getQuantityVote() {
+		return quantityVote;
+	}
+
+	public void setQuantityVote(List<Review> reviews) {
+		this.quantityVote = reviews.size();
+	}
+
+	public List<Review> getReviews() {
+		return reviews;
+	}
+
+	public void setReviews(List<Review> reviews) {
+		this.reviews = reviews;
+	}
 }

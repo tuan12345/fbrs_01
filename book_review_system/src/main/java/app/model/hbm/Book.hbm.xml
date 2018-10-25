@@ -22,19 +22,22 @@
 		<property name="image" type="string">
 			<column name="image" />
 		</property>
-		 <many-to-one name = "category" column = "category_id" 
-         class="Category" not-null="true"/>
-      	<!-- List Mark -->
-		<list name = "marks">
-         	<key column = "book_id"/>
-         	<list-index column = "id"/>
-        	<one-to-many class="Mark"/>
-      	</list>
-      	<!-- List Review -->
-		<list name = "reviews">
-         	<key column = "book_id"/>
-         	<list-index column = "id"/>
-        	<one-to-many class="Review"/>
-      	</list>
+		<!-- Category -->
+		 <many-to-one name="category" column="category_id" class="Category" fetch="join"
+			not-null="true" />
+
+		<!-- List Mark -->
+		<list name="marks" fetch="select">
+			<key column="book_id" />
+			<list-index column="id" />
+			<one-to-many class="Mark" />
+		</list>
+
+		<!-- List Followed -->
+		<list name="reviews" fetch="select">
+			<key column="book_id" />
+			<list-index column="id" />
+			<one-to-many class="Review" />
+		</list>
 	</class>
 </hibernate-mapping>
