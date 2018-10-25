@@ -95,6 +95,7 @@ public class BookServiceImpl extends BaseServiceImpl implements BookService {
 		
 	}
 
+	@Override
 	public BookInfo findBookById(int id) {
 		try {
 			Book book = bookDAO.findById(id);

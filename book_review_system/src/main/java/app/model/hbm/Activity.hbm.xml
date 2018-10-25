@@ -19,8 +19,12 @@
 			<column name="object_id" />
 		</property>
 		
+		<property name="createdAt" type="date">
+			<column name="create_at" />
+		</property>
+		
 		<!-- User mapping -->
-		<many-to-one name = "user" column = "user_id" 
-         class="User" not-null="true"/>
+		 <many-to-one name="user" column="user_id" class="User" fetch="join"
+			not-null="true" />
 	</class>
 </hibernate-mapping>

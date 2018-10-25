@@ -1,5 +1,6 @@
 package app.service.impl;
 
+import app.dao.ActivityDAO;
 import app.dao.BookDAO;
 import app.dao.ReviewDAO;
 import app.dao.RoleDAO;
@@ -10,6 +11,7 @@ public class BaseServiceImpl {
 	protected UserDAO userDAO;
 	protected BookDAO bookDAO;
 	protected ReviewDAO reviewDAO;
+	protected ActivityDAO activityDAO;
 
 	public RoleDAO getRoleDAO() {
 		return roleDAO;
@@ -43,4 +45,11 @@ public class BaseServiceImpl {
 		this.reviewDAO = reviewDAO;
 	}
 
+	public ActivityDAO getActivityDAO() {
+		return activityDAO;
+	}
+
+	public void setActivityDAO(ActivityDAO activityDAO) {
+		this.activityDAO = activityDAO;
+	}
 }

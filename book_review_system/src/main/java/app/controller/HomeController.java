@@ -1,15 +1,20 @@
 package app.controller;
 
+import java.security.Principal;
+import java.util.List;
+import java.util.Locale;
+
 import org.apache.log4j.Logger;
-import org.apache.tiles.autotag.core.runtime.annotation.Parameter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import app.model.Activity;
+import app.service.ActivityService;
 import app.service.BookService;
 
 @Controller
@@ -20,10 +25,26 @@ public class HomeController {
 	@Autowired
 	private BookService bookService;
 
+	@Autowired
+	private ActivityService activityService;
+
+	@Autowired
+	private ReloadableResourceBundleMessageSource messageSource;
+
 	@RequestMapping(value = "/")
-	public ModelAndView index() {
-		logger.info("home page");
+	public ModelAndView index(Principal principal, Locale locale) {
 		ModelAndView model = new ModelAndView("home");
+		if (principal != null) {
+			String userName = principal.getName();
+			logger.info("Load Activities of : " + userName);
+			List<Activity> activities = activityService.loadActivitiesByUserName(userName);
+			if (activities.isEmpty()) {
+				model.addObject("activityMsg", messageSource.getMessage("activities.empty", null, locale));
+			}
+			model.addObject("activities", activities);
+		}
+		logger.info("home page");
+
 		return model;
 	}
 

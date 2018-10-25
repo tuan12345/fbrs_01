@@ -27,5 +27,11 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
+	
+	<bean id="ActivityDAO" class="app.dao.impl.ActivityDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
 
 </beans>

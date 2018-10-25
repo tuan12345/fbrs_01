@@ -4,11 +4,16 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 public class Activity implements Serializable {
+	private static final long serialVersionUID = 3632201000665068304L;
 	private Integer id;
 	private int objectId;
 	private String type;
 	private String note;
+	private Date createdAt;
+	@JsonIgnore
 	private User user;
 	private List<Like> likes;
 
@@ -62,5 +67,13 @@ public class Activity implements Serializable {
 
 	public void setLikes(List<Like> likes) {
 		this.likes = likes;
+	}
+
+	public Date getCreatedAt() {
+		return createdAt;
+	}
+
+	public void setCreatedAt(Date createdAt) {
+		this.createdAt = createdAt;
 	}
 }
