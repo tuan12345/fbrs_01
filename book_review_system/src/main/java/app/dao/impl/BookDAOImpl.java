@@ -27,7 +27,7 @@ public class BookDAOImpl extends GenericDAO<Integer, Book> implements BookDAO {
 	@Override
 	public List<Book> findAll(Integer page) {
 		logger.info("load Books");
-		return getSession().createQuery("From Book").setFirstResult(page != null ? (page - 1) * 4 : 0).setMaxResults(4)
+		return getSession().createQuery("From Book").setFirstResult(page != null ? (page - 1) * 8 : 0).setMaxResults(8)
 				.list();
 	}
 
@@ -47,7 +47,7 @@ public class BookDAOImpl extends GenericDAO<Integer, Book> implements BookDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Book> findBookByTitle(String title) {
+	public List<Book> findBooksByTitle(String title) {
 		Criteria criteria = getSession().createCriteria(Book.class);
 		criteria.add(Restrictions.eq("tittle", title));
 		List<Book> books = criteria.list();
@@ -59,6 +59,13 @@ public class BookDAOImpl extends GenericDAO<Integer, Book> implements BookDAO {
 	@Override
 	public List<String> findAllBookTitle() {
 		return getSession().createQuery("select tittle from Book").getResultList();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Book> loadBooks() {
+
+		return getSession().createQuery("From Book").getResultList();
 	}
 
 }

@@ -10,9 +10,11 @@ public interface BookDAO extends BaseDAO<Integer, Book> {
 	Long count();
 
 	Book findByIdLock(int id, boolean lock);
-	
-	List<Book>findBookByTitle(String title);
-	
+
+	List<Book> findBooksByTitle(String title);
+
 	List<String> findAllBookTitle();
+
+	List<Book> loadBooks();
 
 }
