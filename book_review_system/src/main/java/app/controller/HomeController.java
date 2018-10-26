@@ -3,17 +3,21 @@ package app.controller;
 import java.security.Principal;
 import java.util.List;
 import java.util.Locale;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import app.model.Activity;
-import app.service.ActivityService;
+
+import app.dto.ActivityInfo;
 import app.dto.CategoryInfo;
+import app.dto.CustomUserDetails;
+import app.service.ActivityService;
 import app.service.BookService;
 import app.service.CategoryService;
 
@@ -36,13 +40,18 @@ public class HomeController {
 		logger.info("home page");
 		ModelAndView model = new ModelAndView("home");
 		if (principal != null) {
+			CustomUserDetails currentUser = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			String userName = principal.getName();
-			logger.info("Load Activities of : " + userName);
-			List<Activity> activities = activityService.loadActivitiesByUserName(userName);
+			List<ActivityInfo> activities = activityService.loadActivitiesByUserName(userName);
 			if (activities.isEmpty()) {
 				model.addObject("activityMsg", messageSource.getMessage("activities.empty", null, locale));
 			}
 			model.addObject("activities", activities);
+			List<ActivityInfo> followerActivities = activityService.loadActivitiesFollowedByUserId(currentUser.getId());
+			if(followerActivities.isEmpty()){
+				model.addObject("followerActivitiesMsg", messageSource.getMessage("followerActivities.empty", null, locale));
+			}
+			model.addObject("followerActivities", followerActivities);
 		}
 		model.addObject("titles", bookService.getListTitle());
 		model.addObject("categories", categoryService.categoryName());
