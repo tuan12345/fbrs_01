@@ -22,6 +22,26 @@ public class User {
 	public User() {
 	}
 
+	public User(Integer id, String fullName, String userName, String password, String phoneNumber, String email,
+			Role role, List<Follow> followers, List<Follow> followeds, List<Like> likes, List<Activity> activities,
+			List<Request> requests, List<Mark> marks, List<Review> reviews, List<Comment> comments) {
+		this.id = id;
+		this.fullName = fullName;
+		this.userName = userName;
+		this.password = password;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
+		this.role = role;
+		this.followers = followers;
+		this.followeds = followeds;
+		this.likes = likes;
+		this.activities = activities;
+		this.requests = requests;
+		this.marks = marks;
+		this.reviews = reviews;
+		this.comments = comments;
+	}
+
 	public Integer getId() {
 		return id;
 	}

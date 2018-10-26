@@ -22,7 +22,7 @@
 				<input type="password" name="password" class="form-control"
 					placeholder="Password">
 			</div>
-			<label class="checkbox"> <input type="checkbox"
+			<label class="checkbox"> <input	type="checkbox"
 				value="remember-me"> Remember me <span class="pull-right">
 					<a href="#"> Forgot Password?</a>
 			</span>

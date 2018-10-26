@@ -3,7 +3,6 @@ package app.service.impl;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-
 import app.dto.BookInfo;
 import app.dto.CategoryInfo;
 import app.dto.ReviewInfo;
@@ -16,11 +15,18 @@ import app.model.Role;
 import app.model.User;
 
 public class ConvertModelToBean {
+	
 	public static List<BookInfo> mapBooksToBooksInf(List<Book> books) {
 		Function<Book, BookInfo> mapBookToBookInfo = b -> new BookInfo(b.getId(), b.getTittle(), b.getPublishDate(),
 				b.getAuthorName(), b.getNumberOfPage(), b.getImage(), b.getCategory());
 		List<BookInfo> listBooksInfo = books.stream().map(mapBookToBookInfo).collect(Collectors.toList());
 		return listBooksInfo;
+	}
+
+	public static BookInfo mapBookToBookInfo(Book book) {
+		Function<Book, BookInfo> map = b -> new BookInfo(b.getId(), b.getTittle(), b.getPublishDate(),
+				b.getAuthorName(), b.getNumberOfPage(), b.getImage(), b.getCategory());
+		return map.apply(book);
 	}
 
 	public static CategoryInfo mapCategoryToCategoryInfo(Category category) {
@@ -40,10 +46,16 @@ public class ConvertModelToBean {
 	}
 
 	public static List<ReviewInfo> mapReviewToReviewsInf(List<Review> reviews) {
-		Function<Review, ReviewInfo> mapBookToBookInfo = r -> new ReviewInfo(r.getId(), r.getNumberOfStar(),
-				r.getContent(), r.getCreatedAt(), mapUserToUserInfo(r.getUser()));
-		List<ReviewInfo> listReviewsInfo = reviews.stream().map(mapBookToBookInfo).collect(Collectors.toList());
+		Function<Review, ReviewInfo> mapReviewToReviewInfo = r -> new ReviewInfo(r.getId(), r.getNumberOfStar(),
+				r.getContent(), r.getCreatedAt(), mapUserToUserInfo(r.getUser()), mapBookToBookInfo(r.getBook()));
+		List<ReviewInfo> listReviewsInfo = reviews.stream().map(mapReviewToReviewInfo).collect(Collectors.toList());
 		return listReviewsInfo;
 	}
 
+	public static ReviewInfo mapReviewToReviewInfo(Review review) {
+		Function<Review, ReviewInfo> map = r -> new ReviewInfo(r.getId(), r.getNumberOfStar(), r.getContent(),
+				r.getCreatedAt(), mapUserToUserInfo(r.getUser()), mapBookToBookInfo(r.getBook()));
+		return map.apply(review);
+	}
+	
 }

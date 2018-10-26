@@ -28,4 +28,10 @@ public class BooksController {
 		model.addObject("reviews", reviewService.loadReviewsForBook(Integer.parseInt(id)));
 		return model;
 	}
+	@RequestMapping("addReview")
+	public ModelAndView addReview(){
+		logger.info("Add Review");
+		ModelAndView model = new ModelAndView("addReview");
+		return model;
+	}
 }

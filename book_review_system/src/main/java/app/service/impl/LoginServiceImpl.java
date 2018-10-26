@@ -20,7 +20,7 @@ public class LoginServiceImpl extends BaseServiceImpl implements LoginService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		try {
-			User user = userDAO.loadByUserName(username);
+			User user = userDAO.loadUserByUserName(username);
 
 			CustomUserDetails userDetail = new CustomUserDetails();
 			userDetail.setId(user.getId());

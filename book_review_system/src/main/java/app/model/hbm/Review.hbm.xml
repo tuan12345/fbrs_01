@@ -22,7 +22,7 @@
 			not-null="true" />
 
 		<!-- Category mapping -->
-		<many-to-one name="book" column="book_id" class="Book"
+		<many-to-one name="book" column="book_id" class="Book" fetch="select"
 			not-null="true" />
 
 		<list name="comments" fetch="select" inverse="true">

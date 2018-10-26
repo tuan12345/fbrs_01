@@ -42,6 +42,8 @@
 		<property name="target">
 			<bean class="app.service.impl.ReviewServiceImpl">
 				<property name="reviewDAO" ref="ReviewDAO" />
+				<property name="bookDAO" ref="BookDAO" />
+				<property name="userDAO" ref="UserDAO" />
 			</bean>
 		</property>
 	</bean>

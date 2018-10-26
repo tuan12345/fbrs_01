@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 public class Book implements Serializable {
 	private static final long serialVersionUID = 5974438385263559928L;
 	private Integer id;
@@ -14,14 +12,12 @@ public class Book implements Serializable {
 	private String authorName;
 	private int numberOfPage;
 	private String image;
-	@JsonIgnore
 	private Category category;
 	private List<Review> reviews;
 	private List<Mark> marks;
 
 	public Book(Integer id, String tittle, Date publishDate, String authorName, int numberOfPage, String image,
 			Category category, List<Review> reviews, List<Mark> marks) {
-		super();
 		this.id = id;
 		this.tittle = tittle;
 		this.publishDate = publishDate;
