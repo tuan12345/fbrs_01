@@ -48,21 +48,92 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-3">
-				<img alt="bookImage" src="${img}/${bookInfo.image}" width="200px" height="400px">
+				<img alt="bookImage" src="${img}/${bookInfo.image}" width="200px"
+					height="400px">
 			</div>
 			<div class="col-sm-9">
-				<p><h3><strong>Category: </strong> ${bookInfo.category.name}</h3></p>
-				<p><h3><strong>Title: </strong> ${bookInfo.tittle}</h3></p>
-				<p><h3><strong>Author: </strong> ${bookInfo.authorName}</h3></p>
-				<p><h3><strong>Publish Day: </strong> ${bookInfo.publishDate}</h3></p>
-				<p><h3><strong>Number of Page: </strong> ${bookInfo.numberOfPage}</h3></p>
-				<p><h3><strong>Star: </strong> ${bookInfo.avgStar} <i class="fa fa-star-o"></i></h3></p>
-				<p><h3><strong>Vote: </strong> ${bookInfo.quantityVote}</h3></p>
+				<p>
+				<h3>
+					<strong>Category: </strong> ${bookInfo.category.name}
+				</h3>
+				</p>
+				<p>
+				<h3>
+					<strong>Title: </strong> ${bookInfo.tittle}
+				</h3>
+				</p>
+				<p>
+				<h3>
+					<strong>Author: </strong> ${bookInfo.authorName}
+				</h3>
+				</p>
+				<p>
+				<h3>
+					<strong>Publish Day: </strong> ${bookInfo.publishDate}
+				</h3>
+				</p>
+				<p>
+				<h3>
+					<strong>Number of Page: </strong> ${bookInfo.numberOfPage}
+				</h3>
+				</p>
+				<p>
+				<h3>
+					<strong>Star: </strong> ${bookInfo.avgStar} <i class="fa fa-star-o"></i>
+				</h3>
+				</p>
+				<p>
+				<h3>
+					<strong>Vote: </strong> ${bookInfo.quantityVote}
+				</h3>
+				</p>
 			</div>
 		</div>
+		<p>
+		<h3>User Review</h3>
+		</p>
+		<div class="riew-container">
+			<c:forEach items="${reviews}" var="review">
+				<div class="row">
+					<!--leff  -->
+
+					<div class="col-sm-3">
+						<div class="review-lef">
+							<p>Write by:${review.getUserInfo().getName()}</p>
+							<p>${review.getCreatedAt()}</p>
+						</div>
+					</div>
+
+					<div class="col-sm-9">
+						<div class="review-right">
+							<span class="fa fa-star-o"></span> <span class="fa fa-star-o"></span>
+							<span class="fa fa-star-o"></span> <span class="fa fa-star-o"></span>
+							<p style="font-weight: bold; margin-top: 10px">Tieu de</p>
+							<p>${review.getContent()}</p>
+
+						</div>
+					</div>
+
+				</div>
+				<hr size="10" class="line">
+			</c:forEach>
+			<div class="review-footer">
+				<p>
+					<span class="wrapper-write"> <a href="" class="csm-button">Add
+							your review</a>
+					</span>
+				</p>
+
+			</div>
+		</div>
+
+
+
+
 	</div>
 
 </div>
+
 <!--start Bootstrap  -->
 <script src="${jquerymin }" type="text/javascript"></script>
 <script src="${jqueryOwlCarousel }" type="text/javascript"></script>

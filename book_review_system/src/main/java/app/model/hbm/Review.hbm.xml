@@ -18,7 +18,7 @@
 		</property>
 
 		<!-- User mapping -->
-		<many-to-one name="user" column="user_id" class="User"
+		<many-to-one name="user" column="user_id" class="User" fetch="select"
 			not-null="true" />
 
 		<!-- Category mapping -->

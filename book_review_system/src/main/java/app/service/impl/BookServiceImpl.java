@@ -70,7 +70,7 @@ public class BookServiceImpl extends BaseServiceImpl implements BookService {
 	@Override
 	public List<BookInfo> listBookByPage(Integer page) {
 		try {
-			return ConvertModelToBean.mapBookToBookInf(bookDAO.findAll(page));
+			return ConvertModelToBean.mapBooksToBooksInf(bookDAO.findAll(page));
 		} catch (Exception e) {
 			return null;
 		}
@@ -80,7 +80,7 @@ public class BookServiceImpl extends BaseServiceImpl implements BookService {
 	@Override
 	public List<BookInfo> findBookByTitle(String title) {
 		try {
-			return ConvertModelToBean.mapBookToBookInf(bookDAO.findBooksByTitle(title));
+			return ConvertModelToBean.mapBooksToBooksInf(bookDAO.findBooksByTitle(title));
 		} catch (Exception e) {
 			return null;
 		}
@@ -124,7 +124,7 @@ public class BookServiceImpl extends BaseServiceImpl implements BookService {
 					booksTemp.add(book);
 				}
 			}
-			return ConvertModelToBean.mapBookToBookInf(booksTemp);
+			return ConvertModelToBean.mapBooksToBooksInf(booksTemp);
 		} catch (Exception e) {
 			return Collections.emptyList();
 		}
