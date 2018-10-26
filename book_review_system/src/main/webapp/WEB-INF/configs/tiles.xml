@@ -61,7 +61,7 @@
 	
 	<!-- Login -->
 	<definition name="login" extends="loginLayout">
-		<put-attribute name="title" value="List User" />
+		<put-attribute name="title" value="Login" />
 		<put-attribute name="login" value="/views/login/login.jsp" />
 	</definition>
 	

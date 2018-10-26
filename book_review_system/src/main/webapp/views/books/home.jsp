@@ -114,6 +114,7 @@
 						<span class="text-center">${activityMsg}</span>
 					</div>
 				</c:if>
+				<c:if test="${activityMsg == null}">
 				<table class="table">
 					<thead>
 						<tr>
@@ -126,11 +127,11 @@
 					</thead>
 					<tbody>
 						<c:forEach items="${activities}" var="activity">
-							<tr class="rename">
-								<td class="user_id">${activity.id}</td>
-								<td class="user_full_name">${activity.objectId}</td>
+							<tr>
+								<td>${activity.id}</td>
+								<td>${activity.objectId}</td>
 								<td>${activity.note}</td>
-								<td class="user_email">${activity.createdAt}</td>
+								<td>${activity.createdAt}</td>
 								<th>
 									<button type="button" class="btn btn-success">View Detail</button>
 								</th>
@@ -139,6 +140,46 @@
 
 					</tbody>
 				</table>
+				</c:if>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<h2 class="text-center">Follower Activities</h2>
+				<c:if test="${followerActivitiesMsg != null}">
+					<div class="alert alert-danger" role="alert">
+						<span class="text-center">${followerActivitiesMsg}</span>
+					</div>
+				</c:if>
+				<c:if test="${followerActivitiesMsg == null}">
+				<table class="table">
+					<thead>
+						<tr>
+							<th>Activity ID</th>
+							<th>Follower Name</th>
+							<th>Object ID</th>
+							<th>Description</th>
+							<th>Time</th>
+							<th width="10%"></th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${followerActivities}" var="followerActivity">
+							<tr>
+								<td>${followerActivity.id}</td>
+								<td>${followerActivity.user.fullName}</td>
+								<td>${followerActivity.objectId}</td>
+								<td>${followerActivity.note}</td>
+								<td>${followerActivity.createdAt}</td>
+								<th>
+									<button type="button" class="btn btn-success">View Detail</button>
+								</th>
+							</tr>
+						</c:forEach>
+
+					</tbody>
+				</table>
+				</c:if>
 			</div>
 		</div>
 	</security:authorize>
