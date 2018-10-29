@@ -58,6 +58,9 @@
 							<security:authorize access="isAuthenticated()">
 								<h4 class="text-primary">Welcome: <security:authentication property="principal.username" /> </h4>
 								<ul>
+									<spring:url value="/profile" var="profile" />
+									<li class="eborder-top"><a href="${profile}"><i
+											class="icon_profile"></i> My Profile</a></li>
 									<li>
 										<form action="<c:url value='/j_spring_security_logout' />" method="post">
 											<input type="hidden" name="${_csrf.parameterName}"

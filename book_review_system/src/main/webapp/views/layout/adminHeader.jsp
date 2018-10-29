@@ -27,7 +27,8 @@
 			</a>
 				<ul class="dropdown-menu extended logout">
 					<div class="log-arrow-up"></div>
-					<li class="eborder-top"><a href="#"><i
+					<spring:url value="/profile" var="profile" />
+					<li class="eborder-top"><a href="${profile}"><i
 							class="icon_profile"></i> My Profile</a></li>
 							
 					<li>

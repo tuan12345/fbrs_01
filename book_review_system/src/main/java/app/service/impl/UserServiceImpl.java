@@ -117,6 +117,7 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 					roleInfo);
 			return userInfo;
 		} catch (Exception e) {
+			logger.error(e);
 			return null;
 		}
 	}
