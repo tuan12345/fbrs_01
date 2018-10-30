@@ -22,16 +22,14 @@ import app.service.BookService;
 import app.service.CategoryService;
 
 @Controller
-public class HomeController {
+public class HomeController extends BaseController {
 	private static final Logger logger = Logger.getLogger(HomeController.class);
 	@Autowired
 	private BookService bookService;
 	@Autowired
 	CategoryService categoryService;
-
 	@Autowired
 	private ActivityService activityService;
-
 	@Autowired
 	private ReloadableResourceBundleMessageSource messageSource;
 
@@ -40,16 +38,17 @@ public class HomeController {
 		logger.info("home page");
 		ModelAndView model = new ModelAndView("home");
 		if (principal != null) {
-			CustomUserDetails currentUser = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 			String userName = principal.getName();
 			List<ActivityInfo> activities = activityService.loadActivitiesByUserName(userName);
 			if (activities.isEmpty()) {
 				model.addObject("activityMsg", messageSource.getMessage("activities.empty", null, locale));
 			}
 			model.addObject("activities", activities);
-			List<ActivityInfo> followerActivities = activityService.loadActivitiesFollowedByUserId(currentUser.getId());
-			if(followerActivities.isEmpty()){
-				model.addObject("followerActivitiesMsg", messageSource.getMessage("followerActivities.empty", null, locale));
+			List<ActivityInfo> followerActivities = activityService
+					.loadActivitiesFollowedByUserId(currentUser().getId());
+			if (followerActivities.isEmpty()) {
+				model.addObject("followerActivitiesMsg",
+						messageSource.getMessage("followerActivities.empty", null, locale));
 			}
 			model.addObject("followerActivities", followerActivities);
 		}
@@ -59,7 +58,7 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/books", method = RequestMethod.GET)
-	public ModelAndView loadbooks(@RequestParam(value = "page", required = false) Integer page) {
+	public ModelAndView loadBooks(@RequestParam(value = "page", required = false) Integer page) {
 		logger.info("book page");
 		ModelAndView model = new ModelAndView("books");
 		int curentPage = 1;

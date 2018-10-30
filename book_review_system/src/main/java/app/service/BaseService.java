@@ -9,4 +9,6 @@ public interface BaseService<PK, T> {
 
 	public boolean delete(T entity);
 
+	
+
 }

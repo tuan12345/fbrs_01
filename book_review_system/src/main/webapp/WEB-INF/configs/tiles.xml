@@ -65,4 +65,10 @@
 		<put-attribute name="login" value="/views/login/login.jsp" />
 	</definition>
 	
+	<!--Add Review  -->
+	<definition name="addReview" extends="baseLayout">
+		<put-attribute name="title" value="Add Review" />
+		<put-attribute name="body" value="/views/books/addReview.jsp" />
+	</definition>
+	
 </tiles-definitions>

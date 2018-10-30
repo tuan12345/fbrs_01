@@ -24,7 +24,7 @@
 		</property>
 
 		<many-to-one name="role" column="role_id" class="Role"
-			not-null="true" />
+			not-null="true" fetch="join" />
 
 		<!-- List Follower -->
 		<list name="followeds" fetch="select">

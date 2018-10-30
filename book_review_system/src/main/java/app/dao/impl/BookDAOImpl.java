@@ -40,16 +40,16 @@ public class BookDAOImpl extends GenericDAO<Integer, Book> implements BookDAO {
 	@Override
 	public Book findByIdLock(int id, boolean lock) {
 		if (lock) {
-			return getSession().get(Book.class, id, LockMode.PESSIMISTIC_WRITE);
+			return getSession().load(Book.class, id, LockMode.PESSIMISTIC_WRITE);
 		}
-		return getSession().get(Book.class, id);
+		return getSession().find(Book.class, id);
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Book> findBooksByTitle(String title) {
 		Criteria criteria = getSession().createCriteria(Book.class);
-		criteria.add(Restrictions.eq("tittle", title));
+		criteria.add(Restrictions.eq("title", title));
 		List<Book> books = criteria.list();
 		return books;
 
@@ -58,7 +58,7 @@ public class BookDAOImpl extends GenericDAO<Integer, Book> implements BookDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<String> findAllBookTitle() {
-		return getSession().createQuery("select tittle from Book").getResultList();
+		return getSession().createQuery("select title from Book").getResultList();
 	}
 
 	@SuppressWarnings("unchecked")

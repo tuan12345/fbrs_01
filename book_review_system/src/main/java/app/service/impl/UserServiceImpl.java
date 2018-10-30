@@ -120,4 +120,26 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 			return null;
 		}
 	}
+
+	@Override
+	public User findUserById(int id, Boolean lock) {
+		try {
+			return userDAO.findByIdLock(id, lock);
+
+		} catch (Exception e) {
+			return null;
+		}
+
+	}
+
+	@Override
+	public UserInfo findUserInfoByUsername(String userName) {
+		try {
+			return ConvertModelToBean.mapUserToUserInfo(userDAO.loadUserByUserName(userName));
+		} catch (Exception e) {
+			return null;
+		}
+
+	}
+
 }

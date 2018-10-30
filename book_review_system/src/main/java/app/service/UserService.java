@@ -15,4 +15,10 @@ public interface UserService extends BaseService<Integer, User> {
 	User updateUser(UserInfo userInfo);
 
 	UserInfo findUserInfoById(int id);
+
+	User findUserById(int id, Boolean lock);
+	
+	UserInfo findUserInfoByUsername(String userName);
+	
+	
 }

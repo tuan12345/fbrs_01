@@ -5,8 +5,14 @@ import java.util.List;
 import app.dto.ReviewInfo;
 import app.model.Review;
 
-public interface ReviewService extends BaseService<Integer, Review>{
+public interface ReviewService extends BaseService<Integer, ReviewInfo>{
 	List<Review> loadReviews();
-	// load reviews of  this book
+	
 	List<ReviewInfo> loadReviewsForBook(int book_id);
+	
+	 ReviewInfo findUserRivew(Integer userId, Integer bookId);
+		
+	 ReviewInfo createReview(ReviewInfo reviewInfo, int bookId, int userId);
+	 
+	 ReviewInfo updateReview(ReviewInfo reviewInfo);
 }
