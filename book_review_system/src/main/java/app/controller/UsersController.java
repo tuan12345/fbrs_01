@@ -15,12 +15,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import app.dto.CustomUserDetails;
 import app.dto.UserInfo;
+import app.model.User;
+import app.service.FollowService;
 import app.service.RoleService;
 import app.service.UserService;
 
 @Controller
-public class UsersController {
+public class UsersController extends BaseController{
 	private static final Logger logger = Logger.getLogger(UsersController.class);
 
 	@Autowired
@@ -28,7 +31,10 @@ public class UsersController {
 
 	@Autowired
 	private RoleService roleService;
-	
+
+	@Autowired
+	private FollowService followService;
+
 	@Autowired
 	private ReloadableResourceBundleMessageSource messageSource;
 
@@ -55,11 +61,11 @@ public class UsersController {
 	}
 
 	@RequestMapping("users/{id}")
-	public @ResponseBody UserInfo getUser(@PathVariable String id){
+	public @ResponseBody UserInfo getUser(@PathVariable String id) {
 		UserInfo userInfo = userService.findUserInfoById(Integer.parseInt(id));
 		return userInfo;
 	}
-	
+
 	@RequestMapping(value = "users/{id}", method = RequestMethod.DELETE)
 	public @ResponseBody String deleteUser(@PathVariable String id, Locale locale) {
 		logger.info("delete User id:" + id);
@@ -77,6 +83,35 @@ public class UsersController {
 		}
 		userService.updateUser(userInfo);
 		return messageSource.getMessage("users.updated", null, locale);
+	}
+
+	@RequestMapping("/profile")
+	public ModelAndView showMyProfile() {
+		ModelAndView model = new ModelAndView("profile");
+		model.addObject("userProfile", userService.findUserInfoById(currentUser().getId()));
+		model.addObject("showFollow", false);
+		return model;
+	}
+
+	@RequestMapping("/profile/{id}")
+	public ModelAndView showProfile(@PathVariable String id, Locale locale) {
+		ModelAndView model = new ModelAndView("profile");
+		UserInfo currentUser = userService.findUserInfoById(currentUser().getId());
+		if (currentUser.getId() == Integer.parseInt(id)) {
+			return new ModelAndView("redirect:/profile");
+		}
+		UserInfo user = userService.findUserInfoById(Integer.parseInt(id));
+		if (user == null) {
+			model.addObject("notFoundUser", messageSource.getMessage("users.notfound", null, locale));
+			model.addObject("showFollow", false);
+		} else {
+			model.addObject("userProfile", user);
+			model.addObject("currentUser", currentUser);
+			model.addObject("showFollow", true);
+			model.addObject("follow", followService.getFollow(currentUser.getId(), user.getId()));
+		}
+
+		return model;
 	}
 
 	private int pages() {

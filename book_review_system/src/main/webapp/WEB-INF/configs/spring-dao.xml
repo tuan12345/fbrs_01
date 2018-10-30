@@ -40,5 +40,11 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
+	
+	<bean id="FollowDAO" class="app.dao.impl.FollowDAOImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
 
 </beans>
