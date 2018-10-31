@@ -1,5 +1,6 @@
 package app.controller;
 
+import java.security.Principal;
 import java.util.Locale;
 
 import org.apache.log4j.Logger;
@@ -75,7 +76,10 @@ public class UsersController extends BaseController {
 	}
 
 	@RequestMapping("/profile/{id}")
-	public ModelAndView showProfile(@PathVariable String id, Locale locale) {
+	public ModelAndView showProfile(@PathVariable String id, Locale locale, Principal principal) {
+		if (principal == null) {
+			return new ModelAndView("redirect:/login");
+		}
 		ModelAndView model = new ModelAndView("profile");
 		UserInfo currentUser = userService.findUserInfoById(currentUser().getId());
 		if (currentUser.getId() == Integer.parseInt(id)) {

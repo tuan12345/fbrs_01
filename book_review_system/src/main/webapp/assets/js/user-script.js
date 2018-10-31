@@ -1,4 +1,34 @@
 $(function() {
+	//BookDetail Page
+	$(".showComment").click(function() {
+	    var reviewId = $(this).val();
+	    $.ajax({
+			url : '/bookReview/reviews/'+reviewId+'/comments',
+			type : 'GET',
+			success : function(data) {
+				console.log(data);
+				if(jQuery.isEmptyObject(data)){
+					$("#comment-" + reviewId).html("Don't have any comment");
+				}else{
+					var text = "";
+					for(var i = 0; i< data.length; i++){
+						text += "<div>";
+						text += "<p>Comment by: <a href ='/bookReview/profile/"+data[i].user.id+"'>" +data[i].user.name +"</a></p>";
+						text += "<p style='padding-left: 20px;'>Content: " +data[i].content +"</p>"
+						text += "<p style='padding-left: 20px;'>Time: " +data[i].createdAt +"</p>"
+						text +=	"</div>";
+					}
+					$("#comment-" + reviewId).html(text);
+				}
+			},
+			error : function(e) {
+				console.log(e);
+			}
+		})
+		$("#comment-" + reviewId).toggle();
+	});
+	
+	//Users Page
 	$('table').on('click', '.delete_user', function(event) {
 		xoa = $(this).parent().parent();
 		var parentOjb = $(this).closest('.rename');
