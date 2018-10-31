@@ -28,7 +28,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="section-title">
-				<h2>${Categorys.get(0) }</h2>
+				<h2>Profile</h2>
 				<div class="title-icon">
 					<span><i class="fa fa-angle-left"></i> <i
 						class="fa fa-angle-right"></i></span>
@@ -37,7 +37,7 @@
 		</div>
 
 	</div>
-	
+
 	<!-- show profile -->
 	<div class="container">
 		<div class="col-xs-4">
@@ -45,34 +45,48 @@
 				<h3>Follow</h3>
 				<c:choose>
 					<c:when test="${follow != null}">
-						<form action="">
-							
-							<button type="button" class="btn btn-warning">Unfollow</button>
-						</form>
+						<spring:url value="/deleteFollowUser" var="urlCreateFollow"></spring:url>
+						<form:form action="${urlCreateFollow }" method="Post">
+							<input type="hidden" name="id-userFollowed"
+								value="${userProfile.id }" />
+							<input type="hidden" name="id_follow" value="${follow.id }">
+							<button type="submit" class="btn btn-warning">Unfollow</button>
+						</form:form>
 					</c:when>
 					<c:otherwise>
-						<button type="button" class="btn btn-success">Follow</button>
+						<spring:url value="/createFollowUser" var="urlDeleteFollow"></spring:url>
+						<form:form action="${urlDeleteFollow }" method="Post">
+							<input type="hidden" name="id-userFollowed"
+								value="${userProfile.id }" />
+							<button type="submit" class="btn btn-success">Follow</button>
+						</form:form>
 					</c:otherwise>
 				</c:choose>
-				
+
 			</c:if>
-			
+
 		</div>
 		<div class="col-xs-8">
-			 <c:choose>
-			 	<c:when test="${notFoundUser != null}">
-			 		<h3 class="text-center">${notFoundUser}</h3>
-			 	</c:when>
-			 	 <c:otherwise>
-			 	 	<h3 class="text-center">Profile</h3>
+			<c:choose>
+				<c:when test="${notFoundUser != null}">
+					<h3 class="text-center">${notFoundUser}</h3>
+				</c:when>
+				<c:otherwise>
+					<h3 class="text-center"></h3>
 					<p>
-						<h3><strong>Name: </strong> ${userProfile.name}</h3>
-						<h3><strong>Email: </strong> ${userProfile.email}</h3>
-						<h3><strong>Role: </strong> ${userProfile.role.name}</h3>
+					<h3>
+						<strong>Name: </strong> ${userProfile.name}
+					</h3>
+					<h3>
+						<strong>Email: </strong> ${userProfile.email}
+					</h3>
+					<h3>
+						<strong>Role: </strong> ${userProfile.role.name}
+					</h3>
 					</p>
-			 	 </c:otherwise>
-			 </c:choose>
-			
+				</c:otherwise>
+			</c:choose>
+
 		</div>
 	</div>
 </div>

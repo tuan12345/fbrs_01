@@ -18,9 +18,9 @@ import app.service.UserService;
 public class BaseController {
 	@Autowired
 	protected UserService userService;
-	@Autowired 
+	@Autowired
 	protected ActivityService activityService;
-	@Autowired 
+	@Autowired
 	protected BookService bookService;
 	@Autowired
 	protected CategoryService categoryService;
@@ -30,15 +30,15 @@ public class BaseController {
 	protected LoginService loginService;
 	@Autowired
 	protected ReviewService reviewService;
-	@Autowired 
+	@Autowired
 	protected RoleService roleService;
 	@Autowired
 	protected CommentService commentService;
-	
+
 	@Autowired
 	protected ReloadableResourceBundleMessageSource messageSource;
-	
-	protected UserInfo currentUser(){
+
+	protected UserInfo currentUser() {
 		try {
 			return userService.findUserInfoByUsername(SecurityContextHolder.getContext().getAuthentication().getName());
 		} catch (Exception e) {
