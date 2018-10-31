@@ -18,6 +18,10 @@ public class BookInfo {
 	private int quantityVote;
 	private List<Review> reviews;
 
+	public BookInfo(){
+		
+	}
+	
 	public BookInfo(Integer id, String tittle, Date publishDate, String authorName, int numberOfPage, String image,
 			Category category) {
 		super();

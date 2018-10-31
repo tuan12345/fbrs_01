@@ -4,6 +4,7 @@ import app.dao.ActivityDAO;
 import app.dao.BookDAO;
 import app.dao.ReviewDAO;
 import app.dao.CategoryDAO;
+import app.dao.CommentDAO;
 import app.dao.FollowDAO;
 import app.dao.RoleDAO;
 import app.dao.UserDAO;
@@ -16,6 +17,7 @@ public class BaseServiceImpl {
 	protected ActivityDAO activityDAO;
 	protected CategoryDAO categoryDAO;
 	protected FollowDAO followDAO;
+	protected CommentDAO commentDAO;
 
 	public CategoryDAO getCategoryDAO() {
 		return categoryDAO;
@@ -71,6 +73,14 @@ public class BaseServiceImpl {
 
 	public void setFollowDAO(FollowDAO followDAO) {
 		this.followDAO = followDAO;
+	}
+
+	public CommentDAO getCommentDAO() {
+		return commentDAO;
+	}
+
+	public void setCommentDAO(CommentDAO commentDAO) {
+		this.commentDAO = commentDAO;
 	}
 
 }
