@@ -1,7 +1,6 @@
 package app.controller;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,20 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
 import app.dto.ReviewInfo;
-import app.service.BookService;
-import app.service.CategoryService;
-import app.service.ReviewService;	
 
 @Controller
 public class RiewsController extends BaseController {
 	private static final Logger logger = Logger.getLogger(RiewsController.class);
-	@Autowired
-	private ReviewService reviewService;
-	@Autowired
-	private BookService bookService;
-	@Autowired
-	CategoryService categoryService;
 
 	@RequestMapping(value = "/books/{bookId}/reviews/add", method = RequestMethod.POST)
 	public ModelAndView AddReview(@ModelAttribute("reviewInfo") ReviewInfo reviewInfo,

@@ -122,9 +122,17 @@
 					<div class="row">
 						<div class="col-sm-3"></div>
 						<div class="col-sm-9">
-							<label>Comment:</label> <input
-								style="border: 1px solid black; padding: 10px; border-radius: 25px;width: 500px"
-								type="text" name="comment">
+						<security:authorize access="isAuthenticated()">
+						<spring:url value="/comments" var="addComment"></spring:url>
+							<form:form action="${addComment}" method="post" modelAttribute ="CommentInfo">
+								<label>Comment:</label> 
+								<input type="text" name="content" class="form-control">
+								<input type="hidden" name="user.id" value="${currentUser.id}">
+								<input type="hidden" name="review.id" value="${review.id}">
+								<input type="hidden" name="review.bookInfo.id" value="${bookInfo.id}">
+								<button type="submit" class="btn btn-success">Add comment</button>
+							</form:form>
+						</security:authorize>
 						</div>
 					</div>
 					<hr size="10" class="line">

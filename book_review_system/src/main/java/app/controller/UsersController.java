@@ -3,8 +3,6 @@ package app.controller;
 import java.util.Locale;
 
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,28 +13,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import app.dto.CustomUserDetails;
 import app.dto.UserInfo;
-import app.model.User;
-import app.service.FollowService;
-import app.service.RoleService;
-import app.service.UserService;
 
 @Controller
-public class UsersController extends BaseController{
+public class UsersController extends BaseController {
 	private static final Logger logger = Logger.getLogger(UsersController.class);
-
-	@Autowired
-	private UserService userService;
-
-	@Autowired
-	private RoleService roleService;
-
-	@Autowired
-	private FollowService followService;
-
-	@Autowired
-	private ReloadableResourceBundleMessageSource messageSource;
 
 	@RequestMapping("/users")
 	public ModelAndView users(@RequestParam(value = "page", required = false) String page, Locale locale) {
