@@ -1,14 +1,10 @@
 package app.controller;
 
-import java.io.File;
-import java.io.IOException;
 import java.security.Principal;
-import java.util.Date;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -19,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-
 import app.dto.BookInfo;
+import app.dto.MarkInfo;
 import app.util.DateUtil;
 
 @Controller
@@ -35,8 +31,11 @@ public class BooksController extends BaseController {
 			model.addObject("currentUser", currentUser());
 		}
 		BookInfo bookInfo = bookService.findBookById(Integer.parseInt(id));
+		MarkInfo markInfo = markService.findMarkByUserAndBook(currentUser().getId(), Integer.parseInt(id));
+		model.addObject("markInfo", markInfo);
 		model.addObject("bookInfo", bookInfo);
 		model.addObject("reviews", reviewService.loadReviewsForBook(Integer.parseInt(id)));
+
 		return model;
 	}
 
@@ -44,7 +43,7 @@ public class BooksController extends BaseController {
 	public ModelAndView adminBook(@RequestParam(value = "success", required = false) String addSuccess, Locale locale) {
 		ModelAndView model = new ModelAndView("adminBook");
 		model.addObject("categories", categoryService.loadCategories());
-		if(addSuccess != null){
+		if (addSuccess != null) {
 			model.addObject("addSuccessMsg", messageSource.getMessage("book.addSuccess", null, locale));
 		}
 		return model;
@@ -56,10 +55,17 @@ public class BooksController extends BaseController {
 			@RequestParam(value = "image1", required = false) MultipartFile fileUpload) {
 		String path = request.getSession().getServletContext().getRealPath("/") + "assets/img/book/";
 		bookInfo.setPublishDate(DateUtil.parseDate(date));
-		if(bookService.saveBook(bookInfo, fileUpload, path)){
+		if (bookService.saveBook(bookInfo, fileUpload, path)) {
 			return new ModelAndView("redirect:/adminBook?success");
-		} 
+		}
 		return new ModelAndView("redirect:/adminBook");
+	}
+
+	@RequestMapping("/books/markReadBook")
+	public ModelAndView markReadBook(@RequestParam("id-book") String idBook,
+			@RequestParam("read-status") String readStatus) {
+		markService.saveOrUpdate(Integer.parseInt(idBook), currentUser().getId(), Integer.parseInt(readStatus));
+		return new ModelAndView("redirect:/books/" + idBook);
 	}
 
 	@RequestMapping("addReview")
@@ -68,4 +74,5 @@ public class BooksController extends BaseController {
 		ModelAndView model = new ModelAndView("addReview");
 		return model;
 	}
+
 }

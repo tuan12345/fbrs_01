@@ -52,5 +52,11 @@
 			<ref bean="sessionFactory" />
 		</property>
 	</bean>
+	
+	<bean id="MarkDAO" class="app.dao.impl.MarkDaoImpl">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
 
 </beans>

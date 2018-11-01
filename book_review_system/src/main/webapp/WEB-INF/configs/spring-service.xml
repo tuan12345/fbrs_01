@@ -84,4 +84,15 @@
 		</property>
 	</bean>
 
+	<bean id="MarkService" parent="baseTransactionProxy">
+		<property name="target">
+			<bean class="app.service.impl.MarkServiceImpl">
+				<property name="markDAO" ref="MarkDAO" />
+				<property name="userDAO" ref="UserDAO" />
+				<property name="bookDAO" ref="BookDAO" />
+			</bean>
+		</property>
+	</bean> 
+	
+
 </beans>
