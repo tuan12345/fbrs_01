@@ -68,6 +68,7 @@
 		<property name="target">
 			<bean class="app.service.impl.FollowServiceImpl">
 				<property name="followDAO" ref="FollowDAO" />
+				<property name="userDAO" ref="UserDAO" />
 			</bean>
 		</property>
 	</bean>

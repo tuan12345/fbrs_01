@@ -45,7 +45,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="section-title">
-				<h2>Book</h2>
+				<h2>Book Detail</h2>
 				<div class="title-icon">
 					<span><i class="fa fa-angle-left"></i> <i
 						class="fa fa-angle-right"></i></span>

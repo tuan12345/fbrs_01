@@ -2,6 +2,7 @@ package app.dao.impl;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
+import org.hibernate.LockMode;
 import org.hibernate.criterion.Restrictions;
 
 import app.dao.FollowDAO;
@@ -18,5 +19,13 @@ public class FollowDAOImpl extends GenericDAO<Integer, Follow> implements Follow
 		criteria.add(Restrictions.eq("follower.id", follower_id));
 		criteria.add(Restrictions.eq("followed.id", followed_id));
 		return (Follow) criteria.uniqueResult();
+	}
+
+	@Override
+	public Follow findByIdLock(int id, boolean lock) {
+		if(lock){
+			return getSession().load(Follow.class, id, LockMode.PESSIMISTIC_WRITE);
+		}
+		return getSession().load(Follow.class, id);
 	}
 }

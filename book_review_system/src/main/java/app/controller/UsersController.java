@@ -2,7 +2,6 @@ package app.controller;
 
 import java.security.Principal;
 import java.util.Locale;
-
 import org.apache.log4j.Logger;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -13,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-
+import app.dto.FollowInfo;
 import app.dto.UserInfo;
 
 @Controller
@@ -97,6 +96,19 @@ public class UsersController extends BaseController {
 		}
 
 		return model;
+	}
+
+	@RequestMapping(value = "/deleteFollowUser", method = RequestMethod.POST)
+	public ModelAndView deleteFollowUser(@RequestParam("id_follow") Integer idFollow,
+			@RequestParam("id-userFollowed") int idUserFollowed) {
+		followService.deleteFollow(idFollow);
+		return new ModelAndView("redirect:/profile/" + idUserFollowed);
+	}
+
+	@RequestMapping(value = "/createFollowUser", method = RequestMethod.POST)
+	public ModelAndView createFollowUser(@RequestParam("id-userFollowed") int idUserFollowed) {
+		followService.createFollow(currentUser().getId(), idUserFollowed);
+		return new ModelAndView("redirect:/profile/" + idUserFollowed);
 	}
 
 	private int pages() {

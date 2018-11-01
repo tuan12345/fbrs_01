@@ -1,9 +1,7 @@
 package app.service.impl;
 
 import java.io.Serializable;
-
 import org.apache.log4j.Logger;
-
 import app.dto.FollowInfo;
 import app.dto.RoleInfo;
 import app.dto.UserInfo;
@@ -40,8 +38,7 @@ public class FollowServiceImpl extends BaseServiceImpl implements FollowService 
 	public FollowInfo getFollow(int follower_id, int followed_id) {
 		try {
 			Follow follow = followDAO.getFollow(follower_id, followed_id);
-			if(follow == null)
-			{
+			if (follow == null) {
 				return null;
 			}
 			UserInfo follower = new UserInfo(follow.getFollower().getId(), follow.getFollower().getFullName(),
@@ -53,6 +50,31 @@ public class FollowServiceImpl extends BaseServiceImpl implements FollowService 
 			return new FollowInfo(follow.getId(), follower, followed);
 		} catch (Exception e) {
 			return null;
+		}
+	}
+
+	@Override
+	public FollowInfo createFollow(int follower_id, int followed_id) {
+		try {
+			Follow follow = new Follow();
+			follow.setFollowed(userDAO.findByIdLock(followed_id, false));
+			follow.setFollower(userDAO.findByIdLock(follower_id, false));
+			return ConvertModelToBean.mapFollowToFollowInfo(followDAO.saveOrUpdate(follow));
+		} catch (Exception e) {
+			throw e;
+		}
+	}
+
+	@Override
+	public Boolean deleteFollow(int id) {
+		try {
+			Follow follow = followDAO.findByIdLock(id, true);
+			followDAO.delete(follow);
+			return true;
+
+		} catch (Exception e) {
+			logger.error(e);
+			throw e;
 		}
 	}
 
