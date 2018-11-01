@@ -10,6 +10,17 @@ public class CommentInfo {
 	private UserInfo user;
 	private ReviewInfo review;
 
+	public CommentInfo(Integer id, String content, Date createdAt, UserInfo user) {
+		this.id = id;
+		this.content = content;
+		this.createdAt = createdAt;
+		this.user = user;
+	}
+
+	public CommentInfo(){
+		
+	}
+	
 	public Integer getId() {
 		return id;
 	}

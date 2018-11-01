@@ -27,7 +27,7 @@
 			not-null="true" />
 
 		<!-- List Mark -->
-		<list name="marks" fetch="select">
+		<list name="marks" fetch="select" inverse="true">
 			<key column="book_id" />
 			<list-index column="id" />
 			<one-to-many class="Mark" />

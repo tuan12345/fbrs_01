@@ -47,6 +47,10 @@ html, body {
 	height: 100%;
 }
 
+.div-hiden{
+	display: none;
+}
+
 .floatleft {
 	float: left
 }

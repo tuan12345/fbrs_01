@@ -27,6 +27,7 @@
 <spring:url value="/assets/js/main.js" var="jqueryMain" />
 <script type="text/javascript"
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<spring:url value="/assets/js/user-script.js" var="userScript" />
 <link rel="stylesheet" href="${bootstrapCss}" />
 <link rel="stylesheet" href="${dialogCss}" />
 <link rel="stylesheet" href="${owlCarousel}" />
@@ -107,14 +108,14 @@
 					<div class="row">
 						<div class="col-sm-3">
 							<div class="review-lef">
-								<p>Write by:${review.getUserInfo().getName()}</p>
+								<spring:url value="/profile" var="profile"></spring:url>
+								<p>Write by:<a href="${profile}/${review.getUserInfo().getId()}"> ${review.getUserInfo().getName()}</a></p>
 								<p>${review.getCreatedAt()}</p>
 							</div>
 						</div>
 						<div class="col-sm-9">
 							<div class="review-right">
 								<span>${review.numberOfStar }</span> <span class="fa fa-star-o"></span>
-								<p style="font-weight: bold; margin-top: 10px">Tieu de</p>
 								<p>${review.getContent()}</p>
 							</div>
 						</div>
@@ -122,6 +123,12 @@
 					<div class="row">
 						<div class="col-sm-3"></div>
 						<div class="col-sm-9">
+							<div>
+							  <button value="${review.id}"  type="button" class="btn btn-primary btn-md showComment">Comment</button>
+							  <div id ="comment-${review.id}" class="div-hiden">
+							  	
+							  </div>
+							</div>
 						<security:authorize access="isAuthenticated()">
 						<spring:url value="/comments" var="addComment"></spring:url>
 							<form:form action="${addComment}" method="post" modelAttribute ="CommentInfo">
@@ -164,4 +171,5 @@
 <script src="${jqueryMeanmenu }" type="text/javascript"></script>
 <script src="${jqueryWow }" type="text/javascript"></script>
 <script src="${jqueryMain }" type="text/javascript"></script>
+<script src="${userScript}" type="text/javascript"></script>
 <!--end Bootstrap  -->
