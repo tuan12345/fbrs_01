@@ -53,6 +53,12 @@
 		<put-attribute name="adminBody" value="/views/adminHome/users.jsp" />
 	</definition>
 	
+	<!-- Admin Home -->
+	<definition name="adminBook" extends="adminLayout">
+		<put-attribute name="title" value="Book Manage" />
+		<put-attribute name="adminBody" value="/views/adminHome/adminBook.jsp" />
+	</definition>
+	
 	<!-- Login Base -->
 	<definition name="loginLayout" template="/views/layout/loginLayout.jsp">
 		<put-attribute name="title" value="Login" />

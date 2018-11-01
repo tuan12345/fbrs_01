@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <spring:url value="/assets/js/user-script.js" var="userScript" />
-<header class="panel-heading"> List User</header>
+<h2 class="text-center">User Manage</h2>
 <div class="text-center"><h3><strong>${message}</strong></h3></div>
 <table class="table">
 	<thead>

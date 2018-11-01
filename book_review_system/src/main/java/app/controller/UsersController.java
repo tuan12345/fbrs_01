@@ -2,6 +2,7 @@ package app.controller;
 
 import java.security.Principal;
 import java.util.Locale;
+
 import org.apache.log4j.Logger;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
-import app.dto.FollowInfo;
+
 import app.dto.UserInfo;
 
 @Controller
