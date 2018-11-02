@@ -4410,3 +4410,12 @@ a.csm-button {
 .displayButton{
 	display: none;
 }
+.read{
+	display: inline-block;
+}
+.reading{
+	padding-left: 40px;
+}
+.display{
+	color: red;
+}

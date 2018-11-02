@@ -21,6 +21,7 @@ public class BookDAOImpl extends GenericDAO<Integer, Book> implements BookDAO {
 
 	public BookDAOImpl(SessionFactory sessionfactory) {
 		setSessionFactory(sessionfactory);
+		
 	}
 
 	@SuppressWarnings("unchecked")

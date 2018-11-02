@@ -4,15 +4,23 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
+import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
-
 import app.dao.GenericDAO;
 import app.dao.ReviewDAO;
 import app.model.Review;
-import app.model.User;
 
 public class ReviewDAOImpl extends GenericDAO<Integer, Review> implements ReviewDAO {
 	private static final Logger logger = Logger.getLogger(ReviewDAOImpl.class);
+
+	public ReviewDAOImpl() {
+		super(Review.class);
+
+	}
+
+	public ReviewDAOImpl(SessionFactory sessionFactory) {
+		setSessionFactory(sessionFactory);
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override

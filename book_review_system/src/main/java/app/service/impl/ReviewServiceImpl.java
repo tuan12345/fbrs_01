@@ -25,7 +25,7 @@ public class ReviewServiceImpl extends BaseServiceImpl implements ReviewService 
 			return ConvertModelToBean.mapReviewToReviewInfo(getReviewDAO().saveOrUpdate(review));
 		} catch (Exception e) {
 			logger.error(e);
-			return null;
+			throw e;
 		}
 
 	}

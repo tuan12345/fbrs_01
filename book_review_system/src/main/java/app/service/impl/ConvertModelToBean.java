@@ -6,18 +6,20 @@ import java.util.stream.Collectors;
 import app.dto.BookInfo;
 import app.dto.CategoryInfo;
 import app.dto.FollowInfo;
+import app.dto.MarkInfo;
 import app.dto.ReviewInfo;
 import app.dto.RoleInfo;
 import app.dto.UserInfo;
 import app.model.Book;
 import app.model.Category;
 import app.model.Follow;
+import app.model.Mark;
 import app.model.Review;
 import app.model.Role;
 import app.model.User;
 
 public class ConvertModelToBean {
-	
+
 	public static List<BookInfo> mapBooksToBooksInf(List<Book> books) {
 		Function<Book, BookInfo> mapBookToBookInfo = b -> new BookInfo(b.getId(), b.getTittle(), b.getPublishDate(),
 				b.getAuthorName(), b.getNumberOfPage(), b.getImage(), b.getCategory());
@@ -59,9 +61,17 @@ public class ConvertModelToBean {
 				r.getCreatedAt(), mapUserToUserInfo(r.getUser()), mapBookToBookInfo(r.getBook()));
 		return map.apply(review);
 	}
-	public static FollowInfo mapFollowToFollowInfo(Follow follow){
-		Function<Follow, FollowInfo> map=f->new FollowInfo(f.getId(), mapUserToUserInfo(f.getFollower()),mapUserToUserInfo(f.getFollowed()));
+
+	public static FollowInfo mapFollowToFollowInfo(Follow follow) {
+		Function<Follow, FollowInfo> map = f -> new FollowInfo(f.getId(), mapUserToUserInfo(f.getFollower()),
+				mapUserToUserInfo(f.getFollowed()));
 		return map.apply(follow);
 	}
-	
+
+	public static MarkInfo mapMarkToMarkInfo(Mark mark) {
+		Function<Mark, MarkInfo> map = m -> new MarkInfo(m.getId(), m.getReadStatus(), m.getPageMark(), m.isFavorite(),
+				mapUserToUserInfo(m.getUser()), mapBookToBookInfo(m.getBook()));
+		return map.apply(mark);
+	}
+
 }

@@ -99,6 +99,57 @@
 					</h3>
 					</p>
 				</div>
+				<div class="col-sm-6">
+					<security:authorize access="isAuthenticated()">
+						<c:choose>
+							<c:when test="${empty markInfo} ">
+								<div class="read">
+									<a href="markReadBook?id-book=${bookInfo.id }&read-status=1"
+										class="">Read</a> <a
+										href="markReadBook?id-book=${bookInfo.id }&read-status=2"
+										class="reading">Reading</a>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<c:choose>
+									<c:when test="${markInfo.readStatus==2 }">
+										<div class="read">
+											<a href="markReadBook?id-book=${bookInfo.id }&read-status=1"
+												class="">Read</a> <a
+												href="markReadBook?id-book=${bookInfo.id }&read-status=2"
+												class="reading display">Reading</a>
+										</div>
+									</c:when>
+									<c:otherwise>
+										<c:choose>
+											<c:when test="${markInfo.readStatus==1 }">
+												<div class="read">
+													<a
+														href="markReadBook?id-book=${bookInfo.id }&read-status=1"
+														class="display">Read</a> <a
+														href="markReadBook?id-book=${bookInfo.id }&read-status=2"
+														class="reading">Reading</a>
+												</div>
+											</c:when>
+											<c:otherwise>
+												<div class="read">
+													<a
+														href="markReadBook?id-book=${bookInfo.id }&read-status=1"
+														class="">Read</a> <a
+														href="markReadBook?id-book=${bookInfo.id }&read-status=2"
+														class="reading">Reading</a>
+												</div>
+
+											</c:otherwise>
+										</c:choose>
+									</c:otherwise>
+								</c:choose>
+							</c:otherwise>
+						</c:choose>
+
+					</security:authorize>
+				</div>
+
 			</div>
 			<p>
 			<h3>User Review</h3>
@@ -109,7 +160,10 @@
 						<div class="col-sm-3">
 							<div class="review-lef">
 								<spring:url value="/profile" var="profile"></spring:url>
-								<p>Write by:<a href="${profile}/${review.getUserInfo().getId()}"> ${review.getUserInfo().getName()}</a></p>
+								<p>
+									Write by:<a href="${profile}/${review.getUserInfo().getId()}">
+										${review.getUserInfo().getName()}</a>
+								</p>
 								<p>${review.getCreatedAt()}</p>
 							</div>
 						</div>
@@ -124,22 +178,24 @@
 						<div class="col-sm-3"></div>
 						<div class="col-sm-9">
 							<div>
-							  <button value="${review.id}"  type="button" class="btn btn-primary btn-md showComment">Comment</button>
-							  <div id ="comment-${review.id}" class="div-hiden">
-							  	
-							  </div>
+								<button value="${review.id}" type="button"
+									class="btn btn-primary btn-md showComment">Comment</button>
+								<div id="comment-${review.id}" class="div-hiden"></div>
 							</div>
-						<security:authorize access="isAuthenticated()">
-						<spring:url value="/comments" var="addComment"></spring:url>
-							<form:form action="${addComment}" method="post" modelAttribute ="CommentInfo">
-								<label>Comment:</label> 
-								<input type="text" name="content" class="form-control">
-								<input type="hidden" name="user.id" value="${currentUser.id}">
-								<input type="hidden" name="review.id" value="${review.id}">
-								<input type="hidden" name="review.bookInfo.id" value="${bookInfo.id}">
-								<button type="submit" class="btn btn-success">Add comment</button>
-							</form:form>
-						</security:authorize>
+							<security:authorize access="isAuthenticated()">
+								<spring:url value="/comments" var="addComment"></spring:url>
+								<form:form action="${addComment}" method="post"
+									modelAttribute="CommentInfo">
+									<label>Comment:</label>
+									<input type="text" name="content" class="form-control">
+									<input type="hidden" name="user.id" value="${currentUser.id}">
+									<input type="hidden" name="review.id" value="${review.id}">
+									<input type="hidden" name="review.bookInfo.id"
+										value="${bookInfo.id}">
+									<button type="submit" class="btn btn-success">Add
+										comment</button>
+								</form:form>
+							</security:authorize>
 						</div>
 					</div>
 					<hr size="10" class="line">
