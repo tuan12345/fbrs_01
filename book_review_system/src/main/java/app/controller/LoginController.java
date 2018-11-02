@@ -28,5 +28,9 @@ public class LoginController extends BaseController {
 		model.addObject("msg", messageSource.getMessage("logout", null, locale));
 		return model;
 	}
-
+	
+	@RequestMapping("/adminHome")
+	public String adminHome(){
+		return "adminHome";
+	}
 }

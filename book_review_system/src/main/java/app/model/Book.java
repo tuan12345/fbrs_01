@@ -29,6 +29,16 @@ public class Book implements Serializable {
 		this.marks = marks;
 	}
 
+	public Book(String tittle, Date publishDate, String authorName, int numberOfPage, String image,
+			Category category) {
+		this.tittle = tittle;
+		this.publishDate = publishDate;
+		this.authorName = authorName;
+		this.numberOfPage = numberOfPage;
+		this.image = image;
+		this.category = category;
+	}
+	
 	public Book() {
 
 	}

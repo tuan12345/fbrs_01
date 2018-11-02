@@ -10,8 +10,8 @@
 	</div>
 
 	<!--logo start-->
-	<spring:url value="/" var="home" />
-	<a href="${home}" class="logo">Nice <span class="lite">Admin</span></a>
+	<spring:url value="/adminHome" var="adminHome" />
+	<a href="${adminHome}" class="logo">Nice <span class="lite">Admin</span></a>
 	<!--logo end-->
 	<div> <a href="?lang=en">English</a> <a href="?lang=vi">Vietnamsese</a></div>
 	<div class="nav search-row" id="top_menu"></div>
@@ -57,8 +57,9 @@
 			<li><a class="" href="${user}"> <i class="icon_genius"></i>
 					<span>User</span>
 			</a></li>
-			<li><a class="" href="chart-chartjs.html"> <i
-					class="icon_piechart"></i> <span>Charts</span>
+			<spring:url value="/adminBook" var="book" />
+			<li><a class="" href="${book }"> <i
+					class="icon_piechart"></i> <span>Book</span>
 
 			</a></li>		
 		</ul>

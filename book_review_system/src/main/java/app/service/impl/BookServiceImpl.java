@@ -1,14 +1,19 @@
 package app.service.impl;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
+import org.springframework.web.multipart.MultipartFile;
 
 import app.dto.BookInfo;
 import app.model.Book;
+import app.model.Category;
 import app.model.Review;
 import app.service.BookService;
 
@@ -129,6 +134,31 @@ public class BookServiceImpl extends BaseServiceImpl implements BookService {
 			return Collections.emptyList();
 		}
 
+	}
+
+	@Override
+	public boolean saveBook(BookInfo bookInfo, MultipartFile image, String path) {
+		try {
+			if(image != null){
+				try {
+					FileUtils.forceMkdir(new File(path));
+					File upload = new File(path + image.getOriginalFilename());
+					image.transferTo(upload);
+					bookInfo.setImage(image.getOriginalFilename());
+				} catch (IOException ex) {
+					logger.error(ex);
+					return false;
+				}
+			}
+			Category category = categoryDAO.findById(bookInfo.getCategory().getId());
+			Book book = new Book(bookInfo.getTittle(), bookInfo.getPublishDate(), bookInfo.getAuthorName(),
+					bookInfo.getNumberOfPage(), bookInfo.getImage(), category);
+			saveOrUpdate(book);
+			return true;
+		} catch (Exception e) {
+			logger.error(e);
+			throw e;
+		}
 	}
 
 }

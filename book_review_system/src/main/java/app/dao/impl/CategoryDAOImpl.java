@@ -31,4 +31,10 @@ public class CategoryDAOImpl extends GenericDAO<Integer, Category> implements Ca
 		return books;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Category> loadCategories() {
+		return getSession().createQuery("from Category").getResultList();
+	}
+
 }

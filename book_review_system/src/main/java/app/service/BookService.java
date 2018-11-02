@@ -2,6 +2,8 @@ package app.service;
 
 import java.util.List;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import app.dto.BookInfo;
 import app.model.Book;
 
@@ -21,4 +23,5 @@ public interface BookService extends BaseService<Integer, Book> {
 
 	List<BookInfo> listBooksByCategoryId(Integer Category_id);
 
+	boolean saveBook(BookInfo bookInfo, MultipartFile image, String path);
 }
