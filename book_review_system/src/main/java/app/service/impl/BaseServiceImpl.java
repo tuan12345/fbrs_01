@@ -1,13 +1,17 @@
 package app.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.mail.MailSender;
+
 import app.dao.ActivityDAO;
 import app.dao.BookDAO;
-import app.dao.ReviewDAO;
 import app.dao.CategoryDAO;
 import app.dao.CommentDAO;
 import app.dao.FollowDAO;
 import app.dao.MarkDAO;
 import app.dao.RequestDAO;
+import app.dao.ReviewDAO;
 import app.dao.RoleDAO;
 import app.dao.UserDAO;
 
@@ -22,7 +26,9 @@ public class BaseServiceImpl {
 	protected CommentDAO commentDAO;
 	protected MarkDAO markDAO;
 	protected RequestDAO requestDAO;
-	
+	protected MailSender mailSender;
+	@Autowired
+	protected ReloadableResourceBundleMessageSource messageSource;
 
 	public MarkDAO getMarkDAO() {
 		return markDAO;
@@ -102,6 +108,22 @@ public class BaseServiceImpl {
 
 	public void setCommentDAO(CommentDAO commentDAO) {
 		this.commentDAO = commentDAO;
+	}
+
+	public MailSender getMailSender() {
+		return mailSender;
+	}
+
+	public void setMailSender(MailSender mailSender) {
+		this.mailSender = mailSender;
+	}
+
+	public ReloadableResourceBundleMessageSource getMessageSource() {
+		return messageSource;
+	}
+
+	public void setMessageSource(ReloadableResourceBundleMessageSource messageSource) {
+		this.messageSource = messageSource;
 	}
 
 }

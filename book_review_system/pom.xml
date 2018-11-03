@@ -31,6 +31,8 @@
 		<spring.security.version>5.0.2.RELEASE</spring.security.version>
 		<commons-fileupload>1.3.3</commons-fileupload>
 		<commons-io>2.4</commons-io>
+		<javax.mail>1.4</javax.mail>
+		
 	</properties>
 
 	<dependencies>
@@ -258,6 +260,13 @@
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>${commons-io}</version>
+		</dependency>
+		
+		<!-- JavaxMail -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>${javax.mail}</version>
 		</dependency>
 
 	</dependencies>

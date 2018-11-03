@@ -1,6 +1,7 @@
 package app.service;
 
 import java.util.List;
+import java.util.Locale;
 
 import app.dto.UserInfo;
 import app.model.User;
@@ -20,5 +21,5 @@ public interface UserService extends BaseService<Integer, User> {
 	
 	UserInfo findUserInfoByUsername(String userName);
 	
-	
+	boolean updatePassword(UserInfo userInfo, Locale locale);
 }

@@ -24,7 +24,8 @@
 			</div>
 			<label class="checkbox"> <input	type="checkbox"
 				value="remember-me"> Remember me <span class="pull-right">
-					<a href="#"> Forgot Password?</a>
+				<spring:url value="/resetPassword" var="reserPassWord"></spring:url>
+					<a href="${reserPassWord}"> Forgot Password?</a>
 			</span>
 			</label>
 			<button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>

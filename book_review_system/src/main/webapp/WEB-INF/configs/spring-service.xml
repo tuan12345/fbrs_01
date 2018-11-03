@@ -17,6 +17,7 @@
 			<bean class="app.service.impl.UserServiceImpl">
 				<property name="userDAO" ref="UserDAO" />
 				<property name="roleDAO" ref="RoleDAO" />
+				<property name="mailSender" ref="mailSender" />
 			</bean>
 		</property>
 	</bean>

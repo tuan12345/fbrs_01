@@ -40,7 +40,6 @@ public class BaseController {
 	protected MarkService  markService;
 	@Autowired
 	protected RequestService requestService;
-
 	@Autowired
 	protected ReloadableResourceBundleMessageSource messageSource;
 

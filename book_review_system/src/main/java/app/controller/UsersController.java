@@ -6,6 +6,7 @@ import java.util.Locale;
 import org.apache.log4j.Logger;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -112,6 +113,23 @@ public class UsersController extends BaseController {
 		return new ModelAndView("redirect:/profile/" + idUserFollowed);
 	}
 
+	@RequestMapping(value = "/resetPassword")
+	public ModelAndView resetPassword() {
+		ModelAndView model = new ModelAndView("forgotPassword");
+		return model;
+	}
+
+	@RequestMapping(value ="forgotPassword", method = RequestMethod.POST)
+	public ModelAndView forgotPass(@ModelAttribute("userInfo") UserInfo userInfo, Locale locale){
+		ModelAndView model = new ModelAndView("forgotPassword");
+		if(userService.updatePassword(userInfo, locale)){
+			model.addObject("msg", messageSource.getMessage("resetPassword-success", null, locale));
+		}else{
+			model.addObject("msg", messageSource.getMessage("user.email.notMatch", null, locale));
+		}
+		return model;
+	}
+	
 	private int pages() {
 		return (int) (Math.round(userService.loadRowCount() / 5 + 0.5));
 	}

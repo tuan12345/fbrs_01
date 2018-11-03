@@ -70,6 +70,12 @@
 		<put-attribute name="title" value="Login" />
 		<put-attribute name="login" value="/views/login/login.jsp" />
 	</definition>
+	
+	<!-- Login -->
+	<definition name="forgotPassword" extends="loginLayout">
+		<put-attribute name="title" value="Forgot Password" />
+		<put-attribute name="login" value="/views/login/forgotPassword.jsp" />
+	</definition>
 
 	<!--Add Review  -->
 	<definition name="addReview" extends="baseLayout">

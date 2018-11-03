@@ -11,5 +11,6 @@ public interface UserDAO extends BaseDAO<Integer, User> {
 	User findByIdLock(int id, boolean lock);
 
 	User loadUserByUserName(String username);
-
+	
+	User findByUserNameAndEmail(String userName, String email);
 }
