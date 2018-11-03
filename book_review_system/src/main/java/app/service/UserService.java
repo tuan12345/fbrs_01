@@ -18,8 +18,8 @@ public interface UserService extends BaseService<Integer, User> {
 	UserInfo findUserInfoById(int id);
 
 	User findUserById(int id, Boolean lock);
-	
+
 	UserInfo findUserInfoByUsername(String userName);
-	
+
 	boolean updatePassword(UserInfo userInfo, Locale locale);
 }

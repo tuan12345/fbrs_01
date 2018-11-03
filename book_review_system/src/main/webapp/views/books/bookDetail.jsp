@@ -53,171 +53,176 @@
 			</div>
 		</div>
 	</div>
-	<div class="container">
-		<form action="review" method="get">
-			<div class="row">
-				<div class="col-sm-3">
-					<img alt="bookImage" src="${img}/${bookInfo.image}" width="200px"
-						height="400px">
-				</div>
-				<input type="hidden" name="id-book" value="${bookInfo.id }">
-				<div class="col-sm-9">
-					<p>
-					<h3>
-						<strong>Category: </strong> ${bookInfo.category.name}
-					</h3>
-					</p>
-					<p>
-					<h3>
-						<strong>Title: </strong> ${bookInfo.tittle}
-					</h3>
-					</p>
-					<p>
-					<h3>
-						<strong>Author: </strong> ${bookInfo.authorName}
-					</h3>
-					</p>
-					<p>
-					<h3>
-						<strong>Publish Day: </strong> ${bookInfo.publishDate}
-					</h3>
-					</p>
-					<p>
-					<h3>
-						<strong>Number of Page: </strong> ${bookInfo.numberOfPage}
-					</h3>
-					</p>
-					<p>
-					<h3>
-						<strong>Star: </strong> ${bookInfo.avgStar} <i
-							class="fa fa-star-o"></i>
-					</h3>
-					</p>
-					<p>
-					<h3>
-						<strong>Vote: </strong> ${bookInfo.quantityVote}
-					</h3>
-					</p>
-				</div>
-				<div class="col-sm-6">
-					<security:authorize access="isAuthenticated()">
-						<c:choose>
-							<c:when test="${empty markInfo} ">
-								<div class="read">
-									<a href="markReadBook?id-book=${bookInfo.id }&read-status=1"
-										class="">Read</a> <a
-										href="markReadBook?id-book=${bookInfo.id }&read-status=2"
-										class="reading">Reading</a>
-								</div>
-							</c:when>
-							<c:otherwise>
-								<c:choose>
-									<c:when test="${markInfo.readStatus==2 }">
-										<div class="read">
-											<a href="markReadBook?id-book=${bookInfo.id }&read-status=1"
-												class="">Read</a> <a
-												href="markReadBook?id-book=${bookInfo.id }&read-status=2"
-												class="reading display">Reading</a>
-										</div>
-									</c:when>
-									<c:otherwise>
-										<c:choose>
-											<c:when test="${markInfo.readStatus==1 }">
-												<div class="read">
-													<a
-														href="markReadBook?id-book=${bookInfo.id }&read-status=1"
-														class="display">Read</a> <a
-														href="markReadBook?id-book=${bookInfo.id }&read-status=2"
-														class="reading">Reading</a>
-												</div>
-											</c:when>
-											<c:otherwise>
-												<div class="read">
-													<a
-														href="markReadBook?id-book=${bookInfo.id }&read-status=1"
-														class="">Read</a> <a
-														href="markReadBook?id-book=${bookInfo.id }&read-status=2"
-														class="reading">Reading</a>
-												</div>
-
-											</c:otherwise>
-										</c:choose>
-									</c:otherwise>
-								</c:choose>
-							</c:otherwise>
-						</c:choose>
-
-					</security:authorize>
-				</div>
-
-			</div>
-			<p>
-			<h3>User Review</h3>
-			</p>
-			<div class="riew-container">
-				<c:forEach items="${reviews}" var="review">
-					<div class="row">
-						<div class="col-sm-3">
-							<div class="review-lef">
-								<spring:url value="/profile" var="profile"></spring:url>
-								<p>
-									Write by:<a href="${profile}/${review.getUserInfo().getId()}">
-										${review.getUserInfo().getName()}</a>
-								</p>
-								<p>${review.getCreatedAt()}</p>
-							</div>
-						</div>
-						<div class="col-sm-9">
-							<div class="review-right">
-								<span>${review.numberOfStar }</span> <span class="fa fa-star-o"></span>
-								<p>${review.getContent()}</p>
-							</div>
-						</div>
+	<c:if test="${msgBookNotFound !=null}">
+		<div class="alert alert-warning" role="alert">${msgBookNotFound}</div>
+	</c:if>
+	<c:if test="${bookInfo !=null}">
+		<div class="container">
+			<form action="review" method="get">
+				<div class="row">
+					<div class="col-sm-3">
+						<img alt="bookImage" src="${img}/${bookInfo.image}" width="200px"
+							height="400px">
 					</div>
-					<div class="row">
-						<div class="col-sm-3"></div>
-						<div class="col-sm-9">
-							<div>
-								<button value="${review.id}" type="button"
-									class="btn btn-primary btn-md showComment">Comment</button>
-								<div id="comment-${review.id}" class="div-hiden"></div>
-							</div>
-							<security:authorize access="isAuthenticated()">
-								<spring:url value="/comments" var="addComment"></spring:url>
-								<form:form action="${addComment}" method="post"
-									modelAttribute="CommentInfo">
-									<label>Comment:</label>
-									<input type="text" name="content" class="form-control">
-									<input type="hidden" name="user.id" value="${currentUser.id}">
-									<input type="hidden" name="review.id" value="${review.id}">
-									<input type="hidden" name="review.bookInfo.id"
-										value="${bookInfo.id}">
-									<button type="submit" class="btn btn-success">Add
-										comment</button>
-								</form:form>
-							</security:authorize>
-						</div>
-					</div>
-					<hr size="10" class="line">
-				</c:forEach>
-				<div class="review-footer">
-					<security:authorize access="isAuthenticated()">
+					<input type="hidden" name="id-book" value="${bookInfo.id }">
+					<div class="col-sm-9">
 						<p>
-							<spring:url value="/review" var="urlReview"></spring:url>
-							<span class="wrapper-write"> <a
-								href="${urlReview }?idBook=${bookInfo.id}"
-								class="csm-button login-window">Add your review</a>
-							</span>
+						<h3>
+							<strong>Category: </strong> ${bookInfo.category.name}
+						</h3>
 						</p>
-					</security:authorize>
-					<security:authorize access="isAnonymous()">
-						<spring:url value="/login" var="loginUrl"></spring:url>
-						<a href="${loginUrl}">Login for add Review</a>
-					</security:authorize>
+						<p>
+						<h3>
+							<strong>Title: </strong> ${bookInfo.tittle}
+						</h3>
+						</p>
+						<p>
+						<h3>
+							<strong>Author: </strong> ${bookInfo.authorName}
+						</h3>
+						</p>
+						<p>
+						<h3>
+							<strong>Publish Day: </strong> ${bookInfo.publishDate}
+						</h3>
+						</p>
+						<p>
+						<h3>
+							<strong>Number of Page: </strong> ${bookInfo.numberOfPage}
+						</h3>
+						</p>
+						<p>
+						<h3>
+							<strong>Star: </strong> ${bookInfo.avgStar} <i
+								class="fa fa-star-o"></i>
+						</h3>
+						</p>
+						<p>
+						<h3>
+							<strong>Vote: </strong> ${bookInfo.quantityVote}
+						</h3>
+						</p>
+					</div>
+					<div class="col-sm-6">
+						<security:authorize access="isAuthenticated()">
+							<c:choose>
+								<c:when test="${empty markInfo} ">
+									<div class="read">
+										<a href="markReadBook?id-book=${bookInfo.id }&read-status=1"
+											class="">Read</a> <a
+											href="markReadBook?id-book=${bookInfo.id }&read-status=2"
+											class="reading">Reading</a>
+									</div>
+								</c:when>
+								<c:otherwise>
+									<c:choose>
+										<c:when test="${markInfo.readStatus==2 }">
+											<div class="read">
+												<a href="markReadBook?id-book=${bookInfo.id }&read-status=1"
+													class="">Read</a> <a
+													href="markReadBook?id-book=${bookInfo.id }&read-status=2"
+													class="reading display">Reading</a>
+											</div>
+										</c:when>
+										<c:otherwise>
+											<c:choose>
+												<c:when test="${markInfo.readStatus==1 }">
+													<div class="read">
+														<a
+															href="markReadBook?id-book=${bookInfo.id }&read-status=1"
+															class="display">Read</a> <a
+															href="markReadBook?id-book=${bookInfo.id }&read-status=2"
+															class="reading">Reading</a>
+													</div>
+												</c:when>
+												<c:otherwise>
+													<div class="read">
+														<a
+															href="markReadBook?id-book=${bookInfo.id }&read-status=1"
+															class="">Read</a> <a
+															href="markReadBook?id-book=${bookInfo.id }&read-status=2"
+															class="reading">Reading</a>
+													</div>
+	
+												</c:otherwise>
+											</c:choose>
+										</c:otherwise>
+									</c:choose>
+								</c:otherwise>
+							</c:choose>
+	
+						</security:authorize>
+					</div>
+	
 				</div>
-			</div>
-		</form>
-	</div>
+				<p>
+				<h3>User Review</h3>
+				</p>
+				<div class="riew-container">
+					<c:forEach items="${reviews}" var="review">
+						<div class="row">
+							<div class="col-sm-3">
+								<div class="review-lef">
+									<spring:url value="/profile" var="profile"></spring:url>
+									<p>
+										Write by:<a href="${profile}/${review.getUserInfo().getId()}">
+											${review.getUserInfo().getName()}</a>
+									</p>
+									<p>${review.getCreatedAt()}</p>
+								</div>
+							</div>
+							<div class="col-sm-9">
+								<div class="review-right">
+									<span>${review.numberOfStar }</span> <span class="fa fa-star-o"></span>
+									<p>${review.getContent()}</p>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-3"></div>
+							<div class="col-sm-9">
+								<div>
+									<button value="${review.id}" type="button"
+										class="btn btn-primary btn-md showComment">Comment</button>
+									<div id="comment-${review.id}" class="div-hiden"></div>
+								</div>
+								<security:authorize access="isAuthenticated()">
+									<spring:url value="/comments" var="addComment"></spring:url>
+									<form:form action="${addComment}" method="post"
+										modelAttribute="CommentInfo">
+										<label>Comment:</label>
+										<input type="text" name="content" class="form-control">
+										<input type="hidden" name="user.id" value="${currentUser.id}">
+										<input type="hidden" name="review.id" value="${review.id}">
+										<input type="hidden" name="review.bookInfo.id"
+											value="${bookInfo.id}">
+										<button type="submit" class="btn btn-success">Add
+											comment</button>
+									</form:form>
+								</security:authorize>
+							</div>
+						</div>
+						<hr size="10" class="line">
+					</c:forEach>
+					<div class="review-footer">
+						<security:authorize access="isAuthenticated()">
+							<p>
+								<spring:url value="/review" var="urlReview"></spring:url>
+								<span class="wrapper-write"> <a
+									href="${urlReview }?idBook=${bookInfo.id}"
+									class="csm-button login-window">Add your review</a>
+								</span>
+							</p>
+						</security:authorize>
+						<security:authorize access="isAnonymous()">
+							<spring:url value="/login" var="loginUrl"></spring:url>
+							<a href="${loginUrl}">Login for add Review</a>
+						</security:authorize>
+					</div>
+				</div>
+			</form>
+		</div>
+	</c:if>
 </div>
 
 <!--start Bootstrap  -->
