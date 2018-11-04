@@ -82,5 +82,11 @@
 		<put-attribute name="title" value="Profile" />
 		<put-attribute name="body" value="/views/users/profile.jsp" />
 	</definition>
+	<!--Request Book  -->
+	<definition name="requestBook" extends="baseLayout">
+		<put-attribute name="title" value="Request" />
+		<put-attribute name="body" value="/views/books/requestBook.jsp" />
+	</definition>
+	
 	
 </tiles-definitions>

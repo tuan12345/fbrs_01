@@ -3,17 +3,22 @@ package app.service.impl;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+
+import app.dto.ActivityInfo;
 import app.dto.BookInfo;
 import app.dto.CategoryInfo;
 import app.dto.FollowInfo;
 import app.dto.MarkInfo;
+import app.dto.RequestInfo;
 import app.dto.ReviewInfo;
 import app.dto.RoleInfo;
 import app.dto.UserInfo;
+import app.model.Activity;
 import app.model.Book;
 import app.model.Category;
 import app.model.Follow;
 import app.model.Mark;
+import app.model.Request;
 import app.model.Review;
 import app.model.Role;
 import app.model.User;
@@ -73,5 +78,15 @@ public class ConvertModelToBean {
 				mapUserToUserInfo(m.getUser()), mapBookToBookInfo(m.getBook()));
 		return map.apply(mark);
 	}
+	public static RequestInfo mapRequestToRequestInfo(Request request){
+		Function<Request, RequestInfo> map=r->new RequestInfo(r.getId(), r.getStatus(), r.getCreatedAt(), r.getBookTittle(), r.getBookAuthor(), mapUserToUserInfo(r.getUser()), mapCategoryToCategoryInfo(r.getCategory()));
+		return map.apply(request);
+	}
+	
+	public static ActivityInfo mapActivityToActivityInfo(Activity activity){
+		Function<Activity, ActivityInfo> map=a->new ActivityInfo(a.getId(), a.getObjectId(), a.getType(), a.getNote(), a.getCreatedAt(), a.getUser());
+		return map.apply(activity);
+	}
+
 
 }

@@ -3,12 +3,14 @@ package app.service.impl;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
-
 import org.apache.log4j.Logger;
-
 import app.dto.ActivityInfo;
+import app.dto.ReviewInfo;
 import app.model.Activity;
+import app.model.Review;
+import app.model.User;
 import app.service.ActivityService;
 
 public class ActivityServiceImpl extends BaseServiceImpl implements ActivityService {
@@ -63,6 +65,24 @@ public class ActivityServiceImpl extends BaseServiceImpl implements ActivityServ
 			logger.error(e);
 			return Collections.emptyList();
 		}
+	}
+
+	@Override
+	public ActivityInfo saveReviewActivity(ReviewInfo reviewInfo, int user_Id) {
+		try {
+			User user=userDAO.findById(user_Id);		
+			Activity activity=new Activity();
+			activity.setObjectId(reviewInfo.getId());
+			activity.setCreatedAt(new Date());
+			activity.setType("review");
+			activity.setNote("You reviewed a book");
+			activity.setUser(user);
+			return ConvertModelToBean.mapActivityToActivityInfo(activityDAO.saveOrUpdate(activity));
+		} catch (Exception e) {
+			logger.info(e);
+			throw e;
+		}
+		
 	}
 
 }

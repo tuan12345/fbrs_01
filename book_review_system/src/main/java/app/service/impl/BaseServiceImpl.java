@@ -7,6 +7,7 @@ import app.dao.CategoryDAO;
 import app.dao.CommentDAO;
 import app.dao.FollowDAO;
 import app.dao.MarkDAO;
+import app.dao.RequestDAO;
 import app.dao.RoleDAO;
 import app.dao.UserDAO;
 
@@ -20,10 +21,19 @@ public class BaseServiceImpl {
 	protected FollowDAO followDAO;
 	protected CommentDAO commentDAO;
 	protected MarkDAO markDAO;
+	protected RequestDAO requestDAO;
 	
 
 	public MarkDAO getMarkDAO() {
 		return markDAO;
+	}
+
+	public RequestDAO getRequestDAO() {
+		return requestDAO;
+	}
+
+	public void setRequestDAO(RequestDAO requestDAO) {
+		this.requestDAO = requestDAO;
 	}
 
 	public void setMarkDAO(MarkDAO markDAO) {
