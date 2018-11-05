@@ -3,7 +3,6 @@ package app.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.security.core.context.SecurityContextHolder;
-
 import app.dto.UserInfo;
 import app.service.ActivityService;
 import app.service.BookService;

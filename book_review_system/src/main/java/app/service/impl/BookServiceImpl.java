@@ -1,24 +1,17 @@
 package app.service.impl;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import org.apache.log4j.Logger;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.google.api.client.http.FileContent;
-import com.google.api.services.drive.model.File;
-
 import app.dto.BookInfo;
 import app.model.Book;
 import app.model.Category;
 import app.model.Review;
 import app.service.BookService;
 import app.util.DriveQuickstart;
-import app.util.FileUtil;
 
 public class BookServiceImpl extends BaseServiceImpl implements BookService {
 	private static final Logger logger = Logger.getLogger(BookServiceImpl.class);
@@ -73,9 +66,9 @@ public class BookServiceImpl extends BaseServiceImpl implements BookService {
 	}
 
 	@Override
-	public List<BookInfo> listBookByPage(Integer page ) {
+	public List<BookInfo> listBookByPage(Integer page) {
 		try {
-			return ConvertModelToBean.mapBooksToBooksInf(bookDAO.findAll(page,8));
+			return ConvertModelToBean.mapBooksToBooksInf(bookDAO.findAll(page, 8));
 		} catch (Exception e) {
 			return null;
 		}

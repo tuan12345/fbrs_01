@@ -17,7 +17,9 @@
 <spring:url value="/home.jsp" var="homeUrl" />
 <spring:url value="/books" var="bookUrl" />
 <!--Bootstrap  -->
-<spring:url value="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" var="jquery112" />
+<spring:url
+	value="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+	var="jquery112" />
 <spring:url value="/assets/lib/js/jquery-ui.js" var="jqueryUi" />
 <spring:url value="/assets/css/font-awesome.min.css" var="frontAwesome" />
 <spring:url value="/assets/mycss/style.css" var="style" />
@@ -25,15 +27,21 @@
 <spring:url value="/assets/css/bootstrap.min.css" var="bootstrapCss" />
 <spring:url value="/assets/js/autocomplete/autocomplete.js" var="myjs" />
 <spring:url value="/assets/js/header/request.js" var="requestJs" />
+<spring:url value="/assets/ckeditor/ckeditor.js" var="CkeditorJs" />
+<spring:url value="/assets/ckeditor/displayCkeditor.js"
+	var="displayCkeditorJs" />
 <link rel="stylesheet" href="${bootstrapCss}" />
 <link rel="stylesheet" href="${frontAwesome}" />
 <link rel="stylesheet" href="${style}" />
 <link rel="stylesheet" href="${style1}" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
 <script src="${jquery112 }" type="text/javascript"></script>
 <script src="${jqueryUi }" type="text/javascript"></script>
 <script src="${myjs }" type="text/javascript"></script>
 <script src="${requestJs }" type="text/javascript"></script>
+<script src="${CkeditorJs }" type="text/javascript"></script>
+<script src="${displayCkeditorJs }" type="text/javascript"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <spring:url value="/assets/css/bootstrap.min.css" var="bootstrapCss" />
 <spring:url value="/assets/mycss/style.css" var="style" />

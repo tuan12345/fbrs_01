@@ -48,14 +48,16 @@
 	<div class="container" style="background: white;">
 		<div class="row">
 			<spring:url value="/books/${idBook }/reviews/add" var="addReview"></spring:url>
-			<form:form action="${addReview }" method="post" class="login-content" modelAttribute="reviewInfo" >
+			<form:form action="${addReview }" method="post" class="login-content"
+				modelAttribute="reviewInfo">
 				<div class="col-sm-2">
 					<label>Your rating:</label>
 				</div>
 				<div class="col-sm-10">
 					<span>
 						<div class="rating-input" style="margin-left: -100px">
-							<select class="selectpicker" data-style="btn-success" name="numberOfStar">
+							<select class="selectpicker" data-style="btn-success"
+								name="numberOfStar">
 								<option value="" selected disabled hidden>Choose here</option>
 								<option value="1">Don't bother</option>
 								<option value="2">Disappointing</option>
@@ -67,7 +69,7 @@
 					</span>
 				</div>
 		</div>
-		
+
 		<input name="id" type="hidden" value="${idReview }">
 		<div class="row">
 			<div class="col-sm-2" style="margin-top: 0px">
