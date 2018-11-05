@@ -2,15 +2,22 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <spring:url value="/" var="homeUrl"></spring:url>
 <div class="container">
-	<div> <a href="?lang=en">English</a> <a href="?lang=vi">Vietnamsese</a></div>
-	<h3><a href="${homeUrl}">Home</a></h3>
-	<form class="login-form" action="<c:url value='j_spring_security_login' />" method="POST">
+	<div>
+		<a href="?lang=en">English</a> <a href="?lang=vi">Vietnamsese</a>
+	</div>
+	<h3>
+		<a href="${homeUrl}">Home</a>
+	</h3>
+	<form class="login-form"
+		action="<c:url value='j_spring_security_login' />" method="POST">
 		<div class="login-wrap">
 			<p class="login-img">
 				<i class="icon_lock_alt"></i>
 			</p>
 			<c:if test="${msg != null}">
-				<div class="alert alert-danger" role="alert"><span class="text-center">${msg}</span></div>
+				<div class="alert alert-danger" role="alert">
+					<span class="text-center">${msg}</span>
+				</div>
 			</c:if>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="icon_profile"></i></span>
@@ -22,9 +29,11 @@
 				<input type="password" name="password" class="form-control"
 					placeholder="Password">
 			</div>
-			<label class="checkbox"> <input	type="checkbox"
-				value="remember-me"> Remember me <span class="pull-right">
-				<spring:url value="/resetPassword" var="reserPassWord"></spring:url>
+
+			<spring:url value="/resetPassword" var="reserPassWord"></spring:url>
+			<label class="checkbox"> <input type="checkbox"
+				name="remember-me" /> Remember me <span class="pull-right">
+					<spring:url value="/resetPassword" var="reserPassWord"></spring:url>
 					<a href="${reserPassWord}"> Forgot Password?</a>
 			</span>
 			</label>
