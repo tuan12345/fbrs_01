@@ -5,7 +5,7 @@ import app.model.Book;
 
 public interface BookDAO extends BaseDAO<Integer, Book> {
 
-	List<Book> findAll(Integer page);
+	List<Book> findAll(Integer page,Integer maxResult);
 
 	Long count();
 

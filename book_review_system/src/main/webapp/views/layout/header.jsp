@@ -1,10 +1,12 @@
-<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="security"
+	uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!--parameter url  -->
 <spring:url value="/books" var="bookUrl"></spring:url>
 <spring:url value="/" var="homeUrl"></spring:url>
 <spring:url value="/login" var="loginUrl"></spring:url>
+<spring:url value="/requestBook" var="requestUrl"></spring:url>
 <spring:url value="/assets/img/bookstor_compact.png" var="icon" />
 <header class="header-pos sticky-top">
 	<!-- header-bottom-area start -->
@@ -23,18 +25,23 @@
 								<ul>
 									<li><a href="${homeUrl}">home</a></li>
 									<li><a href="${bookUrl}">Book</a></li>
+									<security:authorize access="isAnonymous()">
+										<li><a id="alert">Request</a></li>
+									</security:authorize>
+									<security:authorize access="isAuthenticated()">
+										<li><a href="${requestUrl }">Request</a></li>
+									</security:authorize>
 
-									<li><a href="contact.html">contact</a></li>
 								</ul>
 							</nav>
 						</div>
 					</div>
-					<div class="col-md-3 hidden-xs hidden-sm"
-						data-list-title="${titles }" id="list-title">
+					<div class="col-md-3 hidden-xs hidden-sm">
+						<div data-list-title="${titles }" id="list-title"></div>
 						<spring:url value="Search" var="searchActionUrl" />
 						<div data-list-category="${categories }" id="list-category"></div>
-						<form class="navbar-form navbar-left"
-							action="${searchActionUrl }" method="get">
+						<form class="navbar-form navbar-left" action="${searchActionUrl }"
+							method="get">
 							<div class="input-search">
 								<ul>
 									<li><input id="search" type="text" name="search"
@@ -46,23 +53,27 @@
 									</li>
 
 								</ul>
-								<label class="checkbox-inline"><input name="type-search" id="checkCategory"
-									type="checkbox" value="category">Category</label> 
-									<label class="checkbox-inline"><input name="type-search" id="checkTitle"
-									type="checkbox" value="title">Title</label>
+								<label class="checkbox-inline"><input name="type-search"
+									id="checkCategory" type="checkbox" value="category">Category</label>
+								<label class="checkbox-inline"><input name="type-search"
+									id="checkTitle" type="checkbox" value="title">Title</label>
 							</div>
 						</form>
 					</div>
 					<div class="col-md-2 col-sm-8 col-xs-7 header-right">
 						<div class="user-meta">
 							<security:authorize access="isAuthenticated()">
-								<h4 class="text-primary">Welcome: <security:authentication property="principal.username" /> </h4>
+								<h4 class="text-primary">
+									Welcome:
+									<security:authentication property="principal.username" />
+								</h4>
 								<ul>
 									<spring:url value="/profile" var="profile" />
 									<li class="eborder-top"><a href="${profile}"><i
 											class="icon_profile"></i> My Profile</a></li>
 									<li>
-										<form action="<c:url value='/j_spring_security_logout' />" method="post">
+										<form action="<c:url value='/j_spring_security_logout' />"
+											method="post">
 											<input type="hidden" name="${_csrf.parameterName}"
 												value="${_csrf.token}" />
 											<button class="btn btn-primary btn-xs btn-block"

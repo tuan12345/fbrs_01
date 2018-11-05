@@ -1,8 +1,5 @@
 package app.dto;
 
-import app.model.Book;
-import app.model.User;
-
 public class MarkInfo {
 	private Integer id;
 	private int readStatus;

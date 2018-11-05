@@ -15,8 +15,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+
 import app.dto.BookInfo;
 import app.dto.MarkInfo;
+import app.dto.RequestInfo;
 import app.util.DateUtil;
 
 @Controller
@@ -29,11 +31,13 @@ public class BooksController extends BaseController {
 		ModelAndView model = new ModelAndView("bookDetail");
 		if (principal != null) {
 			model.addObject("currentUser", currentUser());
+			MarkInfo markInfo = markService.findMarkByUserAndBook(currentUser().getId(), Integer.parseInt(id));
+			model.addObject("markInfo", markInfo);
 		}
 		BookInfo bookInfo = bookService.findBookById(Integer.parseInt(id));
-		MarkInfo markInfo = markService.findMarkByUserAndBook(currentUser().getId(), Integer.parseInt(id));
-		model.addObject("markInfo", markInfo);
 		model.addObject("bookInfo", bookInfo);
+		model.addObject("categories", categoryService.categoryName());
+		model.addObject("titles", bookService.getListTitle());
 		model.addObject("reviews", reviewService.loadReviewsForBook(Integer.parseInt(id)));
 
 		return model;
@@ -73,6 +77,27 @@ public class BooksController extends BaseController {
 		logger.info("Add Review");
 		ModelAndView model = new ModelAndView("addReview");
 		return model;
+	}
+
+	@RequestMapping("/requestBook")
+	public ModelAndView showPageRequestBook(@RequestParam(value = "success", required = false) String sendSuccess,
+			Locale locale) {
+		logger.info("Add Request");
+		ModelAndView model = new ModelAndView("requestBook");
+		model.addObject("categories", categoryService.loadCategories());
+		if (sendSuccess != null) {
+			model.addObject("sendSuccessMsg", messageSource.getMessage("request.sendSuccess", null, locale));
+		}
+		return model;
+	}
+
+	@RequestMapping(value = "/sendRequest", method = RequestMethod.POST)
+	public ModelAndView sendRequest(@ModelAttribute("RequestInfo") RequestInfo requestInfo,
+			@RequestParam("idCategory") int idCategory) {
+		logger.info("requestInfo:" + requestInfo);
+		requestService.saveRequest(requestInfo, currentUser().getId(), idCategory);
+		return new ModelAndView("redirect:/requestBook?success=success");
+
 	}
 
 }

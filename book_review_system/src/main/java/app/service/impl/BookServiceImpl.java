@@ -6,11 +6,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
 import org.springframework.web.multipart.MultipartFile;
-
 import app.dto.BookInfo;
 import app.model.Book;
 import app.model.Category;
@@ -28,7 +26,6 @@ public class BookServiceImpl extends BaseServiceImpl implements BookService {
 			logger.error(e);
 			throw e;
 		}
-
 	}
 
 	@Override
@@ -40,7 +37,6 @@ public class BookServiceImpl extends BaseServiceImpl implements BookService {
 			logger.error(e);
 			throw e;
 		}
-
 	}
 
 	@Override
@@ -60,7 +56,6 @@ public class BookServiceImpl extends BaseServiceImpl implements BookService {
 		} catch (Exception e) {
 			return null;
 		}
-
 	}
 
 	@Override
@@ -73,13 +68,12 @@ public class BookServiceImpl extends BaseServiceImpl implements BookService {
 	}
 
 	@Override
-	public List<BookInfo> listBookByPage(Integer page) {
+	public List<BookInfo> listBookByPage(Integer page ) {
 		try {
-			return ConvertModelToBean.mapBooksToBooksInf(bookDAO.findAll(page));
+			return ConvertModelToBean.mapBooksToBooksInf(bookDAO.findAll(page,8));
 		} catch (Exception e) {
 			return null;
 		}
-
 	}
 
 	@Override
@@ -89,7 +83,6 @@ public class BookServiceImpl extends BaseServiceImpl implements BookService {
 		} catch (Exception e) {
 			return null;
 		}
-
 	}
 
 	@Override
@@ -99,7 +92,6 @@ public class BookServiceImpl extends BaseServiceImpl implements BookService {
 		} catch (Exception e) {
 			return null;
 		}
-
 	}
 
 	@Override
@@ -139,7 +131,7 @@ public class BookServiceImpl extends BaseServiceImpl implements BookService {
 	@Override
 	public boolean saveBook(BookInfo bookInfo, MultipartFile image, String path) {
 		try {
-			if(image != null){
+			if (image != null) {
 				try {
 					FileUtils.forceMkdir(new File(path));
 					File upload = new File(path + image.getOriginalFilename());

@@ -9,7 +9,7 @@ import app.model.Book;
 
 public interface BookService extends BaseService<Integer, Book> {
 
-	List<BookInfo> listBookByPage(Integer page);
+	List<BookInfo> listBookByPage(Integer page );
 
 	Long count();
 

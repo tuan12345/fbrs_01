@@ -17,7 +17,7 @@ public class MarkServiceImpl extends BaseServiceImpl implements MarkService {
 		return null;
 	}
 
-	@SuppressWarnings("null")
+	
 	@Override
 	public MarkInfo saveOrUpdate(int idBook, int idUser, int readStatus) {
 
