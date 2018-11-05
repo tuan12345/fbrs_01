@@ -51,4 +51,13 @@ public class UserDAOImpl extends GenericDAO<Integer, User> implements UserDAO {
 		return user;
 	}
 
+	@Override
+	public User findByUserNameAndEmail(String userName, String email) {
+		Criteria criteria = getSession().createCriteria(User.class);
+		criteria.add(Restrictions.eq("userName", userName));
+		criteria.add(Restrictions.eq("email", email));
+		User user = (User) criteria.uniqueResult();
+		return user;
+	}
+
 }

@@ -4,14 +4,18 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 
 import org.apache.log4j.Logger;
+import org.springframework.mail.SimpleMailMessage;
 
 import app.dto.RoleInfo;
 import app.dto.UserInfo;
 import app.model.Role;
 import app.model.User;
 import app.service.UserService;
+import app.util.MailUtil;
+import app.util.PasswordUtil;
 
 public class UserServiceImpl extends BaseServiceImpl implements UserService {
 	private static final Logger logger = Logger.getLogger(UserServiceImpl.class);
@@ -143,4 +147,24 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 
 	}
 
+	@Override
+	public boolean updatePassword(UserInfo userInfo, Locale locale) {
+		try {
+			User user = userDAO.findByUserNameAndEmail(userInfo.getUserName(), userInfo.getEmail());
+			if (user == null) {
+				return false;
+			}
+			int noopPassword = PasswordUtil.randomPassword();
+			User userUpdate = userDAO.findByIdLock(user.getId(), true);
+			userUpdate.setPassword(PasswordUtil.passwordEndcode(String.valueOf(noopPassword)));
+			saveOrUpdate(userUpdate);
+			SimpleMailMessage message = MailUtil.message(MailUtil.mailName, userInfo.getEmail(),
+					messageSource.getMessage("mail.subject.resetpass", null, locale), messageSource.getMessage("mail.reset.message", null, locale) + noopPassword);
+			mailSender.send(message);
+			return true;
+		} catch (Exception e) {
+			logger.error(e);
+			throw e;
+		}
+	}
 }

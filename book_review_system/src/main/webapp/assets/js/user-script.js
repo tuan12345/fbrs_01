@@ -35,6 +35,7 @@ $(function() {
 		id = parentOjb.find('.user_id').text();
 		$.ajax({
 			url : 'users/'+id,
+			headers: {"X-CSRF-TOKEN": $("input[name='_csrf']").val()},
 			type : 'DELETE',
 			success : function(data) {
 				xoa.remove();
@@ -73,6 +74,7 @@ $(function() {
 		$.ajax({
 			type: "POST",
 		      contentType : 'application/json; charset=utf-8',
+		      headers: {"X-CSRF-TOKEN": $("input[name='_csrf']").val()},
 		      dataType : 'json',
 		      url: "users",
 		      data: JSON.stringify(user),
