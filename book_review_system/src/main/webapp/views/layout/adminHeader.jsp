@@ -8,14 +8,14 @@
 			<i class="icon_menu"></i>
 		</div>
 	</div>
-
 	<!--logo start-->
 	<spring:url value="/adminHome" var="adminHome" />
 	<a href="${adminHome}" class="logo">Nice <span class="lite">Admin</span></a>
 	<!--logo end-->
-	<div> <a href="?lang=en">English</a> <a href="?lang=vi">Vietnamsese</a></div>
+	<div>
+		<a href="?lang=en">English</a> <a href="?lang=vi">Vietnamsese</a>
+	</div>
 	<div class="nav search-row" id="top_menu"></div>
-
 	<div class="top-nav notification-row">
 		<!-- notificatoin dropdown start-->
 		<ul class="nav pull-right top-menu">
@@ -30,12 +30,14 @@
 					<spring:url value="/profile" var="profile" />
 					<li class="eborder-top"><a href="${profile}"><i
 							class="icon_profile"></i> My Profile</a></li>
-							
 					<li>
-						<form action="<c:url value='/j_spring_security_logout' />" method="post">
-							<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-							<button class="btn btn-primary btn-lg btn-block" type="submit">Log out</button>
-						 </form>		
+						<form action="<c:url value='/j_spring_security_logout' />"
+							method="post">
+							<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" />
+							<button class="btn btn-primary btn-lg btn-block" type="submit">Log
+								out</button>
+						</form>
 					</li>
 				</ul></li>
 			<!-- user login dropdown end -->
@@ -58,10 +60,9 @@
 					<span>User</span>
 			</a></li>
 			<spring:url value="/adminBook" var="book" />
-			<li><a class="" href="${book }"> <i
-					class="icon_piechart"></i> <span>Book</span>
-
-			</a></li>		
+			<li><a class="" href="${book }"> <i class="icon_piechart"></i>
+					<span>Book</span>
+			</a></li>
 		</ul>
 		<!-- sidebar menu end-->
 	</div>

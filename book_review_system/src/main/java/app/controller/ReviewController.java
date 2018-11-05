@@ -8,23 +8,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import app.dto.ActivityInfo;
 import app.dto.ReviewInfo;
 
 @Controller
 public class ReviewController extends BaseController {
 	private static final Logger logger = Logger.getLogger(ReviewController.class);
-
 	@RequestMapping(value = "/books/{bookId}/reviews/add", method = RequestMethod.POST)
 	public ModelAndView AddReview(@ModelAttribute("reviewInfo") ReviewInfo reviewInfo,
 			@PathVariable("bookId") int bookId) {
-		if (reviewInfo.getId() == 0){
+		if (reviewInfo.getId() == 0) {
 			reviewService.createReview(reviewInfo, bookId, currentUser().getId());
-			ReviewInfo reInfo=reviewService.findUserRivew(currentUser().getId(), bookId);
+			ReviewInfo reInfo = reviewService.findUserRivew(currentUser().getId(), bookId);
 			activityService.saveReviewActivity(reInfo, currentUser().getId());
-		}
-		else {
+		} else {
 			reviewService.updateReview(reviewInfo);
 		}
 		return new ModelAndView("redirect:/books/" + bookId);

@@ -143,17 +143,17 @@
 															href="markReadBook?id-book=${bookInfo.id }&read-status=2"
 															class="reading">Reading</a>
 													</div>
-	
+
 												</c:otherwise>
 											</c:choose>
 										</c:otherwise>
 									</c:choose>
 								</c:otherwise>
 							</c:choose>
-	
+
 						</security:authorize>
 					</div>
-	
+
 				</div>
 				<p>
 				<h3>User Review</h3>
@@ -181,25 +181,9 @@
 						<div class="row">
 							<div class="col-sm-3"></div>
 							<div class="col-sm-9">
-								<div>
-									<button value="${review.id}" type="button"
-										class="btn btn-primary btn-md showComment">Comment</button>
-									<div id="comment-${review.id}" class="div-hiden"></div>
-								</div>
-								<security:authorize access="isAuthenticated()">
-									<spring:url value="/comments" var="addComment"></spring:url>
-									<form:form action="${addComment}" method="post"
-										modelAttribute="CommentInfo">
-										<label>Comment:</label>
-										<input type="text" name="content" class="form-control">
-										<input type="hidden" name="user.id" value="${currentUser.id}">
-										<input type="hidden" name="review.id" value="${review.id}">
-										<input type="hidden" name="review.bookInfo.id"
-											value="${bookInfo.id}">
-										<button type="submit" class="btn btn-success">Add
-											comment</button>
-									</form:form>
-								</security:authorize>
+								<div class="fb-comments"
+									data-href="http://localhost:8080/bookReview/books/${bookInfo.id }/${review.id}"
+									data-numposts="5">Comment</div>
 							</div>
 						</div>
 						<hr size="10" class="line">

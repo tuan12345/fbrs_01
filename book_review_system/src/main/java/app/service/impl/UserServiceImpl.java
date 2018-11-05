@@ -5,11 +5,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
-
 import org.apache.log4j.Logger;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.servlet.tags.form.PasswordInputTag;
-
 import app.dto.RoleInfo;
 import app.dto.UserInfo;
 import app.model.Role;
@@ -160,7 +158,8 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 			userUpdate.setPassword(PasswordUtil.passwordEndcode(String.valueOf(noopPassword)));
 			saveOrUpdate(userUpdate);
 			SimpleMailMessage message = MailUtil.message(MailUtil.mailName, userInfo.getEmail(),
-					messageSource.getMessage("mail.subject.resetpass", null, locale), messageSource.getMessage("mail.reset.message", null, locale) + noopPassword);
+					messageSource.getMessage("mail.subject.resetpass", null, locale),
+					messageSource.getMessage("mail.reset.message", null, locale) + noopPassword);
 			mailSender.send(message);
 			return true;
 		} catch (Exception e) {

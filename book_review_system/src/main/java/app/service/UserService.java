@@ -22,8 +22,8 @@ public interface UserService extends BaseService<Integer, User> {
 	UserInfo findUserInfoByUsername(String userName);
 
 	boolean updatePassword(UserInfo userInfo, Locale locale);
-	
+
 	List<UserInfo> loadAllUsers();
-	
+
 	boolean saveUsers(List<UserInfo> userInfos);
 }

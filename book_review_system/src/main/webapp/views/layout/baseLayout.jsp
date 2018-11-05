@@ -5,7 +5,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://tiles.apache.org/tags-tiles-extras"
 	prefix="tilesx"%>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -30,6 +29,8 @@
 <spring:url value="/assets/ckeditor/ckeditor.js" var="CkeditorJs" />
 <spring:url value="/assets/ckeditor/displayCkeditor.js"
 	var="displayCkeditorJs" />
+<spring:url value="/assets/js/comment_facebook/jquery.comment.js"
+	var="commentFacebookJs" />
 <link rel="stylesheet" href="${bootstrapCss}" />
 <link rel="stylesheet" href="${frontAwesome}" />
 <link rel="stylesheet" href="${style}" />
@@ -42,21 +43,19 @@
 <script src="${requestJs }" type="text/javascript"></script>
 <script src="${CkeditorJs }" type="text/javascript"></script>
 <script src="${displayCkeditorJs }" type="text/javascript"></script>
+<script src="${commentFacebookJs }" type="text/javascript"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <spring:url value="/assets/css/bootstrap.min.css" var="bootstrapCss" />
 <spring:url value="/assets/mycss/style.css" var="style" />
-
 <link rel="stylesheet" href="${bootstrapCss}" />
 <link rel="stylesheet" href="${style}" />
 <title><tiles:insertAttribute name="title" ignore="true" /></title>
-
 </head>
 <body>
-
+	<div id="fb-root"></div>
 	<tiles:insertAttribute name="header" />
 	<tiles:insertAttribute name="body" />
 	<tiles:insertAttribute name="footer" />
 
 </body>
-
 </html>

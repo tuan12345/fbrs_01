@@ -27,16 +27,17 @@ public class UsersController extends BaseController {
 	private static final Logger logger = Logger.getLogger(UsersController.class);
 
 	@RequestMapping("/users")
-	public ModelAndView users(@RequestParam(value = "page", required = false) String page, Locale locale, 
-			@RequestParam(value = "importSuccess", required = false) String importSuccess, 
+	public ModelAndView users(@RequestParam(value = "page", required = false) String page, Locale locale,
+			@RequestParam(value = "importSuccess", required = false) String importSuccess,
 			@RequestParam(value = "importError", required = false) String importError) {
 		logger.info("load Users");
 		ModelAndView model = new ModelAndView("users");
 		model.addObject("pages", pages());
-		if(importSuccess != null){
+		if (importSuccess != null) {
 			model.addObject("importMsg", messageSource.getMessage("import.admin.success", null, locale));
 		}
-		if(importError != null){
+
+		if (importError != null) {
 			model.addObject("importMsg", messageSource.getMessage("import.admin.fail", null, locale));
 		}
 		if (page == null) {

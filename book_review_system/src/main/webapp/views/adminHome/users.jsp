@@ -18,6 +18,8 @@
 		<strong>${importMsg}</strong>
 	</h3>
 </div>
+<button class="btn btn-default" type="button"><a href="${report}">Export Excel</a></button>
+<div class="text-center"><h3><strong>${message}</strong></h3></div>
 <table class="table">
 	<thead>
 		<tr>
@@ -128,8 +130,7 @@
 						</label>
 						<div class="col-lg-10">
 							<input class="form-control" name="file" accept="${excelType}"
-								type="file" required />
-								
+								type="file" required />			
 						</div>
 					</div>
 					<input type="hidden" name="${_csrf.parameterName}"
