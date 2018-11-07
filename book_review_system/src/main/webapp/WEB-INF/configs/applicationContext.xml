@@ -44,7 +44,7 @@
 	<mvc:interceptors>
 		<bean parent="localeChangeInterceptor" />
 	</mvc:interceptors>
-	
+
 	<!-- Using SMTP -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
 		<property name="host" value="${mail.host}" />

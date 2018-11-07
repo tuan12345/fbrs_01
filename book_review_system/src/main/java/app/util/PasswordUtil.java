@@ -14,4 +14,6 @@ public class PasswordUtil {
 		Random rand = new Random();
 		return 100000 + rand.nextInt(999999 - 100000);
 	}
+	
+	public static final String DEFAULT_PASSWORD = "123456";
 }

@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.mail.SimpleMailMessage;
 
-@PropertySource("classpath:config.properties")
+@PropertySource("classpath:datasources.properties")
 public class MailUtil {
-	@Value("${username}")
+	@Value("${mail.username}")
 	public static String mailName;
 	
 	public static SimpleMailMessage message(String from, String to, String subject, String text) {

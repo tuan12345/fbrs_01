@@ -14,20 +14,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import app.dto.UserInfo;
 import app.service.impl.ExportExcel;
+import app.service.impl.ImportExcel;
+import app.util.TypeUtil;
 
 @Controller
 public class UsersController extends BaseController {
 	private static final Logger logger = Logger.getLogger(UsersController.class);
 
 	@RequestMapping("/users")
-	public ModelAndView users(@RequestParam(value = "page", required = false) String page, Locale locale) {
+	public ModelAndView users(@RequestParam(value = "page", required = false) String page, Locale locale, 
+			@RequestParam(value = "importSuccess", required = false) String importSuccess, 
+			@RequestParam(value = "importError", required = false) String importError) {
 		logger.info("load Users");
 		ModelAndView model = new ModelAndView("users");
 		model.addObject("pages", pages());
+		if(importSuccess != null){
+			model.addObject("importMsg", messageSource.getMessage("import.admin.success", null, locale));
+		}
+		if(importError != null){
+			model.addObject("importMsg", messageSource.getMessage("import.admin.fail", null, locale));
+		}
 		if (page == null) {
 			model.addObject("users", userService.loadUsers(1));
 			model.addObject("currenPage", 1);
@@ -42,6 +53,7 @@ public class UsersController extends BaseController {
 			model.addObject("message", messageSource.getMessage("users.notfound", null, locale));
 		}
 		model.addObject("roles", roleService.loadRoles());
+		model.addObject("excelType", TypeUtil.excelType);
 		return model;
 	}
 
@@ -136,6 +148,14 @@ public class UsersController extends BaseController {
 	public ModelAndView exportUser() {
 		List<UserInfo> userInfos = userService.loadAllUsers();
 		return new ModelAndView(new ExportExcel(), "userInfos", userInfos);
+	}
+
+	@RequestMapping(value = "users/import", method = RequestMethod.POST)
+	public ModelAndView importUsers(@RequestParam("file") MultipartFile file) {
+		if (userService.saveUsers(ImportExcel.importExcel(file))) {
+			return new ModelAndView("redirect:/users?importSuccess");
+		}
+		return new ModelAndView("redirect:/users?importError");
 	}
 
 	private int pages() {

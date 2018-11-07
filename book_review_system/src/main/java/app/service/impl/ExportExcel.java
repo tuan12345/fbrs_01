@@ -18,7 +18,7 @@ public class ExportExcel extends AbstractXlsView {
 	@Override
 	protected void buildExcelDocument(Map<String, Object> model, Workbook workbook, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		response.setHeader("Content-Disposition", "attachment;filename=\"student.xls\"");
+		response.setHeader("Content-Disposition", "attachment;filename=\"users.xls\"");
 		List<UserInfo> users = (List<UserInfo>) model.get("userInfos");
 		Sheet sheet = workbook.createSheet("List User");
 		Row header = sheet.createRow(0);
