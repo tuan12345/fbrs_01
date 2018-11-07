@@ -20,6 +20,7 @@
 					<li><a href="#"><i class="fa fa-youtube"></i></a></li>
 				</ul>
 				<!-- /footer follow -->
+				<div id="map" frameborder="0" style="border: 0" allowfullscreen></div>
 				<!-- footer copyright -->
 				<div class="footer-copyright">
 					<p>
@@ -34,5 +35,7 @@
 	</div>
 	<!-- /Container -->
 </footer>
-
-
+<script async defer
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQvkFPLJ2jt_0BzZUmFtqvrOCR5Z7H2Ak&callback=initMap">
+	
+</script>
