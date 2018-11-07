@@ -1,6 +1,7 @@
 package app.controller;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Locale;
 
 import org.apache.log4j.Logger;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import app.dto.UserInfo;
+import app.service.impl.ExportExcel;
 
 @Controller
 public class UsersController extends BaseController {
@@ -119,17 +121,23 @@ public class UsersController extends BaseController {
 		return model;
 	}
 
-	@RequestMapping(value ="forgotPassword", method = RequestMethod.POST)
-	public ModelAndView forgotPass(@ModelAttribute("userInfo") UserInfo userInfo, Locale locale){
+	@RequestMapping(value = "forgotPassword", method = RequestMethod.POST)
+	public ModelAndView forgotPass(@ModelAttribute("userInfo") UserInfo userInfo, Locale locale) {
 		ModelAndView model = new ModelAndView("forgotPassword");
-		if(userService.updatePassword(userInfo, locale)){
+		if (userService.updatePassword(userInfo, locale)) {
 			model.addObject("msg", messageSource.getMessage("resetPassword-success", null, locale));
-		}else{
+		} else {
 			model.addObject("msg", messageSource.getMessage("user.email.notMatch", null, locale));
 		}
 		return model;
 	}
-	
+
+	@RequestMapping("users/report")
+	public ModelAndView exportUser() {
+		List<UserInfo> userInfos = userService.loadAllUsers();
+		return new ModelAndView(new ExportExcel(), "userInfos", userInfos);
+	}
+
 	private int pages() {
 		return (int) (Math.round(userService.loadRowCount() / 5 + 0.5));
 	}

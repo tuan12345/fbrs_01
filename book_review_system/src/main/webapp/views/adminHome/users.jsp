@@ -2,6 +2,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <spring:url value="/assets/js/user-script.js" var="userScript" />
 <h2 class="text-center">User Manage</h2>
+<spring:url value="/users/report" var="report"></spring:url>
+<button class="btn btn-default" type="button"><a href="${report}">Export Excel</a></button>
 <div class="text-center"><h3><strong>${message}</strong></h3></div>
 <table class="table">
 	<thead>
