@@ -8,6 +8,7 @@ import java.util.Locale;
 
 import org.apache.log4j.Logger;
 import org.springframework.mail.SimpleMailMessage;
+import org.springframework.web.servlet.tags.form.PasswordInputTag;
 
 import app.dto.RoleInfo;
 import app.dto.UserInfo;
@@ -182,6 +183,26 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 		} catch (Exception e) {
 			logger.error(e);
 			return null;
+		}
+	}
+
+	@Override
+	public boolean saveUsers(List<UserInfo> userInfos) {
+		try {
+			Role role = roleDAO.findById(1);
+			for (UserInfo userInfo : userInfos) {
+				User user = new User();
+				user.setUserName(userInfo.getUserName());
+				user.setFullName(userInfo.getName());
+				user.setEmail(userInfo.getEmail());
+				user.setRole(role);
+				user.setPassword(PasswordUtil.passwordEndcode(PasswordUtil.DEFAULT_PASSWORD));
+				saveOrUpdate(user);
+			}
+			return true;
+		} catch (Exception e) {
+			logger.error(e);
+			throw e;
 		}
 	}
 }

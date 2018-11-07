@@ -3,8 +3,21 @@
 <spring:url value="/assets/js/user-script.js" var="userScript" />
 <h2 class="text-center">User Manage</h2>
 <spring:url value="/users/report" var="report"></spring:url>
-<button class="btn btn-default" type="button"><a href="${report}">Export Excel</a></button>
-<div class="text-center"><h3><strong>${message}</strong></h3></div>
+<spring:url value="/users/import" var="importExcel"></spring:url>
+<button class="btn btn-default" type="button">
+	<a href="${report}">Export Excel</a>
+</button>
+<button class="btn btn-default" type="button" data-toggle="modal"
+	data-target="#importModal">Import Admin from Excel</button>
+<div class="text-center">
+	<h3>
+		<strong>${message}</strong>
+	</h3>
+
+	<h3>
+		<strong>${importMsg}</strong>
+	</h3>
+</div>
 <table class="table">
 	<thead>
 		<tr>
@@ -17,7 +30,7 @@
 		</tr>
 	</thead>
 	<tbody id="reload">
-		
+
 		<c:forEach items="${users}" var="user">
 			<tr class="rename">
 				<td class="user_id">${user.id}</td>
@@ -46,15 +59,16 @@
 			</div>
 			<div class="modal-body">
 				<p>User Info</p>
-				<form name ="updateUser" class="form-validate form-horizontal" method="POST">
-					<input id="cuser_id" type="text"  hidden="1" name="id">
+				<form name="updateUser" class="form-validate form-horizontal"
+					method="POST">
+					<input id="cuser_id" type="text" hidden="1" name="id">
 					<div class="form-group ">
 						<label for="cname" class="control-label col-lg-2">Full
 							Name <span class="required">*</span>
 						</label>
 						<div class="col-lg-10">
-							<input class="form-control" id="cname" name="name"
-								minlength="5" type="text" required />
+							<input class="form-control" id="cname" name="name" minlength="5"
+								type="text" required />
 						</div>
 					</div>
 					<div class="form-group ">
@@ -69,7 +83,8 @@
 					<div class="form-group ">
 						<label for="curl" class="control-label col-lg-2">Role</label>
 						<div class="col-lg-10">
-							<select class="form-control input-sm m-bot15" id='crole' name="role[id]">
+							<select class="form-control input-sm m-bot15" id='crole'
+								name="role[id]">
 								<c:forEach var="role" items="${roles}">
 									<option value="${role.id}">${role.name}</option>
 								</c:forEach>
@@ -92,6 +107,48 @@
 	</div>
 </div>
 <!-- End Modal -->
+
+<!-- Modal -->
+<div id="importModal" class="modal fade" role="dialog">
+	<div class="modal-dialog">
+
+		<!-- Modal content-->
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Import Admin</h4>
+			</div>
+			<div class="modal-body">
+
+				<form action="${importExcel}/?${_csrf.parameterName}=${_csrf.token}" class="form-validate form-horizontal"
+					method="POST" enctype="multipart/form-data">
+					<div class="form-group ">
+						<label for="cname" class="control-label col-lg-2">Excel
+							file<span class="required">*</span>
+						</label>
+						<div class="col-lg-10">
+							<input class="form-control" name="file" accept="${excelType}"
+								type="file" required />
+								
+						</div>
+					</div>
+					<input type="hidden" name="${_csrf.parameterName}"
+						value="${_csrf.token}" />
+					<div class="form-group">
+						<div class="col-lg-offset-2 col-lg-10">
+							<button class="btn btn-primary" type="submit">Import
+								User</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Close</button>
+						</div>
+					</div>
+				</form>
+			</div>
+
+		</div>
+
+	</div>
+</div>
 
 <!-- Pagination -->
 <div class="text-center">
