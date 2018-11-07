@@ -1,12 +1,15 @@
 package app.dao.impl;
 
 import java.util.List;
+
 import org.apache.log4j.Logger;
 import org.hibernate.Criteria;
 import org.hibernate.LockMode;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.sql.JoinType;
+import org.hibernate.type.StandardBasicTypes;
 
 import app.dao.BookDAO;
 import app.dao.GenericDAO;
@@ -21,15 +24,15 @@ public class BookDAOImpl extends GenericDAO<Integer, Book> implements BookDAO {
 
 	public BookDAOImpl(SessionFactory sessionfactory) {
 		setSessionFactory(sessionfactory);
-		
+
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Book> findAll(Integer page,Integer maxResult) {
+	public List<Book> findAll(Integer page, Integer maxResult) {
 		logger.info("load Books");
-		return getSession().createQuery("From Book").setFirstResult(page != null ? (page - 1) * maxResult : 0).setMaxResults(maxResult)
-				.list();
+		return getSession().createQuery("From Book").setFirstResult(page != null ? (page - 1) * maxResult : 0)
+				.setMaxResults(maxResult).list();
 	}
 
 	@Override
@@ -67,6 +70,16 @@ public class BookDAOImpl extends GenericDAO<Integer, Book> implements BookDAO {
 	public List<Book> loadBooks() {
 
 		return getSession().createQuery("From Book").getResultList();
+	}
+
+	@Override
+	public List<Book> loadBooksByDateReview(int month, int year) {
+		Criteria criteria = getSession().createCriteria(Book.class);
+		Criteria subCritera = criteria.createCriteria("reviews", JoinType.INNER_JOIN);
+		subCritera.add(Restrictions.sqlRestriction("MONTH({alias}.created_at) = ?", month, StandardBasicTypes.INTEGER));
+		subCritera.add(Restrictions.sqlRestriction("YEAR({alias}.created_at) = ?", year, StandardBasicTypes.INTEGER));
+		List<Book> books = subCritera.list();
+		return subCritera.list();
 	}
 
 }

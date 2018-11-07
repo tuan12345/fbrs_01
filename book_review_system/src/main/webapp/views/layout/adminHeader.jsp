@@ -62,7 +62,12 @@
 			<spring:url value="/adminBook" var="book" />
 			<li><a class="" href="${book }"> <i class="icon_piechart"></i>
 					<span>Book</span>
-			</a></li>
+			</a></li>	
+			<spring:url value="/charts" var="charts" />
+			<li><a class="" href="${charts }"> <i
+					class="icon_piechart"></i> <span>Charts</span>
+
+			</a></li>		
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
