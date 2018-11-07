@@ -167,4 +167,21 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 			throw e;
 		}
 	}
+
+	@Override
+	public List<UserInfo> loadAllUsers() {
+		try {
+			List<UserInfo> userInfos = new ArrayList<>();
+			List<User> users = userDAO.loadAllUsers();
+			for (User user : users) {
+				RoleInfo roleInfo = new RoleInfo(user.getRole().getId(), user.getRole().getName());
+				userInfos.add(
+						new UserInfo(user.getId(), user.getFullName(), user.getUserName(), user.getEmail(), roleInfo));
+			}
+			return userInfos;
+		} catch (Exception e) {
+			logger.error(e);
+			return null;
+		}
+	}
 }

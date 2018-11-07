@@ -60,4 +60,9 @@ public class UserDAOImpl extends GenericDAO<Integer, User> implements UserDAO {
 		return user;
 	}
 
+	@Override
+	public List<User> loadAllUsers() {
+		return getSession().createQuery("from User").getResultList();
+	}
+
 }
