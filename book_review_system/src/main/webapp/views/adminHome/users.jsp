@@ -18,8 +18,6 @@
 		<strong>${importMsg}</strong>
 	</h3>
 </div>
-<button class="btn btn-default" type="button"><a href="${report}">Export Excel</a></button>
-<div class="text-center"><h3><strong>${message}</strong></h3></div>
 <table class="table">
 	<thead>
 		<tr>
@@ -133,8 +131,6 @@
 								type="file" required />			
 						</div>
 					</div>
-					<input type="hidden" name="${_csrf.parameterName}"
-						value="${_csrf.token}" />
 					<div class="form-group">
 						<div class="col-lg-offset-2 col-lg-10">
 							<button class="btn btn-primary" type="submit">Import

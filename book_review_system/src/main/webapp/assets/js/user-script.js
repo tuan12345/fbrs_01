@@ -114,4 +114,74 @@ $(function() {
 	    }
 	})(jQuery);
 	
+	//Chart Page
+	
+	var series = '{}';
+	$("#reviewChart").submit(function(event) {
+		var year = $('#reviewDate').val().substring(0, 4);
+		var month = $('#reviewDate').val().substring(5, 7)
+		$.ajax({
+			url : 'reviewChart/' + month + '/' + year,
+			type : 'GET',
+			success : function(books) {
+				series = books;
+				var chart = {
+					type : 'column'
+				};
+				var title = {
+					text : 'Review of Book for month'
+				};
+				var credits = {
+					enabled : false
+				};
+				var json = {};
+				json.chart = chart;
+				json.title = title;
+				json.credits = credits;
+				console.log(series);
+				json.series = series;
+				$('#chart').highcharts(json);
+			},
+			error : function(e) {
+				console.log(e);
+			}
+		})
+		event.preventDefault();
+	});
+
+	$(document).ready(function() {
+		var d = new Date();
+		var month = d.getMonth() + 1;
+		var year = d.getFullYear();
+		var day = ("0" + d.getDate()).slice(-2);
+		var m = ("0" + (d.getMonth() + 1)).slice(-2);
+		var today = d.getFullYear()+"-"+(month)+"-"+(day);
+		$('#reviewDate').val(today);
+		
+		$.ajax({
+			url : 'reviewChart/' + month + '/' + year,
+			type : 'GET',
+			success : function(books) {
+				series = books;
+				var chart = {
+					type : 'column'
+				};
+				var title = {
+					text : 'Review of Book for month'
+				};
+				var credits = {
+					enabled : false
+				};
+				var json = {};
+				json.chart = chart;
+				json.title = title;
+				json.credits = credits;
+				json.series = series;
+				$('#chart').highcharts(json);
+			},
+			error : function(e) {
+				console.log(e);
+			}
+		})
+	});
 });

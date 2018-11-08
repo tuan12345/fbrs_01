@@ -6,6 +6,8 @@ import java.util.Collections;
 import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.web.multipart.MultipartFile;
+
+import app.dto.BookChart;
 import app.dto.BookInfo;
 import app.model.Book;
 import app.model.Category;
@@ -140,6 +142,24 @@ public class BookServiceImpl extends BaseServiceImpl implements BookService {
 		} catch (Exception e) {
 			logger.error(e);
 			return false;
+		}
+	}
+
+	@Override
+	public List<BookChart> loadBooksByDate(int month, int year) {
+		try {
+			List<BookChart> charts = new ArrayList<>();
+			List<Book> books = bookDAO.loadBooksByDateReview(month, year);
+			for (Book book : books) {
+				BookChart chart = new BookChart();
+				chart.setName(book.getTittle());
+				chart.setFirstdata(book.getReviews().size());
+				charts.add(chart);
+			}
+			return charts;
+		} catch (Exception e) {
+			logger.error(e);
+			return Collections.emptyList();
 		}
 	}
 }

@@ -16,5 +16,6 @@ public interface BookDAO extends BaseDAO<Integer, Book> {
 	List<String> findAllBookTitle();
 
 	List<Book> loadBooks();
-
+	
+	List<Book> loadBooksByDateReview(int month, int year);
 }

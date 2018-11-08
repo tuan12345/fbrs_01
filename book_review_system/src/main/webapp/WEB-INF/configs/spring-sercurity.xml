@@ -5,6 +5,7 @@
     http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 	<http auto-config="true">
 		<intercept-url pattern="/users*" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="charts" access="hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/profile*"
 			access="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/adminBook*" access="hasRole('ROLE_ADMIN')" />
