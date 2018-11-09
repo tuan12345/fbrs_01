@@ -5,14 +5,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+
 import org.apache.log4j.Logger;
 import org.springframework.mail.SimpleMailMessage;
-import org.springframework.web.servlet.tags.form.PasswordInputTag;
+
 import app.dto.RoleInfo;
 import app.dto.UserInfo;
 import app.model.Role;
 import app.model.User;
 import app.service.UserService;
+import app.util.GooglePojo;
 import app.util.MailUtil;
 import app.util.PasswordUtil;
 
@@ -198,6 +200,24 @@ public class UserServiceImpl extends BaseServiceImpl implements UserService {
 				user.setPassword(PasswordUtil.passwordEndcode(PasswordUtil.DEFAULT_PASSWORD));
 				saveOrUpdate(user);
 			}
+			return true;
+		} catch (Exception e) {
+			logger.error(e);
+			throw e;
+		}
+	}
+
+	@Override
+	public boolean saveUser(GooglePojo userGoogle, String token) {
+		try {
+			Role role = roleDAO.findById(2);
+			User user = new User();
+			user.setRole(role);
+			user.setFullName(userGoogle.getFamily_name());
+			user.setEmail(userGoogle.getEmail());
+			user.setPassword(token);
+			user.setUserName(userGoogle.getEmail());
+			saveOrUpdate(user);
 			return true;
 		} catch (Exception e) {
 			logger.error(e);

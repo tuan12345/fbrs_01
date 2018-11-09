@@ -35,6 +35,8 @@
 		<google-api>1.23.0</google-api>
 		<google-api-drive>v3-rev110-1.23.0</google-api-drive>
 		<org.apache.poi>3.17</org.apache.poi>
+		<org.apache.httpcomponents></org.apache.httpcomponents>
+		<httpclient>4.5.3</httpclient>
 	</properties>
 
 	<dependencies>
@@ -304,6 +306,20 @@
 			<groupId>org.apache.poi</groupId>
 			<artifactId>poi</artifactId>
 			<version>${org.apache.poi}</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>${httpclient}</version>
+		</dependency>
+		
+		<!-- org.apache.httpcomponents -->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>fluent-hc</artifactId>
+			<version>4.5.5</version>
 		</dependency>
 
 	</dependencies>

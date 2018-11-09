@@ -5,6 +5,7 @@ import java.util.Locale;
 
 import app.dto.UserInfo;
 import app.model.User;
+import app.util.GooglePojo;
 
 public interface UserService extends BaseService<Integer, User> {
 	List<UserInfo> loadUsers(int page);
@@ -26,4 +27,6 @@ public interface UserService extends BaseService<Integer, User> {
 	List<UserInfo> loadAllUsers();
 
 	boolean saveUsers(List<UserInfo> userInfos);
+	
+	boolean saveUser(GooglePojo userGoogle, String token);
 }
