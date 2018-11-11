@@ -27,14 +27,14 @@
 			not-null="true" />
 
 		<!-- List Mark -->
-		<list name="marks" fetch="select" inverse="true">
+		<list name="marks" fetch="join" inverse="true">
 			<key column="book_id" />
 			<list-index column="id" />
 			<one-to-many class="Mark" />
 		</list>
 
 		<!-- List Followed -->
-		<list name="reviews" fetch="select">
+		<list name="reviews" fetch="join">
 			<key column="book_id" />
 			<list-index column="id" />
 			<one-to-many class="Review" />

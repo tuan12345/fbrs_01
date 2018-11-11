@@ -27,6 +27,7 @@
 <spring:url value="/assets/js/main.js" var="jqueryMain" />
 <script type="text/javascript"
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<link rel="canonical" href="http://localhost:8081/bookReview/books/${bookInfo.id }" />
 <spring:url value="/assets/js/user-script.js" var="userScript" />
 <link rel="stylesheet" href="${bootstrapCss}" />
 <link rel="stylesheet" href="${dialogCss}" />
@@ -104,6 +105,17 @@
 						</p>
 					</div>
 					<div class="col-sm-6">
+						<div id="content" class="g-plusone" data-size="medium"></div>
+						<script>
+							gapi.plusone.go("content");
+						</script>
+						<div class="fb-share-button"
+							data-href="http://localhost:8081/bookReview/books/${bookInfo.id }"
+							data-layout="button" data-size="small" data-mobile-iframe="true">
+							<a target="_blank"
+								href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse"
+								class="fb-xfbml-parse-ignore">Chia sẻ</a>
+						</div>
 						<security:authorize access="isAuthenticated()">
 							<c:choose>
 								<c:when test="${empty markInfo} ">
@@ -181,8 +193,9 @@
 						<div class="row">
 							<div class="col-sm-3"></div>
 							<div class="col-sm-9">
+								<div id="fb-root"></div>
 								<div class="fb-comments"
-									data-href="http://localhost:8080/bookReview/books/${bookInfo.id }/${review.id}"
+									data-href="http://localhost:8081/bookReview/books/${bookInfo.id }/${review.id}"
 									data-numposts="5">Comment</div>
 							</div>
 						</div>
