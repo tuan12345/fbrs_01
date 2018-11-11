@@ -99,6 +99,12 @@
 		<put-attribute name="title" value="Request" />
 		<put-attribute name="body" value="/views/books/requestBook.jsp" />
 	</definition>
+	
+	<!--Chat.jsp  -->
+	<definition name="chat" extends="baseLayout">
+		<put-attribute name="title" value="Chat" />
+		<put-attribute name="body" value="/views/books/chat.jsp" />
+	</definition>
 
 
 </tiles-definitions>

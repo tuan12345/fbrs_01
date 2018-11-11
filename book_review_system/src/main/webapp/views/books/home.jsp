@@ -125,7 +125,11 @@
 							<th width="10%"></th>
 						</tr>
 					</thead>
-					<tbody>
+					<input type="hidden" id="idCurent" value="${idCurent }"/>
+					<button id="connect">Connect</button>
+					<button id="disconnect">Disconnect</button>
+					<button id="sendmessage">sendMessage</button>
+					<tbody id="bodyActivity">
 						<c:forEach items="${activities}" var="activity">
 							<tr>
 								<td>${activity.id}</td>

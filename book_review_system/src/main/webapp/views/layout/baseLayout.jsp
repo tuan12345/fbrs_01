@@ -31,6 +31,8 @@
 	var="displayCkeditorJs" />
 <spring:url value="/assets/js/comment_facebook/jquery.comment.js"
 	var="commentFacebookJs" />
+
+
 <link rel="stylesheet" href="${bootstrapCss}" />
 <link rel="stylesheet" href="${frontAwesome}" />
 <link rel="stylesheet" href="${style}" />
@@ -44,6 +46,7 @@
 <script src="${CkeditorJs }" type="text/javascript"></script>
 <script src="${displayCkeditorJs }" type="text/javascript"></script>
 <script src="${commentFacebookJs }" type="text/javascript"></script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <spring:url value="/assets/css/bootstrap.min.css" var="bootstrapCss" />
 <spring:url value="/assets/mycss/style.css" var="style" />

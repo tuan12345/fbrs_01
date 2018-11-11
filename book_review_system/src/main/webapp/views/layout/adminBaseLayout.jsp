@@ -28,6 +28,9 @@
 		<spring:url value="/assets/css/jquery-ui-1.10.4.min.css" var="jqueyrUI" />
 		<spring:url value="/assets/js/scripts.js" var="script" />
 		
+		
+		
+		
 		<link rel="stylesheet" href="${bootstrapCss}" />
 		<link rel="stylesheet" href="${bootstrapTheme}" />
 		<link rel="stylesheet" href="${elegant}" />
@@ -37,6 +40,7 @@
 		<link rel="stylesheet" href="${jqueyrUI}" />
 		<script src="${jquery}" type="text/javascript"></script>
 		<script src="${bootstrapJs}" type="text/javascript"></script>
+		
 		
 		<title><tiles:insertAttribute name="title" ignore="true" /></title>
 	</head>
