@@ -6,9 +6,9 @@ import org.springframework.mail.SimpleMailMessage;
 
 @PropertySource("classpath:datasources.properties")
 public class MailUtil {
-	@Value("${mail.username}")
+	@Value("${mail.admin}")
 	public static String mailName;
-	
+
 	public static SimpleMailMessage message(String from, String to, String subject, String text) {
 		SimpleMailMessage message = new SimpleMailMessage();
 		message.setFrom(from);
