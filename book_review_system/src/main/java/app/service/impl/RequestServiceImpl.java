@@ -1,7 +1,10 @@
 package app.service.impl;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
@@ -45,6 +48,21 @@ public class RequestServiceImpl extends BaseServiceImpl implements RequestServic
 			throw e;
 		}
 
+	}
+
+	@Override
+	public List<RequestInfo> loadRequestsNotHandled() {
+		try {
+			List<RequestInfo> requestInfos = new ArrayList<>();
+			List<Request> requests = requestDAO.loadRequestsNotHandle();
+			for (Request request : requests) {
+				requestInfos.add(ConvertModelToBean.mapRequestToRequestInfo(requestDAO.saveOrUpdate(request)));
+			}
+			return requestInfos;
+		} catch (Exception e) {
+			logger.error(e);
+			return Collections.emptyList();
+		}
 	}
 
 }

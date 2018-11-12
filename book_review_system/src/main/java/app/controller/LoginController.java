@@ -23,7 +23,7 @@ public class LoginController extends BaseController {
 
 	@Autowired
 	GoogleUtils googleUtils;
-	
+
 	@RequestMapping("/login")
 	public ModelAndView login(@RequestParam(value = "error", required = false) String error, Locale locale) {
 		ModelAndView model = new ModelAndView("login");
@@ -35,34 +35,29 @@ public class LoginController extends BaseController {
 	}
 
 	@RequestMapping("/login-google")
-	  public String loginGoogle(HttpServletRequest request) throws ClientProtocolException, IOException {
-	    String code = request.getParameter("code");
-	    if (code == null || code.isEmpty()) {
-	      return "redirect:/login?error";
-	    }
-	    GooglePojo googlePojo = googleUtils.getUserInfo(googleUtils.getToken(code));
-	    UserInfo userInfo = userService.findUserInfoByUsername(googlePojo.getEmail());
-	    if(userInfo == null){
-	    	if(userService.saveUser(googlePojo, code)){
-	    		googleUtils.sessionLogin(googleUtils.buildUser(googlePojo), request);
-	    	}else{
-	    		return "redirect:/login?error";
-	    	}
-	    }else{
-	    	googleUtils.sessionLogin(googleUtils.buildUser(googlePojo), request);
-	    }
-	    return "redirect:/";
-	  }
-	
+	public String loginGoogle(HttpServletRequest request) throws ClientProtocolException, IOException {
+		String code = request.getParameter("code");
+		if (code == null || code.isEmpty()) {
+			return "redirect:/login?error";
+		}
+		GooglePojo googlePojo = googleUtils.getUserInfo(googleUtils.getToken(code));
+		UserInfo userInfo = userService.findUserInfoByUsername(googlePojo.getEmail());
+		if (userInfo == null && !userService.saveUser(googlePojo, code)) {
+			return "redirect:/login?error";
+		}
+		googleUtils.sessionLogin(googleUtils.buildUser(googlePojo), request);
+		return "redirect:/";
+	}
+
 	@RequestMapping("/logout")
 	public ModelAndView logout(Locale locale) {
 		ModelAndView model = new ModelAndView("login");
 		model.addObject("msg", messageSource.getMessage("logout", null, locale));
 		return model;
 	}
-	
+
 	@RequestMapping("/adminHome")
-	public String adminHome(){
+	public String adminHome() {
 		return "adminHome";
 	}
 }
