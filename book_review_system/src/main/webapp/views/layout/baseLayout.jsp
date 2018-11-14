@@ -12,6 +12,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="description" content="">
 <meta name="author" content="">
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Your Website Title" />
+<meta property="og:description" content="Your description" />
+<meta property="og:image"
+	content="https://www.your-domain.com/path/image.jpg" />
 <spring:url value="/" var="urlHome" />
 <spring:url value="/home.jsp" var="homeUrl" />
 <spring:url value="/books" var="bookUrl" />
@@ -31,12 +36,15 @@
 	var="displayCkeditorJs" />
 <spring:url value="/assets/js/comment_facebook/jquery.comment.js"
 	var="commentFacebookJs" />
+<script src="https://apis.google.com/js/platform.js" async='async'
+	defer='defer'> </script>
 <link rel="stylesheet" href="${bootstrapCss}" />
 <link rel="stylesheet" href="${frontAwesome}" />
 <link rel="stylesheet" href="${style}" />
 <link rel="stylesheet" href="${style1}" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+<script> {"parsetags": "explicit"}</script>
 <script src="${jquery112 }" type="text/javascript"></script>
 <script src="${jqueryUi }" type="text/javascript"></script>
 <script src="${myjs }" type="text/javascript"></script>
@@ -52,7 +60,7 @@
 <title><tiles:insertAttribute name="title" ignore="true" /></title>
 </head>
 <body>
-	<div id="fb-root"></div>
+
 	<tiles:insertAttribute name="header" />
 	<tiles:insertAttribute name="body" />
 	<tiles:insertAttribute name="footer" />

@@ -1,6 +1,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <spring:url value="/" var="homeUrl"></spring:url>
+
 <div class="container">
 	<div>
 		<a href="?lang=en">English</a> <a href="?lang=vi">Vietnamsese</a>
@@ -40,7 +41,7 @@
 			<button class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
 			<a
 				href="https://accounts.google.com/o/oauth2/auth?scope=https://www.googleapis.com/auth/userinfo.email+https://www.googleapis.com/auth/userinfo.profile&state=profile&redirect_uri=http://localhost:8081/bookReview/login-google&response_type=code
-    &client_id=688500547573-jjc1aa7qrbe0mrdunm8j1bps7seq6lio.apps.googleusercontent.com&approval_prompt=force"><button
+    &client_id=<spring:eval expression="@propertyConfigurer.getProperty('GOOGLE_CLIENT_ID')" />&approval_prompt=force"><button
 					class="btn btn-danger btn-lg btn-block" type="button">
 					<i class="fa fa-google-plus"></i>
 				</button></a>
