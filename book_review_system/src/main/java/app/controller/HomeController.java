@@ -3,14 +3,12 @@ package app.controller;
 import java.security.Principal;
 import java.util.List;
 import java.util.Locale;
-
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
 import app.dto.ActivityInfo;
 import app.dto.CategoryInfo;
 
@@ -43,17 +41,22 @@ public class HomeController extends BaseController {
 	}
 
 	@RequestMapping(value = "/books", method = RequestMethod.GET)
-	public ModelAndView loadBooks(@RequestParam(value = "page", required = false) Integer page) {
+	public ModelAndView loadBooks(@RequestParam(value = "page", required = false) Integer page,@RequestParam(value="typeSort",required=false) String typeSort) {
 		logger.info("book page");
 		ModelAndView model = new ModelAndView("books");
 		int curentPage = 1;
 		if (page != null)
 			curentPage = page;
 		model.addObject("curentPage", curentPage);
+		if(typeSort==null){
+			model.addObject("typeSort", "0");
+		}else{
+		model.addObject("typeSort", typeSort);
+		}
 		model.addObject("titles", bookService.getListTitle());
 		model.addObject("categories", categoryService.categoryName());
 		model.addObject("page", bookService.page(bookService.count(), 8));
-		model.addObject("books", bookService.listBookByPage(page));
+		model.addObject("books", bookService.listBookByPage(page,typeSort));
 		return model;
 	}
 

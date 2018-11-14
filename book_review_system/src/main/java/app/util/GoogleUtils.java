@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.fluent.Form;
 import org.apache.http.client.fluent.Request;
@@ -26,7 +25,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Component
 @PropertySource("classpath:datasources.properties")
 public class GoogleUtils {
-
+	
 	@Value("${GOOGLE_CLIENT_ID}")
 	private String GOOGLE_CLIENT_ID;
 	@Value("${GOOGLE_CLIENT_SECRET}")
@@ -42,10 +41,10 @@ public class GoogleUtils {
 
 	public String getToken(final String code) throws ClientProtocolException, IOException {
 		String response = Request.Post(GOOGLE_LINK_GET_TOKEN)
-				.bodyForm(Form.form().add("client_id", GOOGLE_CLIENT_ID).add("client_secret", GOOGLE_CLIENT_SECRET)
-						.add("redirect_uri", GOOGLE_REDIRECT_URI).add("code", code).add("grant_type", GOOGLE_GRANT_TYPE)
-						.build())
-				.execute().returnContent().asString();
+						.bodyForm(Form.form().add("client_id", GOOGLE_CLIENT_ID).add("client_secret", GOOGLE_CLIENT_SECRET)
+								.add("redirect_uri", GOOGLE_REDIRECT_URI).add("code", code).add("grant_type", GOOGLE_GRANT_TYPE)
+								.build())
+						.execute().returnContent().asString();
 		ObjectMapper mapper = new ObjectMapper();
 		JsonNode node = mapper.readTree(response).get("access_token");
 		return node.textValue();
@@ -67,14 +66,14 @@ public class GoogleUtils {
 		boolean accountNonLocked = true;
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 		authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-		UserDetails userDetail = new User(googlePojo.getEmail(), "", enabled, accountNonExpired,
-				credentialsNonExpired, accountNonLocked, authorities);
+		UserDetails userDetail = new User(googlePojo.getEmail(), "", enabled, accountNonExpired, credentialsNonExpired,
+						accountNonLocked, authorities);
 		return userDetail;
 	}
 
 	public void sessionLogin(UserDetails userDetail, HttpServletRequest request) {
 		UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetail, null,
-				userDetail.getAuthorities());
+						userDetail.getAuthorities());
 		authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 	}

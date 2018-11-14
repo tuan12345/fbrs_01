@@ -14,6 +14,7 @@ import app.model.Category;
 import app.model.Review;
 import app.service.BookService;
 import app.util.DriveQuickstart;
+import app.util.SortBooks;
 
 public class BookServiceImpl extends BaseServiceImpl implements BookService {
 	private static final Logger logger = Logger.getLogger(BookServiceImpl.class);
@@ -68,9 +69,16 @@ public class BookServiceImpl extends BaseServiceImpl implements BookService {
 	}
 
 	@Override
-	public List<BookInfo> listBookByPage(Integer page) {
+	public List<BookInfo> listBookByPage(Integer page, String typeSort) {
 		try {
-			return ConvertModelToBean.mapBooksToBooksInf(bookDAO.findAll(page, 8));
+			if (typeSort == null) {
+				return ConvertModelToBean.mapBooksToBooksInf(bookDAO.findAll(page, 8));
+			} else {
+				if (typeSort.equals("1"))
+					return SortBooks.sortBooksByTitle(ConvertModelToBean.mapBooksToBooksInf(bookDAO.findAll(page, 8)));
+				return SortBooks
+						.sortBooksByPublishDate(ConvertModelToBean.mapBooksToBooksInf(bookDAO.findAll(page, 8)));
+			}
 		} catch (Exception e) {
 			return null;
 		}

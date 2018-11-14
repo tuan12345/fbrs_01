@@ -53,10 +53,6 @@
 									</li>
 
 								</ul>
-								<label class="checkbox-inline"><input name="type-search"
-									id="checkCategory" type="checkbox" value="category">Category</label>
-								<label class="checkbox-inline"><input name="type-search"
-									id="checkTitle" type="checkbox" value="title">Title</label>
 							</div>
 						</form>
 					</div>
