@@ -59,7 +59,7 @@
 <link rel="stylesheet" href="${style}" />
 <title><tiles:insertAttribute name="title" ignore="true" /></title>
 </head>
-<body>
+<body ">
 
 	<tiles:insertAttribute name="header" />
 	<tiles:insertAttribute name="body" />

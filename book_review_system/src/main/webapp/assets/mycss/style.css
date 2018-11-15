@@ -4419,3 +4419,25 @@ a.csm-button {
 .display{
 	color: red;
 }
+.input-search-book ul li {
+	display: inline-block;
+}
+
+.input-search-book {
+	margin-top: 0px;
+	position: relative;
+	border-collapse: separate;
+}
+.selectpicker{
+	background-color: #256cb8;
+	color: white;
+	border-radius: 10px;
+}
+.btn-primary:hover {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+}
+.text-sort{
+	font-weight: bold;
+}

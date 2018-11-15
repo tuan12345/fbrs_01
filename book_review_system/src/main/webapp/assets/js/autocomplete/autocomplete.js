@@ -15,6 +15,7 @@ $(document).ready(function() {
 			if ($("#checkTitle").is(":checked")) {
 				$("#checkTitle").prop('checked', false);
 			}
+			
 			_search(list_category);
 
 		}
@@ -31,7 +32,7 @@ $(document).ready(function() {
 	})
 
 	function _search(arr) {
-		$("#search").autocomplete({
+		$("#search-book").autocomplete({
 			source : arr
 		});
 
