@@ -19,14 +19,19 @@ public class RequestServiceImpl extends BaseServiceImpl implements RequestServic
 
 	@Override
 	public RequestInfo findById(Serializable key, boolean lock) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public RequestInfo saveOrUpdate(RequestInfo entity) {
-		// TODO Auto-generated method stub
-		return null;
+		try {
+			Request request = requestDAO.findByRequest(entity.getId(), true);
+			request.setStatus(entity.getStatus());
+			return (ConvertModelToBean.mapRequestToRequestInfo(requestDAO.saveOrUpdate(request)));
+		} catch (Exception e) {
+			logger.error(e);
+			throw e;
+		}
 	}
 
 	@Override
@@ -36,7 +41,7 @@ public class RequestServiceImpl extends BaseServiceImpl implements RequestServic
 	}
 
 	@Override
-	public RequestInfo saveRequest(RequestInfo requestInfo, int idUser,int idCategory) {
+	public RequestInfo saveRequest(RequestInfo requestInfo, int idUser, int idCategory) {
 		try {
 			User user = userDAO.findById(idUser);
 			Category category = categoryDAO.findById(idCategory);
@@ -65,4 +70,43 @@ public class RequestServiceImpl extends BaseServiceImpl implements RequestServic
 		}
 	}
 
+	@Override
+	public List<RequestInfo> loadRequests() {
+		try {
+			List<RequestInfo> requestInfos = new ArrayList<>();
+			List<Request> requests = requestDAO.loadRequests();
+			for (Request request : requests) {
+				requestInfos.add(ConvertModelToBean.mapRequestToRequestInfo(requestDAO.saveOrUpdate(request)));
+			}
+			return requestInfos;
+		} catch (Exception e) {
+			logger.error(e);
+			return Collections.emptyList();
+		}
+	}
+
+	@Override
+	public boolean deleteRequest(int requestId) {
+		try {
+			Request request = requestDAO.findByRequest(requestId, true);
+			requestDAO.delete(request);
+			return true;
+		} catch (Exception e) {
+			logger.error(e);
+			throw e;
+		}
+	}
+
+	@Override
+	public RequestInfo updateRequest(int id, int status) {
+		try {
+			RequestInfo requestInfo = new RequestInfo();
+			requestInfo.setId(id);
+			requestInfo.setStatus(status);
+			return saveOrUpdate(requestInfo);
+		} catch (Exception e) {
+			logger.error(e);
+			throw e;
+		}
+	}
 }
