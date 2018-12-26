@@ -23,3 +23,8 @@
 hs_err_pid*
 
 book_review_system/src/main/resources/datasources.properties
+.idea
+*.iml
+.project
+.classpath
+.settings

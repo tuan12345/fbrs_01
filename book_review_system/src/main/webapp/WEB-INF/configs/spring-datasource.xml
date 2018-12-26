@@ -8,6 +8,8 @@
 	http://www.springframework.org/schema/context 
 	http://www.springframework.org/schema/context/spring-context-4.2.xsd">
 
+
+
 	<tx:annotation-driven proxy-target-class="true"
 		transaction-manager="transactionManager" />
 
@@ -34,7 +36,7 @@
 				<prop key="hibernate.c3p0.max_size">150</prop>
 				<prop key="hibernate.c3p0.max_statements">300</prop>
 				<prop key="hibernate.c3p0.timeout">1800</prop>
-				<prop key="hbm2ddl.auto">create</prop>
+				<prop key="hbm2ddl.auto">update</prop>
 				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
 				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
 			</props>
@@ -43,29 +45,29 @@
 		<!-- Load mapping of model and table -->
 		<property name="mappingResources">
 			<list>
-				<value>app/model/hbm/Role.hbm.xml</value>
-				<value>app/model/hbm/User.hbm.xml</value>
-				<value>app/model/hbm/Activity.hbm.xml</value>
-				<value>app/model/hbm/Category.hbm.xml</value>
-				<value>app/model/hbm/Book.hbm.xml</value>
-				<value>app/model/hbm/Follow.hbm.xml</value>
-				<value>app/model/hbm/Like.hbm.xml</value>
-				<value>app/model/hbm/Mark.hbm.xml</value>
-				<value>app/model/hbm/Request.hbm.xml</value>
-				<value>app/model/hbm/Review.hbm.xml</value>
-				<value>app/model/hbm/Comment.hbm.xml</value>
+				<value>file:WEB-INF/configs/hbm/Role.hbm.xml</value>
+				<value>file:WEB-INF/configs/hbm/User.hbm.xml</value>
+				<value>file:WEB-INF/configs/hbm/Activity.hbm.xml</value>
+				<value>file:WEB-INF/configs/hbm/Category.hbm.xml</value>
+				<value>file:WEB-INF/configs/hbm/Book.hbm.xml</value>
+				<value>file:WEB-INF/configs/hbm/Follow.hbm.xml</value>
+				<value>file:WEB-INF/configs/hbm/Like.hbm.xml</value>
+				<value>file:WEB-INF/configs/hbm/Mark.hbm.xml</value>
+				<value>file:WEB-INF/configs/hbm/Request.hbm.xml</value>
+				<value>file:WEB-INF/configs/hbm/Review.hbm.xml</value>
+				<value>file:WEB-INF/configs/hbm/Comment.hbm.xml</value>
 			</list>
 		</property>
 	</bean>
 
 
-	<bean id="transactionManager"
+	<bean name="transactionManager"
 		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 	<!-- Define scope transaction -->
-	<bean id="baseTransactionProxy" abstract="true"
+	<bean name="baseTransactionProxy" abstract="true"
 		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
 		<property name="transactionManager" ref="transactionManager" />
 
