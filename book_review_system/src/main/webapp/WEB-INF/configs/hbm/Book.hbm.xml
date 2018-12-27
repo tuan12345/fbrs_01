@@ -7,19 +7,19 @@
 			<generator class="increment" />
 		</id>
 
-		<property name="tittle" type="string">
+		<property name="tittle" type="java.lang.String">
 			<column name="tittle" />
 		</property>
-		<property name="publishDate" type="date">
+		<property name="publishDate" type="timestamp">
 			<column name="publish_date" />
 		</property>
-		<property name="authorName" type="string">
+		<property name="authorName" type="java.lang.String">
 			<column name="author_name" />
 		</property>
-		<property name="numberOfPage" type="int">
+		<property name="numberOfPage" type="java.lang.Integer">
 			<column name="number_of_page" />
 		</property>
-		<property name="image" type="string">
+		<property name="image" type="java.lang.String">
 			<column name="image" />
 		</property>
 		 <many-to-one name = "category" column = "category_id" 

@@ -2,25 +2,25 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping package="app.model">
-	<class name="Mark" table="marks">
+	<class name="Comment" table="comments">
 		<id name="id" column="id">
 			<generator class="increment" />
 		</id>
 
-		<property name="readStatus" type="int">
-			<column name="read_status" />
+		<property name="prarentId" type="java.lang.Integer">
+			<column name="parent_id" />
 		</property>
-		<property name="pageMark" type="int">
-			<column name="page_mark" />
+		<property name="content" type="java.lang.String">
+			<column name="content" />
 		</property>
-		<property name="favorite" type="boolean">
-			<column name="favorie" />
+		<property name="createdAt" type="timestamp">
+			<column name="created_at" />
 		</property>
 		<!-- User mapping -->
 		<many-to-one name = "user" column = "user_id" 
          class="User" not-null="true"/>
-         <!-- Category mapping -->
-         <many-to-one name = "book" column = "book_id" 
-         class="Book" not-null="true"/>
+         <!-- Review mapping -->
+         <many-to-one name = "review" column = "review_id"
+         class="Review" not-null="true"/>
 	</class>
 </hibernate-mapping>

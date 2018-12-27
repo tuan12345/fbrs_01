@@ -7,21 +7,21 @@
 			<generator class="increment" />
 		</id>
 
-		<property name="status" type="int">
+		<property name="status" type="java.lang.Integer">
 			<column name="status" />
 		</property>
-		<property name="createdAt" type="date">
+		<property name="createdAt" type="timestamp">
 			<column name="created_at" />
 		</property>
-		<property name="bookTittle" type="string">
+		<property name="bookTittle" type="java.lang.String">
 			<column name="book_tittle" />
 		</property>
-		<property name="bookAuthor" type="string">
+		<property name="bookAuthor" type="java.lang.String">
 			<column name="book_author" />
 		</property>
 		<!-- User mapping -->
 		<many-to-one name = "user" column = "user_id" 
-         class="User" not-null="true"/>
+         class="User" not-null="true" />
          <!-- Category mapping -->
          <many-to-one name = "category" column = "category_id" 
          class="Category" not-null="true"/>
